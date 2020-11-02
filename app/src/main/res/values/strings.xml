@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SignLearn</string>
+    <string name="title_game">Game</string>
+    <string name="title_lesson">Lesson</string>
+    <string name="title_translator">Translator</string>
+    <string name="text_topic">Topic</string>
+
+</resources>
