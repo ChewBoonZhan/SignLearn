@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_translator"
-        android:name="com.example.prototypea.ui.translator.TranslatorFragment"
+        android:name="com.example.prototypeb.ui.translator.TranslatorFragment"
         android:label="@string/title_translator"
-        tools:layout="@layout/translator" />
+        tools:layout="@layout/fragment_translator" />
 
     <fragment
         android:id="@+id/navigation_lesson"
-        android:name="com.example.prototypea.ui.lesson.LessonFragment"
+        android:name="com.example.prototypeb.ui.lesson.LessonFragment"
         android:label="@string/title_lesson"
-        tools:layout="@layout/lesson" />
+        tools:layout="@layout/fragment_lesson" />
 
     <fragment
         android:id="@+id/navigation_game"
-        android:name="com.example.prototypea.ui.game.GameFragment"
+        android:name="com.example.prototypeb.ui.game.GameFragment"
         android:label="@string/title_game"
-        tools:layout="@layout/game" />
+        tools:layout="@layout/fragment_game" />
 </navigation>

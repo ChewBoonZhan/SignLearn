@@ -7,7 +7,7 @@
 
         android:title="@string/title_translator"
 
-         />
+        />
 
     <item
         android:id="@+id/navigation_lesson"
