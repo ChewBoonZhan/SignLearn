@@ -14,24 +14,18 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import android.widget.Toast;
 
 import com.example.prototypeb.R;
@@ -60,7 +54,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TranslatorFragment extends Fragment {
-    //"Adverbs,Alphabets,Attachments,Numbers,Pronouns"
+
     private TranslatorViewModel translatorViewModel;
 
     public static Activity activity_here;
@@ -73,7 +67,7 @@ public class TranslatorFragment extends Fragment {
     public static FrameLayout framelayout;
     public static ShowCamera showcamera;
     private Button change_camera;
-    private Spinner change_category;
+
     private static boolean switching_camera_state;
 
     private Bitmap bitmap;
@@ -92,52 +86,16 @@ public class TranslatorFragment extends Fragment {
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
     private List<String> labels;
-    private String classify_category;
+
     private View root;
 
-
-
-    private void init_drop_down(){
-        change_category = root.findViewById(R.id.category_selector);
-        String[] items = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronouns"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context_here,android.R.layout.simple_spinner_dropdown_item,items);
-        change_category.setAdapter(adapter);
-        change_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if(id == 0){
-                    classify_category = "adverbs";
-                }
-                else if(id== 1){
-                    classify_category = "alphabets";
-                }
-                else if(id == 2){
-                    classify_category = "attachments";
-                }
-                else if(id == 3){
-                    classify_category = "numbers";
-                }
-                else if(id == 4){
-                    classify_category = "pronoun";
-                }
-                load_model_tflite();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-        });
-    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        classify_category  ="adverbs";
         translatorViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TranslatorViewModel.class);
         root = inflater.inflate(R.layout.fragment_translator, container, false);
 
         set_layout_components();
-        init_drop_down();
         set_on_click_switch_camera();
 
         load_model_tflite();
@@ -252,10 +210,9 @@ public class TranslatorFragment extends Fragment {
         switching_camera_state = false;
     }
     private void showresult(){
-        String filepath = classify_category + "/" + classify_category + "_" + "labels.txt";
 
         try{
-            labels = FileUtil.loadLabels(activity_here,filepath);   //reading the labels from the txt file
+            labels = FileUtil.loadLabels(activity_here,"labels.txt");   //reading the labels from the txt file
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -284,6 +241,16 @@ public class TranslatorFragment extends Fragment {
         // Creates processor for the TensorImage.
         int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
         // TODO(b/143564309): Fuse ops inside ImageProcessor.
+
+        /*
+        ImageProcessor imageProcessor =
+                new ImageProcessor.Builder()
+                        .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
+                        .add(new ResizeOp(imageSizeX, imageSizeY, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
+                        .add(getPreprocessNormalizeOp())
+                        .build();
+        return imageProcessor.process(inputImageBuffer);
+        */
 
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
@@ -317,9 +284,7 @@ public class TranslatorFragment extends Fragment {
         }
     }
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        String filename = classify_category + "/" + classify_category + "_" + "model.tflite";
-
-        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd(filename);
+        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model.tflite");
         //open the tflite file
         FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel=inputStream.getChannel();
