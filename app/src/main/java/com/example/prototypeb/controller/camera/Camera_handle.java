@@ -42,7 +42,7 @@ public class Camera_handle {
         camera_num = 1;
         this.context = context;
         this.framelayout = framelayout;
-        this.translate_interval = 50;
+        this.translate_interval = 10;
         this.interval_counter = 0;
         showcamera = new ShowCamera(context,camera,this);
         translator = new Translator(activity,camera_num,classify_text);
