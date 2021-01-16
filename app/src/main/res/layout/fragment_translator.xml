@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.translator.TranslatorFragment">
@@ -9,13 +10,19 @@
 
     <FrameLayout
         android:id="@+id/camera_frame"
-        android:layout_width="269dp"
-        android:layout_height="327dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="409dp"
+        android:layout_height="302dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/allow_camera_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Allow Camera Permission" />
     </FrameLayout>
 
     <TextView
@@ -54,4 +61,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classitext"
         app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>
