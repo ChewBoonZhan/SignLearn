@@ -6,7 +6,7 @@ public class Translator_categories {
     private  String[] items;
     private HashMap <Integer,String> items_with_number;
     public Translator_categories(){
-        items = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronouns"};
+        items = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronouns","Testing"};
         init_hashmap();
     }
     private void init_hashmap(){

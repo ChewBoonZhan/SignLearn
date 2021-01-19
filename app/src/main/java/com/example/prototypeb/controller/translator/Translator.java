@@ -169,7 +169,7 @@ public class Translator {
             }
         }
 
-        //note that the model needs to be mobilenet, float
+        //note that the model needs to be quantized, based on latest testings
     }
 
     private Bitmap rotate_for_tensor(Bitmap bitmap_image){

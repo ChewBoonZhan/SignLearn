@@ -42,7 +42,7 @@ public class Camera_handle {
         camera_num = 1;
         this.context = context;
         this.framelayout = framelayout;
-        this.translate_interval = 10;
+        this.translate_interval = 3;
         this.interval_counter = 0;
         showcamera = new ShowCamera(context,camera,this);
         translator = new Translator(activity,camera_num,classify_text);
@@ -139,9 +139,13 @@ public class Camera_handle {
                     bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                     Matrix matrix = new Matrix();
                     if(camera_num == 1){
-                        //only front camera needs to invert, back dont need
+                        //front camera needs to invert
 
-                        matrix.preScale(1.0f, -1.0f);
+                        matrix.preScale(1.0f, -1.0f,bitmap.getWidth()/2f,bitmap.getHeight()/2f);
+                    }
+                    else{
+                        //back camera flip horizontally
+                        matrix.preScale(-1.0f, 1.0f,bitmap.getWidth()/2f,bitmap.getHeight()/2f);
                     }
 
 
