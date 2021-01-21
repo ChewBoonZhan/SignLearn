@@ -1,2 +1,2 @@
-0 Up
-1 Down
+Up
+Down
