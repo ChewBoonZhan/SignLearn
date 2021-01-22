@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         TranslatorFragment.setActivity_here(MainActivity.this);
         TranslatorFragment.setContext_here(MainActivity.this);
         GameFragment.setGame_context(MainActivity.this);
+        GameFragment.setGame_activity(MainActivity.this);
 
     }
 

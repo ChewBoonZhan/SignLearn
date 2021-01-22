@@ -1,10 +1,13 @@
 package com.example.prototypeb.ui.game;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +28,17 @@ import java.util.HashMap;
 
 import com.example.prototypeb.controller.file_connections.Categories;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
+import com.example.prototypeb.ui.game.Game_components.Game_alphabets;
+import com.example.prototypeb.ui.game.Game_components.Game_attachments;
+import com.example.prototypeb.ui.game.Game_components.Game_numbers;
+import com.example.prototypeb.ui.game.Game_components.Game_pronoun;
 
 public class GameFragment extends Fragment {
 
     private GameViewModel gameViewModel;
     private static Context game_context;
+    private static Activity game_activity;
     private View game_root;
     private ArrayList <Button> category_buttons;
     private Categories categories;
@@ -65,16 +74,10 @@ public class GameFragment extends Fragment {
             String category = categories[i];
             boolean unlocked = sharedPreferences.getBoolean(category,false);
             if(unlocked){
+
                 Button category_is_unlocked = category_buttons.get(i);
                 category_is_unlocked.setBackgroundColor(Color.parseColor(app_data.getButton_default_color()));
-                category_is_unlocked.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        go_to_game_screen();
-
-
-                    }
-                });
+                add_onclick_to_button(category_is_unlocked,i);
 
             }
             else{
@@ -106,11 +109,69 @@ public class GameFragment extends Fragment {
 
         toast.show();
     }
+    private void add_onclick_to_button(Button button, int index){
+        if(index == 0){
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Game_adverbs.class);
+                    startActivity(intent);
 
-    private void go_to_game_screen(){
+
+                }
+            });
+        }
+        else if(index == 1){
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Game_alphabets.class);
+                    startActivity(intent);
+
+
+                }
+            });
+        }
+        else if(index == 2){
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Game_attachments.class);
+                    startActivity(intent);
+
+
+                }
+            });
+        }
+        else if(index == 3){
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Game_numbers.class);
+                    startActivity(intent);
+
+
+                }
+            });
+        }
+        else if(index == 4){
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), Game_pronoun.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
     }
+
     public static void setGame_context(Context context){
         game_context = context;
+    }
+    public static void setGame_activity(Activity activity){game_activity = activity;}
+
+    public static Activity getGame_activity(){
+        return game_activity;
     }
 }

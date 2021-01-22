@@ -57,9 +57,7 @@ public class Categories {
         String[] categories = app_data.getCategories();
         boolean unlocked = true;
         for(int i = 0;i<categories.length;i++){
-            if(i ==1){
-                unlocked = false;
-            }
+
             editor.putBoolean(categories[i],unlocked);
         }
     }
