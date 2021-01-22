@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.prototypeb.controller.translator.Translator;
+import com.example.prototypeb.ui.game.GameFragment;
 import com.example.prototypeb.ui.translator.TranslatorFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private void set_context_activity_translator(){
         TranslatorFragment.setActivity_here(MainActivity.this);
         TranslatorFragment.setContext_here(MainActivity.this);
+        GameFragment.setGame_context(MainActivity.this);
 
     }
 
