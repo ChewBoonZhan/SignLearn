@@ -119,11 +119,6 @@ public class TranslatorFragment extends Fragment {
 
 
 
-
-
-
-
-
     public static void all_important_buttons_status(boolean enable){
         change_camera.setEnabled(enable);
         change_category.setEnabled(enable);

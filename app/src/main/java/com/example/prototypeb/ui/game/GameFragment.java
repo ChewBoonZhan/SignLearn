@@ -1,6 +1,7 @@
 package com.example.prototypeb.ui.game;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class GameFragment extends Fragment {
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
         View root = inflater.inflate(R.layout.fragment_game, container, false);
         game_root = root;
-        categories = new Categories();
+        categories = new Categories(game_context);
         app_data = new App_data();
         init_category_buttons();
         init_category_button_according_to_unlocked();
@@ -57,12 +58,12 @@ public class GameFragment extends Fragment {
         category_buttons.add(game_root.findViewById(R.id.game5_button_id));
     }
     private void init_category_button_according_to_unlocked(){
-        HashMap<String,Boolean> category_unlocked = categories.getCategory_unlocked();
+        SharedPreferences sharedPreferences = categories.getSharedPref();
         String[] categories = app_data.getCategories();
 
         for(int i = 0;i<category_buttons.size();i++){
             String category = categories[i];
-            boolean unlocked = category_unlocked.get(category);
+            boolean unlocked = sharedPreferences.getBoolean(category,false);
             if(unlocked){
                 Button category_is_unlocked = category_buttons.get(i);
                 category_is_unlocked.setBackgroundColor(Color.parseColor(app_data.getButton_default_color()));

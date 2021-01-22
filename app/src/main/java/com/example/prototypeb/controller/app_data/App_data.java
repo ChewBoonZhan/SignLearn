@@ -1,7 +1,7 @@
 package com.example.prototypeb.controller.app_data;
 
 public class App_data {
-    private String[] categories = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronoun","Testing"};
+    private String[] categories = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronoun"};
     public String[] getCategories() {
         return categories;
     }
