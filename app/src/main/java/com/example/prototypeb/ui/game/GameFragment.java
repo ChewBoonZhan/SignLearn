@@ -55,8 +55,13 @@ public class GameFragment extends Fragment {
         app_data = new App_data();
         init_category_buttons();
         init_category_button_according_to_unlocked();
+        set_score_text();
 
         return root;
+    }
+    private void set_score_text(){
+        TextView score_text = game_root.findViewById(R.id.score_text);
+        score_text.setText("Score: " + categories.getScore());
     }
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();

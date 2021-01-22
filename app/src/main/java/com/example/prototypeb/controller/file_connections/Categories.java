@@ -57,9 +57,14 @@ public class Categories {
         String[] categories = app_data.getCategories();
         boolean unlocked = true;
         for(int i = 0;i<categories.length;i++){
-
+            if(i == 1){
+                unlocked = false;
+            }
             editor.putBoolean(categories[i],unlocked);
         }
+    }
+    public int getScore(){
+        return sharedPref.getInt("score",-1);
     }
     public SharedPreferences getSharedPref(){
         return sharedPref;
