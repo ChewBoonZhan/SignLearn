@@ -31,6 +31,8 @@ import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 import com.example.prototypeb.ui.game.Game_components.Game_alphabets;
 import com.example.prototypeb.ui.game.Game_components.Game_attachments;
+import com.example.prototypeb.ui.game.Game_components.Game_classes_init;
+import com.example.prototypeb.ui.game.Game_components.Game_components;
 import com.example.prototypeb.ui.game.Game_components.Game_numbers;
 import com.example.prototypeb.ui.game.Game_components.Game_pronoun;
 
@@ -43,6 +45,7 @@ public class GameFragment extends Fragment {
     private ArrayList <Button> category_buttons;
     private Categories categories;
     private App_data app_data;
+    private Game_classes_init game_classes_init;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,12 +56,14 @@ public class GameFragment extends Fragment {
         game_root = root;
         categories = new Categories(game_context);
         app_data = new App_data();
+        game_classes_init = new Game_classes_init(game_context);
         init_category_buttons();
         init_category_button_according_to_unlocked();
         set_score_text();
 
         return root;
     }
+
     private void set_score_text(){
         TextView score_text = game_root.findViewById(R.id.score_text);
         score_text.setText("Score: " + categories.getScore());
@@ -115,60 +120,9 @@ public class GameFragment extends Fragment {
         toast.show();
     }
     private void add_onclick_to_button(Button button, int index){
-        if(index == 0){
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Game_adverbs.class);
-                    startActivity(intent);
-
-
-                }
-            });
-        }
-        else if(index == 1){
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Game_alphabets.class);
-                    startActivity(intent);
-
-
-                }
-            });
-        }
-        else if(index == 2){
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Game_attachments.class);
-                    startActivity(intent);
-
-
-                }
-            });
-        }
-        else if(index == 3){
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Game_numbers.class);
-                    startActivity(intent);
-
-
-                }
-            });
-        }
-        else if(index == 4){
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Game_pronoun.class);
-                    startActivity(intent);
-                }
-            });
-        }
-
+        HashMap<Integer, Game_components> game_classes = game_classes_init.getGame_classes();
+        Game_components game_components =game_classes.get(index);
+        button.setOnClickListener(game_components.getOn_click());
     }
 
     public static void setGame_context(Context context){
