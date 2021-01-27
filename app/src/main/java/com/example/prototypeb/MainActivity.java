@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init_elements(){
         loading_logo_image = findViewById(R.id.beginning_loading_logo);
-        loading_logo_image.setImageResource(R.drawable.logo3);
+        loading_logo_image.setImageResource(R.drawable.logo);
 
         loading_text = findViewById(R.id.beginning_loading_text);
 
