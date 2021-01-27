@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -40,6 +41,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.prototypeb.MainActivity;
 import com.example.prototypeb.R;
 
 
@@ -71,15 +73,15 @@ public class TranslatorFragment extends Fragment {
 
     private static Button change_camera;
     private static Spinner change_category;
-    private Button allow_camera_permission;
+
 
 
     private TextView classitext;
     private String classify_category;
     private View root;
-    private Camera_handle camera_handle;
+    private static Camera_handle camera_handle;
     private Translator translator;
-
+    private static ConstraintLayout container_layout;
 
     private Translator_categories translator_categories;
     
@@ -108,20 +110,22 @@ public class TranslatorFragment extends Fragment {
         classify_category  =translator_categories.get_Beginning_Category();
         translator.load_model_tflite(classify_category);
 
+        if(MainActivity.getCamera_permission_acquired()){
+            camera_handle.start_camera_met();
+        }
 
-
-
-        start_request_permission();
+        if(MainActivity.get_first_loaded_or_not()){
+            set_layout_ready();
+        }
 
 
         return root;
     }
-
-
-
-    public static void all_important_buttons_status(boolean enable){
-        change_camera.setEnabled(enable);
-        change_category.setEnabled(enable);
+    public static Camera_handle getCamera_handle(){
+        return camera_handle;
+    }
+    public static void set_layout_ready(){
+        container_layout.setVisibility(View.VISIBLE);
     }
 
     private void init_drop_down(){
@@ -152,9 +156,7 @@ public class TranslatorFragment extends Fragment {
         classitext = root.findViewById(R.id.classitext);
         change_camera = root.findViewById(R.id.switch_camera);
         change_category = root.findViewById(R.id.category_selector);
-        allow_camera_permission = root.findViewById(R.id.allow_camera_permission);
-
-
+        container_layout = root.findViewById(R.id.container_layout);
 
     }
 
@@ -166,9 +168,6 @@ public class TranslatorFragment extends Fragment {
             }
         });
     }
-
-
-
     public static int get_camera_type(){
         return camera_num;
     }
@@ -184,129 +183,6 @@ public class TranslatorFragment extends Fragment {
     }
     public static Context getContext_here() {
         return context_here;
-    }
-
-
-
-    //permissions, as dealing with fragments is too complicated.
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void start_request_permission() {
-        //get_permission_datas();
-
-        init_allow_camera_button();
-        if (ContextCompat.checkSelfPermission(context_here, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            permission_not_granted(false);
-            request_permission();
-        } else {
-            camera_handle.start_camera_met();
-            permission_granted(true);
-
-        }
-    }
-
-    /*
-    private void get_permission_datas() {
-        activity = TranslatorFragment.getActivity_here();
-        context = TranslatorFragment.getContext_here();
-        camera_handle = camera_permission_data.getCamera_handle();
-        allow_camera_button = camera_permission_data.getAllow_camera_button();
-
-    }
-
-     */
-
-    private void init_allow_camera_button() {
-        allow_camera_permission.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                request_permission();
-
-            }
-        });
-
-    }
-
-    public void request_permission() {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity_here, Manifest.permission.CAMERA)) {
-            //user denied it before, therefore explain why we need it
-            new AlertDialog.Builder(context_here).setTitle("Permission needed").setMessage("This permission is needed for the Sign Language translator.").setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);
-
-                    request_permission_thread();
-                }
-            }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //dismiss the dialog
-                    dialog.dismiss();
-                    permission_not_granted(true);
-                }
-            }).create().show();
-        } else {
-            //request for permission like normal
-            //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);
-            request_permission_thread();
-        }
-    }
-
-    private void request_permission_thread() {
-
-        if (!isAdded()) {
-
-            Log.d("Odd","Error incoming?");
-
-        }
-        requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
-    }
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull String[] permissions, @androidx.annotation.NonNull int[] grantResults) {
-
-
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                permission_granted(false);
-            } else {
-                permission_not_granted(true);
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void permission_granted(boolean permission_initially_granted) {
-        if(!permission_initially_granted){
-            Toast.makeText(context_here, "Permission Granted", Toast.LENGTH_SHORT).show();
-            camera_handle.start_camera_met();
-        }
-        disable_allow_camera_button();
-        TranslatorFragment.all_important_buttons_status(true);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void permission_not_granted(boolean user_clicked_no) {
-        if(user_clicked_no){
-            Toast.makeText(context_here, "Permission not Granted", Toast.LENGTH_SHORT).show();
-        }
-
-        enable_allow_camera_button();
-        TranslatorFragment.all_important_buttons_status(false);
-
-    }
-    private void disable_allow_camera_button() {
-        allow_camera_permission.setVisibility(View.GONE);
-        allow_camera_permission.setEnabled(false);
-    }
-
-    private void enable_allow_camera_button() {
-        allow_camera_permission.setVisibility(View.VISIBLE);
-        allow_camera_permission.setEnabled(true);
     }
 
 
