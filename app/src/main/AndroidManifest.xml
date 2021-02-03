@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prototypeb">
-
-    <uses-permission android:name="android.hardware.Camera" />
+    <uses-permission android:name="android.hardware.Camera"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature
-        android:name="android.hardware.Camera"
-        android:required="true" />
+    <uses-feature android:name = "android.hardware.Camera" android:required = "true" />
 
     <application
         android:allowBackup="true"
@@ -18,28 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PrototypeB">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.lesson.Topic.Adverbs"
             android:label="Adverbs" />
         <activity
-            android:name=".ui.lesson.Topic.Alphabets"
-            android:label="Alphabets" />
-        <activity
-            android:name=".ui.lesson.Topic.Attachments"
-            android:label="Attachments" />
-        <activity
-            android:name=".ui.lesson.Topic.Numbers"
-            android:label="Numbers" />
-        <activity
-            android:name=".ui.lesson.Topic.Pronouns"
-            android:label="Pronouns" />
+            android:name=".ui.lesson.Adverbs.No"
+            android:label="Adverbs" />
         <activity
             android:name=".ui.lesson.Adverbs.Yes"
             android:label="Adverbs" />
         <activity
-            android:name=".ui.lesson.Adverbs.No"
-            android:label="Adverbs" />
+            android:name=".ui.lesson.Topic.Alphabets"
+            android:label="Alphabets" />
         <activity
             android:name=".ui.lesson.Alphabets.A"
             android:label="Alphabets" />
@@ -53,38 +48,38 @@
             android:name=".ui.lesson.Alphabets.Y"
             android:label="Alphabets" />
         <activity
-            android:name=".ui.lesson.Attachments.Like"
+            android:name=".ui.lesson.Topic.Attachments"
             android:label="Attachments" />
         <activity
             android:name=".ui.lesson.Attachments.Dislike"
             android:label="Attachments" />
         <activity
+            android:name=".ui.lesson.Attachments.Like"
+            android:label="Attachments" />
+        <activity
             android:name=".ui.lesson.Attachments.ILoveYou"
             android:label="Attachments" />
         <activity
-            android:name=".ui.lesson.Numbers.Num1"
+            android:name=".ui.lesson.Topic.Numbers"
             android:label="Numbers" />
         <activity
             android:name=".ui.lesson.Numbers.Num2"
             android:label="Numbers" />
         <activity
+            android:name=".ui.lesson.Numbers.Num1"
+            android:label="Numbers" />
+        <activity
             android:name=".ui.lesson.Numbers.Num10"
             android:label="Numbers" />
         <activity
-            android:name=".ui.lesson.Pronouns.Me"
+            android:name=".ui.lesson.Topic.Pronouns"
             android:label="Pronouns" />
         <activity
             android:name=".ui.lesson.Pronouns.You"
-            android:label="Pronouns"></activity>
+            android:label="Pronouns" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".ui.lesson.Pronouns.Me"
+            android:label="Pronouns" />
     </application>
 
 </manifest>
