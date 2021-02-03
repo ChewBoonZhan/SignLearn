@@ -12,11 +12,11 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.prototypeb.R;
-import com.example.prototypeb.ui.lesson.Topic.Adverbs;
-import com.example.prototypeb.ui.lesson.Topic.Alphabets;
-import com.example.prototypeb.ui.lesson.Topic.Attachments;
-import com.example.prototypeb.ui.lesson.Topic.Numbers;
-import com.example.prototypeb.ui.lesson.Topic.Pronouns;
+import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Adverbs;
+import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Alphabets;
+import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Attachments;
+import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Numbers;
+import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Pronouns;
 
 public class LessonFragment extends Fragment {
 
