@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.prototypeb.R;
 import com.example.prototypeb.ui.lesson.Numbers.Num1;
 import com.example.prototypeb.ui.lesson.Numbers.Num2;
-import com.example.prototypeb.ui.lesson.Numbers.Num3;
+import com.example.prototypeb.ui.lesson.Numbers.Num10;
 
 public class Numbers extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class Numbers extends AppCompatActivity {
             }
         });
         //3 button
-        button = (Button) findViewById(R.id.num3_id);
+        button = (Button) findViewById(R.id.num10_id);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class Numbers extends AppCompatActivity {
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Num3.class);
+                Intent intent = new Intent(getApplicationContext(), Num10.class);
                 startActivity(intent);
             }
         });

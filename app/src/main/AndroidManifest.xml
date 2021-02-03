@@ -68,7 +68,7 @@
             android:name=".ui.lesson.Numbers.Num2"
             android:label="Numbers" />
         <activity
-            android:name=".ui.lesson.Numbers.Num3"
+            android:name=".ui.lesson.Numbers.Num10"
             android:label="Numbers" />
         <activity
             android:name=".ui.lesson.Pronouns.Me"

@@ -42,8 +42,8 @@
     <string name="num2_title">2 (Two)</string>
     <string name="num2_content">Equivalent to the sum of one and one; one less than three; a symbol for this number as 2 or II. The orientation of the palm faces the signer for a number, but faces the listener for two o clock and age. </string>
     //numbers.num3
-    <string name="num3_title">3 (Three)</string>
-    <string name="num3_content">The number three. The palm facing the signer is generally used in cardinal number.</string>
+    <string name="num10_title">10 (Ten)</string>
+    <string name="num10_content">The number ten. The palm facing the signer is generally used in cardinal number.</string>
     //pronouns.me
     <string name="me_title">I (Me)</string>
     <string name="me_content">The ASL signs/words "I" and "me" are the same. It is a pronoun. The object or subject of the pronoun can be identified in sentence structure.</string>

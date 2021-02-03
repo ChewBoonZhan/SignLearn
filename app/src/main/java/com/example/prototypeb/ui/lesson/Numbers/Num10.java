@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
 
-public class Num3 extends AppCompatActivity {
+public class Num10 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.info_num3);
+        setContentView(R.layout.info_num10);
     }
 }
