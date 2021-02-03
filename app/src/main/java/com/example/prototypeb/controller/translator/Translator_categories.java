@@ -1,12 +1,14 @@
 package com.example.prototypeb.controller.translator;
 
 import java.util.HashMap;
+import com.example.prototypeb.controller.app_data.App_data;
 
 public class Translator_categories {
     private  String[] items;
+    private App_data app_data = new App_data();
     private HashMap <Integer,String> items_with_number;
     public Translator_categories(){
-        items = new String[]{"Adverbs","Alphabets", "Attachments","Numbers","Pronoun","Testing"};
+        items = app_data.getCategories();
         init_hashmap();
     }
     private void init_hashmap(){

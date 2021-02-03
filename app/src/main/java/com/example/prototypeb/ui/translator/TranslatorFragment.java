@@ -16,6 +16,8 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -34,19 +36,21 @@ import android.widget.TextView;
 import android.support.annotation.NonNull;
 
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 
 import androidx.annotation.RequiresApi;
 
+import com.example.prototypeb.MainActivity;
 import com.example.prototypeb.R;
 
 
 
 import com.example.prototypeb.controller.camera.Camera_handle;
-import com.example.prototypeb.controller.camera_permission.camera_permission;
+
 
 import com.example.prototypeb.controller.translator.Translator;
-import com.example.prototypeb.controller.camera_permission.camera_permission_data;
+
 import com.example.prototypeb.controller.translator.Translator_categories;
 
 import java.util.HashMap;
@@ -69,15 +73,15 @@ public class TranslatorFragment extends Fragment {
 
     private static Button change_camera;
     private static Spinner change_category;
-    private Button allow_camera_permission;
+
 
 
     private TextView classitext;
     private String classify_category;
     private View root;
-    private Camera_handle camera_handle;
+    private static Camera_handle camera_handle;
     private Translator translator;
-    private camera_permission camera_permissions;
+    private static ConstraintLayout container_layout;
 
     private Translator_categories translator_categories;
     
@@ -89,6 +93,7 @@ public class TranslatorFragment extends Fragment {
      * @param savedInstanceState
      * @return root - Initialized view with all the elements in it.
      */
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -104,34 +109,25 @@ public class TranslatorFragment extends Fragment {
         init_drop_down();
         classify_category  =translator_categories.get_Beginning_Category();
         translator.load_model_tflite(classify_category);
-        setup_permission_data();
 
-        if(camera_permissions== null){
-
-            camera_permissions = new camera_permission();
+        if(MainActivity.getCamera_permission_acquired()){
+            camera_handle.start_camera_met();
         }
-        camera_permissions.start_request_permission();
-        getFragmentManager().beginTransaction().replace(R.id.container_layout,camera_permissions).commit();
+
+        if(MainActivity.get_first_loaded_or_not()){
+            set_layout_ready();
+        }
+
+
         return root;
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if(camera_permissions== null){
-            camera_permissions = new camera_permission();
-        }
+    public static Camera_handle getCamera_handle(){
+        return camera_handle;
+    }
+    public static void set_layout_ready(){
+        container_layout.setVisibility(View.VISIBLE);
     }
 
-    public static void all_important_buttons_status(boolean enable){
-        change_camera.setEnabled(enable);
-        change_category.setEnabled(enable);
-    }
-    private void setup_permission_data(){
-        camera_permission_data.setCamera_handle(camera_handle);
-        camera_permission_data.setAllow_camera_button(allow_camera_permission);
-    }
     private void init_drop_down(){
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context_here,android.R.layout.simple_spinner_dropdown_item,translator_categories.getItems());
@@ -160,9 +156,7 @@ public class TranslatorFragment extends Fragment {
         classitext = root.findViewById(R.id.classitext);
         change_camera = root.findViewById(R.id.switch_camera);
         change_category = root.findViewById(R.id.category_selector);
-        allow_camera_permission = root.findViewById(R.id.allow_camera_permission);
-
-
+        container_layout = root.findViewById(R.id.container_layout);
 
     }
 
@@ -174,9 +168,6 @@ public class TranslatorFragment extends Fragment {
             }
         });
     }
-
-
-
     public static int get_camera_type(){
         return camera_num;
     }

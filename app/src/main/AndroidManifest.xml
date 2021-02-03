@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.game.Game_components.Game_adverbs"></activity>
+        <activity android:name=".ui.game.Game_components.Game_pronoun"></activity>
+        <activity android:name=".ui.game.Game_components.Game_numbers"></activity>
+        <activity android:name=".ui.game.Game_components.Game_attachments"></activity>
+        <activity android:name=".ui.game.Game_components.Game_alphabets"></activity>
     </application>
 
 </manifest>
