@@ -2,7 +2,7 @@
 
 SignLearn allows translation from Sign Language to text
 
-## Testing of the app
+## Testing of the apps
 
 1. Once the app is loaded into your phone, disconnect your phone from your computer
 2. Exit the app, and then reenter the app
