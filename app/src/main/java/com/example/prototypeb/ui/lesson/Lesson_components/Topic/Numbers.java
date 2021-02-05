@@ -1,5 +1,6 @@
 package com.example.prototypeb.ui.lesson.Lesson_components.Topic;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,13 @@ import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num1;
 import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num2;
 import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num10;
 
-public class Numbers extends AppCompatActivity {
-
+public class Numbers extends AppCompatActivity implements Lesson_topics{
+    private Context numbers_context;
     private Button button;
+    public Numbers(){}
+    public Numbers(Context numbers_context){
+        this.numbers_context = numbers_context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,4 +67,31 @@ public class Numbers extends AppCompatActivity {
             }
         });
     }
+    public View.OnClickListener get_unlocked_On_click(){
+
+        return on_unlocked_click;
+    }
+
+    public View.OnClickListener get_locked_On_click(){
+        return locked_On_click;
+    }
+    private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), Numbers.class);
+            numbers_context.startActivity(intent);
+
+
+        }
+    };
+    private View.OnClickListener locked_On_click= new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+
+
+
+        }
+    };
 }

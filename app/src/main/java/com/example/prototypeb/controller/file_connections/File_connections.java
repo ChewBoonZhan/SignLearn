@@ -9,13 +9,13 @@ import java.util.HashMap;
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 
-public class Categories {
+public class File_connections {
 
     private App_data app_data;
     private Context category_context;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    public Categories(Context context){
+    public File_connections(Context context){
         app_data = new App_data();
 
         category_context = context;
@@ -43,15 +43,15 @@ public class Categories {
     }
     private void save_category_in_file(){
         String[] categories = app_data.getCategories();
-        boolean unlocked = false;
-        for(int i = 0;i<categories.length;i++){
+        editor.putBoolean(categories[0],true);
+        for(int i = 1;i<categories.length;i++){
             /* for testing purposes
             if(i == 1){
                 unlocked = true;
             }
             */
 
-            editor.putBoolean(categories[i],unlocked);
+            editor.putBoolean(categories[i],false);
         }
     }
     public int getScore(){

@@ -29,7 +29,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.prototypeb.controller.loading_screen.Loading_screen;
 import com.example.prototypeb.ui.game.GameFragment;
+import com.example.prototypeb.ui.lesson.LessonFragment;
 import com.example.prototypeb.ui.translator.TranslatorFragment;
+//import com.example.prototypeb.controller.file_connections.Categories;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView loading_logo_image;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean ready = false;
     private static boolean camera_permission_acquired = false;
     private Button allow_camera_permission;
+    //private static Categories categories;
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init_elements();
         init_background_scenes();
+        //categories = new Categories(this);
         loading_screen = new Loading_screen(main_layout,loading_text,loading_logo_image,this);
         set_context_activity_for_use();
         start_request_permission();
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         TranslatorFragment.setContext_here(MainActivity.this);
         GameFragment.setGame_context(MainActivity.this);
         GameFragment.setGame_activity(MainActivity.this);
+        LessonFragment.setLesson_activity(MainActivity.this);
+        LessonFragment.setLesson_context(MainActivity.this);
 
     }
     public void done_loading_screen(){
@@ -108,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
     public static boolean get_first_loaded_or_not(){
         return ready;
     }
+    /*
+    public static Categories getCategories(){
+        return categories;
+    }
+    */
 
 
     //permissions, as dealing with fragments is too complicated.

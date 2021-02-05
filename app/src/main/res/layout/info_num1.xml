@@ -29,12 +29,11 @@
         android:src="@drawable/one"/>
 
 
-
     <Button
-        android:id="@+id/check"
+        android:id="@+id/check_translator_num1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="120dp"
         android:text="Check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +44,7 @@
         android:id="@+id/definition"
         android:layout_width="280dp"
         android:layout_height="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/def"
         android:textSize="20dp"
@@ -61,7 +60,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/num1_content"
-        app:layout_constraintBottom_toTopOf="@+id/check"
+        app:layout_constraintBottom_toTopOf="@+id/check_translator_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

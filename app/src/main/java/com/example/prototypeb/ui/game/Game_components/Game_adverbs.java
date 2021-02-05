@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.example.prototypeb.R;
@@ -17,11 +18,16 @@ public class Game_adverbs extends AppCompatActivity implements  Game_components{
     public Game_adverbs(Context context){
         adverbs_context = context;
     }
-    public View.OnClickListener getOn_click(){
-        return on_click;
+    public View.OnClickListener get_unlocked_On_click(){
+
+        return on_unlocked_click;
     }
 
-    private View.OnClickListener on_click= new View.OnClickListener() {
+    public View.OnClickListener get_locked_On_click(){
+        return locked_On_click;
+    }
+    private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), Game_adverbs.class);

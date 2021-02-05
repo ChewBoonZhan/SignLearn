@@ -28,10 +28,10 @@
         android:src="@drawable/alpha_y" />
 
     <Button
-        android:id="@+id/check"
+        android:id="@+id/check_translator_y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="92dp"
         android:text="Check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/y_content"
-        app:layout_constraintBottom_toTopOf="@+id/check"
+        app:layout_constraintBottom_toTopOf="@+id/check_translator_y"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

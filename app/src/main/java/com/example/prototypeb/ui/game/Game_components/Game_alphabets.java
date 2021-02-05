@@ -16,11 +16,15 @@ public class Game_alphabets extends AppCompatActivity implements Game_components
     public Game_alphabets(Context context){
         alphabet_context = context;
     }
-    public View.OnClickListener getOn_click(){
-        return on_click;
+    public View.OnClickListener get_unlocked_On_click(){
+
+        return on_unlocked_click;
     }
 
-    private View.OnClickListener on_click= new View.OnClickListener() {
+    public View.OnClickListener get_locked_On_click(){
+        return locked_On_click;
+    }
+    private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), Game_alphabets.class);

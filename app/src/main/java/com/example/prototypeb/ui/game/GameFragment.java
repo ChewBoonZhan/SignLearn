@@ -26,7 +26,8 @@ import com.example.prototypeb.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.prototypeb.controller.file_connections.Categories;
+import com.example.prototypeb.controller.category.Category_init;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 import com.example.prototypeb.ui.game.Game_components.Game_alphabets;
@@ -43,10 +44,10 @@ public class GameFragment extends Fragment {
     private static Activity game_activity;
     private View game_root;
     private ArrayList <Button> category_buttons;
-    private Categories categories;
+    private File_connections file_connections;
     private App_data app_data;
     private Game_classes_init game_classes_init;
-
+    private Category_init category_init;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,9 +55,11 @@ public class GameFragment extends Fragment {
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
         View root = inflater.inflate(R.layout.fragment_game, container, false);
         game_root = root;
-        categories = new Categories(game_context);
+
+        file_connections = new File_connections(game_context);
         app_data = new App_data();
         game_classes_init = new Game_classes_init(game_context);
+        category_init = new Category_init(game_context,game_classes_init);
         init_category_buttons();
         init_category_button_according_to_unlocked();
         set_score_text();
@@ -66,7 +69,7 @@ public class GameFragment extends Fragment {
 
     private void set_score_text(){
         TextView score_text = game_root.findViewById(R.id.score_text);
-        score_text.setText("Score: " + categories.getScore());
+        score_text.setText("Score: " + file_connections.getScore());
     }
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();
@@ -76,54 +79,12 @@ public class GameFragment extends Fragment {
         category_buttons.add(game_root.findViewById(R.id.game4_button_id));
         category_buttons.add(game_root.findViewById(R.id.game5_button_id));
     }
+
     private void init_category_button_according_to_unlocked(){
-        SharedPreferences sharedPreferences = categories.getSharedPref();
-        String[] categories = app_data.getCategories();
-
-        for(int i = 0;i<category_buttons.size();i++){
-            String category = categories[i];
-            boolean unlocked = sharedPreferences.getBoolean(category,false);
-            if(unlocked){
-
-                Button category_is_unlocked = category_buttons.get(i);
-                category_is_unlocked.setBackgroundColor(Color.parseColor(app_data.getButton_default_color()));
-                add_onclick_to_button(category_is_unlocked,i);
-
-            }
-            else{
-                //not unlocked
-                Button category_not_unlocked = category_buttons.get(i);
-                category_not_unlocked.setBackgroundColor(Color.parseColor(app_data.getButton_disabled_color()));
-                category_not_unlocked.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        generate_not_unlocked_toast();
-                    }
-                });
-            }
-
-        }
+        category_init.init_category_button_according_to_unlocked(category_buttons);
 
     }
-    private void generate_not_unlocked_toast(){
-        Toast toast = Toast.makeText(game_context, "⚠️Locked\n\nPlease purchase Lessons with coins to unlock the game for this category!", (int)10000);
-        View view = toast.getView();
 
-        //Gets the actual oval background of the Toast then sets the colour filter
-        view.getBackground().setColorFilter(Color.parseColor("#ffc3bf"), PorterDuff.Mode.SRC_IN);
-
-        //Gets the TextView from the Toast so it can be editted
-        TextView text = view.findViewById(android.R.id.message);
-        text.setTextColor(Color.parseColor("#343A40"));
-        text.setGravity(Gravity.CENTER);
-
-        toast.show();
-    }
-    private void add_onclick_to_button(Button button, int index){
-        HashMap<Integer, Game_components> game_classes = game_classes_init.getGame_classes();
-        Game_components game_components =game_classes.get(index);
-        button.setOnClickListener(game_components.getOn_click());
-    }
 
     public static void setGame_context(Context context){
         game_context = context;
