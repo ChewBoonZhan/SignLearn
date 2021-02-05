@@ -9,15 +9,25 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
-import com.example.prototypeb.ui.lesson.Lesson_components.Attachments.Dislike;
-import com.example.prototypeb.ui.lesson.Lesson_components.Attachments.ILoveYou;
-import com.example.prototypeb.ui.lesson.Lesson_components.Attachments.Like;
+import com.example.prototypeb.controller.lesson_screen.Attachments.Dislike_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Attachments.Iloveyou_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Attachments.Like_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
+
 
 public class Attachments extends AppCompatActivity implements Lesson_topics{
     private Context attachments_context;
     private Button button;
+    private Dislike_screen_components dislike_screen_components;
+    private Iloveyou_screen_components iloveyou_screen_components;
+    private Like_screen_components like_screen_components;
 
-    public Attachments(){}
+
+    public Attachments(){
+        dislike_screen_components = new Dislike_screen_components();
+        iloveyou_screen_components = new Iloveyou_screen_components();
+        like_screen_components = new Like_screen_components();
+    }
     public Attachments(Context attachments_context){
         this.attachments_context = attachments_context;
     }
@@ -37,8 +47,8 @@ public class Attachments extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Like.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", like_screen_components));
             }
         });
         //Dislike button
@@ -49,8 +59,8 @@ public class Attachments extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Dislike.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", dislike_screen_components));
             }
         });
         //ILoveYou button
@@ -61,8 +71,8 @@ public class Attachments extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), ILoveYou.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", iloveyou_screen_components));
             }
         });
 

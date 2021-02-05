@@ -4,65 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.lesson.Lesson_components.Adverbs.Yes">
+    tools:context=".ui.lesson.Lesson_components.Alphabets.B">
+
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/lesson_text_title"
         android:layout_width="215dp"
         android:layout_height="50dp"
-        android:layout_marginTop="72dp"
         android:gravity="center"
-        android:text="@string/yes_title"
+        android:text=" "
         android:textSize="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/imageView"
+        android:id="@+id/lesson_gif_imageView"
         android:layout_width="239dp"
         android:layout_height="256dp"
-        android:layout_marginTop="28dp"
+        android:src="@drawable/alpha_b"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        android:src="@drawable/yes" />
+        app:layout_constraintTop_toBottomOf="@+id/lesson_text_title" />
 
     <Button
-        android:id="@+id/check_translator_yes"
+        android:id="@+id/check_translator_info_lesson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="84dp"
         android:text="Check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lesson_info_defcontent"
+        app:layout_constraintVertical_bias="0.446" />
 
     <TextView
-        android:id="@+id/definition"
+        android:id="@+id/lesson_info_definition_title"
         android:layout_width="280dp"
         android:layout_height="28dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/def"
+        android:text="Defination"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/lesson_gif_imageView" />
 
     <TextView
-        android:id="@+id/defcontent"
+        android:id="@+id/lesson_info_defcontent"
         android:layout_width="280dp"
         android:layout_height="113dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="2dp"
         android:gravity="center"
-        android:text="@string/yes_content"
-        app:layout_constraintBottom_toTopOf="@+id/check_translator_yes"
+        android:text=" "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/definition"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/lesson_info_definition_title" />
 </android.support.constraint.ConstraintLayout>

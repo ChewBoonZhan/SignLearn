@@ -28,25 +28,15 @@
         <activity android:name=".ui.game.Game_components.Game_numbers"></activity>
         <activity android:name=".ui.game.Game_components.Game_attachments"></activity>
         <activity android:name=".ui.game.Game_components.Game_alphabets"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Adverbs.No"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Adverbs.Yes"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Alphabets.A"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Alphabets.B"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Alphabets.C"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Alphabets.Y"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Attachments.Dislike"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Attachments.Like"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Attachments.ILoveYou"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Numbers.Num1"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Numbers.Num2"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Numbers.Num10"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Pronouns.Me"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Pronouns.You"></activity>
+
         <activity android:name=".ui.lesson.Lesson_components.Topic.Adverbs"></activity>
         <activity android:name=".ui.lesson.Lesson_components.Topic.Alphabets"></activity>
         <activity android:name=".ui.lesson.Lesson_components.Topic.Attachments"></activity>
         <activity android:name=".ui.lesson.Lesson_components.Topic.Numbers"></activity>
         <activity android:name=".ui.lesson.Lesson_components.Topic.Pronouns"></activity>
+        <activity android:name=".controller.lesson_screen.Lesson_screen"></activity>
+        <activity android:name=".controller.category_menu.Category_menu"></activity>
+
     </application>
 
 </manifest>

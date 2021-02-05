@@ -9,16 +9,24 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.lesson_screen.Adverbs.No_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Adverbs.Yes_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
-import com.example.prototypeb.ui.lesson.Lesson_components.Adverbs.No;
-import com.example.prototypeb.ui.lesson.Lesson_components.Adverbs.Yes;
+
 
 public class Adverbs extends AppCompatActivity implements Lesson_topics{
     private Context adverbs_context;
     private Button button;
-    public Adverbs(){}
+    private No_screen_components no_screen_components;
+    private Yes_screen_components yes_screen_components;
+    public Adverbs(){
+        no_screen_components = new No_screen_components();
+        yes_screen_components = new Yes_screen_components();
+    }
     public Adverbs(Context adverbs_context){
         this.adverbs_context = adverbs_context;
+
     }
 
     @Override
@@ -36,8 +44,13 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Yes.class);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", yes_screen_components));
+                /*
+                Intent intent = new Intent(getApplicationContext(), Lesson_screen.class);
                 startActivity(intent);
+
+                 */
             }
         });
         //No button
@@ -49,8 +62,8 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), No.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", no_screen_components));
             }
         });
 

@@ -9,14 +9,23 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
-import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num1;
-import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num2;
-import com.example.prototypeb.ui.lesson.Lesson_components.Numbers.Num10;
+import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
+import com.example.prototypeb.controller.lesson_screen.Numbers.Num10_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Numbers.Num1_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Numbers.Num2_screen_components;
+
 
 public class Numbers extends AppCompatActivity implements Lesson_topics{
     private Context numbers_context;
     private Button button;
-    public Numbers(){}
+    private Num1_screen_components num1_screen_components;
+    private Num2_screen_components num2_screen_components;
+    private Num10_screen_components num10_screen_components;
+    public Numbers(){
+        num1_screen_components = new Num1_screen_components();
+        num2_screen_components = new Num2_screen_components();
+        num10_screen_components = new Num10_screen_components();
+    }
     public Numbers(Context numbers_context){
         this.numbers_context = numbers_context;
     }
@@ -36,8 +45,8 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Num1.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", num1_screen_components));
             }
         });
         //2 button
@@ -49,8 +58,8 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Num2.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", num2_screen_components));
             }
         });
         //3 button
@@ -62,8 +71,8 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Num10.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", num10_screen_components));
             }
         });
     }

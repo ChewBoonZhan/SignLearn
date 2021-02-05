@@ -9,15 +9,25 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
-import com.example.prototypeb.ui.lesson.Lesson_components.Pronouns.Me;
-import com.example.prototypeb.ui.lesson.Lesson_components.Pronouns.You;
+
+import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
+import com.example.prototypeb.controller.lesson_screen.Pronouns.Me_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Pronouns.You_screen_components;
 
 public class Pronouns extends AppCompatActivity implements Lesson_topics{
     private Context pronouns_context;
     private Button button;
-    public Pronouns(){}
+    private Me_screen_components me_screen_components;
+    private You_screen_components you_screen_components;
+
+    public Pronouns(){
+
+        me_screen_components = new Me_screen_components();
+        you_screen_components = new You_screen_components();
+    }
     public Pronouns(Context pronouns_context){
         this.pronouns_context = pronouns_context;
+
     }
 
     @Override
@@ -35,8 +45,8 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Me.class);
-                startActivity(intent);
+                pronouns_context.startActivity(new Intent(pronouns_context, Lesson_screen.class)
+                        .putExtra("screen_components", me_screen_components));
             }
         });
         //You button
@@ -48,8 +58,8 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), You.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", you_screen_components));
             }
         });
 

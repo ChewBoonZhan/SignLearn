@@ -9,19 +9,30 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.lesson_screen.Alphabets.A_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Alphabets.B_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Alphabets.C_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Alphabets.Y_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
-import com.example.prototypeb.ui.lesson.Lesson_components.Alphabets.A;
-import com.example.prototypeb.ui.lesson.Lesson_components.Alphabets.B;
-import com.example.prototypeb.ui.lesson.Lesson_components.Alphabets.C;
-import com.example.prototypeb.ui.lesson.Lesson_components.Alphabets.Y;
+
 
 public class Alphabets extends AppCompatActivity implements  Lesson_topics{
     private Context alphabets_context;
     private Button button;
-
-    public Alphabets(){}
+    private A_screen_components a_screen_components;
+    private B_screen_components b_screen_components;
+    private C_screen_components c_screen_components;
+    private Y_screen_components y_screen_components;
+    public Alphabets(){
+        a_screen_components = new A_screen_components();
+        b_screen_components = new B_screen_components();
+        c_screen_components = new C_screen_components();
+        y_screen_components = new Y_screen_components();
+    }
     public Alphabets(Context alphabets_context){
         this.alphabets_context = alphabets_context;
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +49,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), A.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", a_screen_components));
             }
         });
         //B button
@@ -51,8 +62,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), B.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", b_screen_components));
             }
         });
         //C button
@@ -64,8 +75,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), C.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", c_screen_components));
             }
         });
         //Y button
@@ -77,8 +88,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
             }
 
             public void openActivity() {
-                Intent intent = new Intent(getApplicationContext(), Y.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra("screen_components", y_screen_components));
             }
         });
 
