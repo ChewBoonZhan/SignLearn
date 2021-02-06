@@ -21,6 +21,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import com.example.prototypeb.controller.translator.Translator;
+import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
 public class Camera_handle {
     private int camera_num;
@@ -50,6 +51,19 @@ public class Camera_handle {
         this.frame_layout_height = 0;
 
     }
+    public Camera_handle(Context context, Activity activity, FrameLayout framelayout, Translator_verify translator_verify){
+        camera_num = 1;
+        this.context = context;
+        this.framelayout = framelayout;
+        this.translate_interval = 3;
+        this.interval_counter = 0;
+        showcamera = new ShowCamera(context,camera,this);
+        translator = new Translator(activity,camera_num,translator_verify);
+
+        this.frame_layout_height = 0;
+
+    }
+
 
     public void switch_camera_met(){
         //changing camera ID

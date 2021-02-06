@@ -1,12 +1,15 @@
 package com.example.prototypeb.controller.lesson_screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -30,11 +33,29 @@ public class Lesson_screen extends AppCompatActivity {
         lesson_info_defcontent.setText(lesson_screen_components.get_content_id());
         lesson_text_title.setText(lesson_screen_components.get_title_id());
         gifImageView.setImageResource(lesson_screen_components.get_gif_id());
+        set_translator_button_on_click();
+
+    }
+    private void set_translator_button_on_click(){
+        String correct_translator_label = getIntent().getStringExtra("correct_translator_label");
+        String translator_lesson_topics = getIntent().getStringExtra("translator_lesson_topics");
+        check_translator_info_lesson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Translator_verify.class)
+
+                        .putExtra("correct_translator_label",correct_translator_label)
+                        .putExtra("translator_lesson_topics",translator_lesson_topics)
+
+                );
+            }
+        });
     }
     private void get_components_screen(){
         gifImageView = findViewById(R.id.lesson_gif_imageView);
         lesson_text_title = findViewById(R.id.lesson_text_title);
         lesson_info_defcontent = findViewById(R.id.lesson_info_defcontent);
+        check_translator_info_lesson = findViewById(R.id.check_translator_info_lesson);
     }
     private int getImageid(){
         return R.drawable.alpha_b;

@@ -53,7 +53,10 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", a_screen_components));
+                        .putExtra("screen_components", a_screen_components)
+                        .putExtra("correct_translator_label","\"A\"")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
         //B button
@@ -66,7 +69,10 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", b_screen_components));
+                        .putExtra("screen_components", b_screen_components)
+                        .putExtra("correct_translator_label","\"B\"")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
         //C button
@@ -79,7 +85,10 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", c_screen_components));
+                        .putExtra("screen_components", c_screen_components)
+                        .putExtra("correct_translator_label","\"C\"")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
         //Y button
@@ -92,7 +101,10 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", y_screen_components));
+                        .putExtra("screen_components", y_screen_components)
+                        .putExtra("correct_translator_label","\"Y\"")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
 
@@ -133,5 +145,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
         String[] categories = app_data.getCategories();
 
         return categories[1];
+    }
+    public String get_model_category(){
+        return toString().toLowerCase();
     }
 }

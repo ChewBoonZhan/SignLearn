@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 
 public class File_connections {
 
@@ -35,10 +38,35 @@ public class File_connections {
         if(!init_aldy){
             //data are not initialized yet
             save_category_in_file();
+            //save_lesson_not_scored_in_file();
             save_other_data_in_file();
             editor.apply();
 
         }
+
+    }
+    public void save_lesson_not_scored_in_file(){
+        String key_dic = "init_lesson_passed";
+        if(sharedPref.getBoolean(key_dic,false)){
+            Category_elements category_elements_object = new Category_elements();
+            HashMap <String, ArrayList<String>> category_elements = category_elements_object.getCategory_elements();
+            editor = sharedPref.edit();
+            int length = category_elements.size();
+            String[] categories = app_data.getCategories();
+            for(int i = 0;i<length;i++){
+                String category = categories[i];
+                ArrayList <String> elements = category_elements.get(category);
+                int elements_length = elements.size();
+                for(int j = 0;j<elements_length;i++){
+                    String editor_title_of_component = elements.get(j) + "_lesson_passed";
+                    editor.putBoolean(editor_title_of_component,false);
+                }
+            }
+            editor.putBoolean(key_dic,true);
+            editor.apply();
+        }
+
+
 
     }
     public void update_score(int score){

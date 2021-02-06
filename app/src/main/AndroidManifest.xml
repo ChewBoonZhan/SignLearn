@@ -35,7 +35,9 @@
         <activity android:name=".ui.lesson.Lesson_components.Topic.Numbers"></activity>
         <activity android:name=".ui.lesson.Lesson_components.Topic.Pronouns"></activity>
         <activity android:name=".controller.lesson_screen.Lesson_screen"></activity>
-        <activity android:name=".controller.category_menu.Category_menu"></activity>
+        <activity android:name=".controller.translator_verify.Translator_verify"></activity>
+
+
 
     </application>
 

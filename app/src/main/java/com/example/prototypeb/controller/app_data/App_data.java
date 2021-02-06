@@ -23,6 +23,7 @@ public class App_data {
     public App_data(){
         init_points_to_unlock_category();
         init_category_to_index();
+
     }
     private void init_points_to_unlock_category(){
         int length = categories.length;
@@ -46,4 +47,6 @@ public class App_data {
     public  HashMap <String, Integer> getCategory_to_index(){
         return category_to_index;
     }
+
+
 }

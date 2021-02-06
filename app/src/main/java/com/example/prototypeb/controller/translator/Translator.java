@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.widget.TextView;
 
+import com.example.prototypeb.controller.translator_verify.Translator_verify;
+
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.common.FileUtil;
@@ -38,6 +40,13 @@ public class Translator {
         this.camera_num = camera_num;
         this.classify_text = classify_text;
     }
+    public Translator(Activity activity, int camera_num, Translator_verify translator_verify){
+        this.activity = activity;
+        this.translator_verify = translator_verify;
+        this.camera_num = camera_num;
+
+    }
+    private Translator_verify translator_verify;
     private Activity activity;
     private int camera_num;
 
@@ -53,7 +62,7 @@ public class Translator {
     protected Interpreter tflite;
     private TensorBuffer outputProbabilityBuffer;
     private TensorProcessor probabilityProcessor;
-    private TextView classify_text;
+    private TextView classify_text = null;
 
     /**
      * This function resizes the image, and returns it as a tensor image
@@ -142,11 +151,18 @@ public class Translator {
         tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
         //this gives the input into the mode, and get the result of the output
 
-        set_classify_result();
+        String classify_result_text = set_classify_result();
+        if(classify_text == null){
+            translator_verify.text_changed(classify_result_text);
+        }
+        else{
+            classify_text.setText(classify_result_text);   //this sets the text for it
+        }
     }
 
-    private void set_classify_result(){
+    private String set_classify_result(){
         //get classify_category from translator
+        String classify_result_text = "";
         String filepath = classify_category + "/" + classify_category + "_" + "labels.txt";
         List<String> labels = new ArrayList<String>();
         try{
@@ -165,10 +181,10 @@ public class Translator {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
-                classify_text.setText(entry.getKey());   //this sets the text for it
+                classify_result_text = (entry.getKey());   //this sets the text for it
             }
         }
-
+        return classify_result_text;
         //note that the model needs to be quantized, based on latest testings
     }
 

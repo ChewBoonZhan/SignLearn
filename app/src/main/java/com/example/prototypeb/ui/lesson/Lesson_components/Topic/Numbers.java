@@ -49,7 +49,10 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num1_screen_components));
+                        .putExtra("screen_components", num1_screen_components)
+                        .putExtra("correct_translator_label","one")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
         //2 button
@@ -62,7 +65,10 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num2_screen_components));
+                        .putExtra("screen_components", num2_screen_components)
+                        .putExtra("correct_translator_label","two")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
         //3 button
@@ -75,7 +81,10 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num10_screen_components));
+                        .putExtra("screen_components", num10_screen_components)
+                        .putExtra("correct_translator_label","ten")
+                        .putExtra("translator_lesson_topics",get_model_category())
+                );
             }
         });
     }
@@ -113,5 +122,8 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
         String[] categories = app_data.getCategories();
 
         return categories[3];
+    }
+    public String get_model_category(){
+        return toString().toLowerCase();
     }
 }

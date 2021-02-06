@@ -28,6 +28,7 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import com.example.prototypeb.controller.choice_message.Two_choice_message;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.loading_screen.Loading_screen;
 import com.example.prototypeb.ui.game.GameFragment;
 import com.example.prototypeb.ui.lesson.LessonFragment;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean ready = false;
     private static boolean camera_permission_acquired = false;
     private Button allow_camera_permission;
+
     //private static Categories categories;
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
                 main_layout.setBackgroundColor(Color.parseColor("#ffffff"));
                 loading_logo_image.setVisibility(View.GONE);
                 loading_text.setVisibility(View.GONE);
