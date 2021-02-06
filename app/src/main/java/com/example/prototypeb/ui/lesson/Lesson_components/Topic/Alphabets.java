@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.lesson_screen.Alphabets.A_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Alphabets.B_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Alphabets.C_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Alphabets.Y_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
+import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 
 
@@ -24,6 +26,7 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
     private B_screen_components b_screen_components;
     private C_screen_components c_screen_components;
     private Y_screen_components y_screen_components;
+    private Lesson_topics lesson_topics = this;
     public Alphabets(){
         a_screen_components = new A_screen_components();
         b_screen_components = new B_screen_components();
@@ -119,8 +122,16 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
         @Override
         public void onClick(View v) {
 
-
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(alphabets_context,lesson_topics);
+            lesson_unlocking.user_clicks_locked_lesson();
 
         }
     };
+    @Override
+    public String toString(){
+        App_data app_data = new App_data();
+        String[] categories = app_data.getCategories();
+
+        return categories[1];
+    }
 }

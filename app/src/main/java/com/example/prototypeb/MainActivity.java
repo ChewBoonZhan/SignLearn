@@ -27,6 +27,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
+import com.example.prototypeb.controller.choice_message.Two_choice_message;
 import com.example.prototypeb.controller.loading_screen.Loading_screen;
 import com.example.prototypeb.ui.game.GameFragment;
 import com.example.prototypeb.ui.lesson.LessonFragment;
@@ -158,14 +159,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
             //user denied it before, therefore explain why we need it
-            new AlertDialog.Builder(this).setTitle("Permission needed").setMessage("This device's camera is needed for the Sign Language translator.").setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            DialogInterface.OnClickListener positive_choice =new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);
 
                     request_permission_thread();
                 }
-            }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            };
+            DialogInterface.OnClickListener negative_choice =new DialogInterface.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -173,7 +175,10 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                     permission_not_granted(true);
                 }
-            }).create().show();
+            };
+            Two_choice_message two_choice_message = new Two_choice_message(this,"Permission needed","This device's camera is needed for the Sign Language translator.","OK","CANCEL",positive_choice,negative_choice);
+            two_choice_message.show_message();
+
         } else {
             //request for permission like normal
             //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);

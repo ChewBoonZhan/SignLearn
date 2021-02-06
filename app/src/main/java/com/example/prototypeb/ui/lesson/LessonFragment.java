@@ -35,7 +35,7 @@ public class LessonFragment extends Fragment {
     private File_connections file_connections;
     private static Activity lesson_activity;
     private static Context lesson_context;
-    private ArrayList <Button> category_buttons;
+    private static ArrayList <Button> category_buttons;
     private View lesson_root;
     private App_data app_data;
     private Lesson_topics_init lesson_topics_init;
@@ -66,6 +66,9 @@ public class LessonFragment extends Fragment {
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson3_id));
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson4_id));
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson5_id));
+    }
+    public static ArrayList<Button> getCategory_buttons(){
+        return category_buttons;
     }
     public static void setLesson_activity(Activity activity){
         lesson_activity = activity;

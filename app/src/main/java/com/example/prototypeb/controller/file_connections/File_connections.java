@@ -21,7 +21,11 @@ public class File_connections {
         category_context = context;
         init_file();
     }
-
+    public void unlock_category(String category){
+        editor = sharedPref.edit();
+        editor.putBoolean(category,true);
+        editor.apply();
+    }
 
 
     private void init_file(){
@@ -37,8 +41,13 @@ public class File_connections {
         }
 
     }
+    public void update_score(int score){
+        editor = sharedPref.edit();
+        editor.putInt("score",score);
+        editor.apply();
+    }
     private void save_other_data_in_file(){
-        editor.putInt("score",0);
+        editor.putInt("score",50);
         editor.putBoolean("init_aldy",true);
     }
     private void save_category_in_file(){

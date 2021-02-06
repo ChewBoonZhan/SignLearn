@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num10_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num1_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num2_screen_components;
+import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 
 
 public class Numbers extends AppCompatActivity implements Lesson_topics{
@@ -21,6 +23,7 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
     private Num1_screen_components num1_screen_components;
     private Num2_screen_components num2_screen_components;
     private Num10_screen_components num10_screen_components;
+    private Lesson_topics lesson_topics = this;
     public Numbers(){
         num1_screen_components = new Num1_screen_components();
         num2_screen_components = new Num2_screen_components();
@@ -99,8 +102,16 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
         @Override
         public void onClick(View v) {
 
-
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(numbers_context,lesson_topics);
+            lesson_unlocking.user_clicks_locked_lesson();
 
         }
     };
+    @Override
+    public String toString(){
+        App_data app_data = new App_data();
+        String[] categories = app_data.getCategories();
+
+        return categories[3];
+    }
 }

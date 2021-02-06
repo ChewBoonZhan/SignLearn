@@ -10,16 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
 
+import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.Me_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.You_screen_components;
+import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 
 public class Pronouns extends AppCompatActivity implements Lesson_topics{
     private Context pronouns_context;
     private Button button;
     private Me_screen_components me_screen_components;
     private You_screen_components you_screen_components;
-
+    private Lesson_topics lesson_topics = this;
     public Pronouns(){
 
         me_screen_components = new Me_screen_components();
@@ -86,9 +88,17 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
 
         @Override
         public void onClick(View v) {
-
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(pronouns_context,lesson_topics);
+            lesson_unlocking.user_clicks_locked_lesson();
 
 
         }
     };
+    @Override
+    public String toString(){
+        App_data app_data = new App_data();
+        String[] categories = app_data.getCategories();
+
+        return categories[4];
+    }
 }
