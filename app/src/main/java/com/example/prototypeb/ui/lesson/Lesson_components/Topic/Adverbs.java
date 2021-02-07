@@ -51,9 +51,9 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", yes_screen_components)
-                        .putExtra("correct_translator_label","yes")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, yes_screen_components)
+                        .putExtra(translator_label,"yes")
+                        .putExtra(translator_lesson_topics,get_model_category())
 
                 );
                 /*
@@ -73,9 +73,9 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", no_screen_components)
-                        .putExtra("correct_translator_label","no")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, no_screen_components)
+                        .putExtra(translator_label,"no")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
 
             }
@@ -125,7 +125,9 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
     public String get_model_category(){
         return toString().toLowerCase();
     }
-
+    public int get_required_score(){
+        return 10;
+    }
 
 
 }

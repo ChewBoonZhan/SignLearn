@@ -49,9 +49,9 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num1_screen_components)
-                        .putExtra("correct_translator_label","one")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, num1_screen_components)
+                        .putExtra(translator_label,"one")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -65,9 +65,9 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num2_screen_components)
-                        .putExtra("correct_translator_label","two")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, num2_screen_components)
+                        .putExtra(translator_label,"two")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -81,9 +81,9 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", num10_screen_components)
-                        .putExtra("correct_translator_label","ten")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, num10_screen_components)
+                        .putExtra(translator_label,"ten")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -125,5 +125,8 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
     }
     public String get_model_category(){
         return toString().toLowerCase();
+    }
+    public int get_required_score(){
+        return 40;
     }
 }

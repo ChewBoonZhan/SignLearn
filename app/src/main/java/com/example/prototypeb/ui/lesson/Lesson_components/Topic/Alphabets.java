@@ -53,9 +53,9 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", a_screen_components)
-                        .putExtra("correct_translator_label","\"A\"")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, a_screen_components)
+                        .putExtra(translator_label,"\"A\"")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -69,9 +69,9 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", b_screen_components)
-                        .putExtra("correct_translator_label","\"B\"")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, b_screen_components)
+                        .putExtra(translator_label,"\"B\"")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -85,9 +85,9 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", c_screen_components)
-                        .putExtra("correct_translator_label","\"C\"")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, c_screen_components)
+                        .putExtra(translator_label,"\"C\"")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -101,9 +101,9 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", y_screen_components)
-                        .putExtra("correct_translator_label","\"Y\"")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, y_screen_components)
+                        .putExtra(translator_label,"\"Y\"")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -148,5 +148,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
     }
     public String get_model_category(){
         return toString().toLowerCase();
+    }
+    public int get_required_score(){
+        return 20;
     }
 }

@@ -48,9 +48,9 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 pronouns_context.startActivity(new Intent(pronouns_context, Lesson_screen.class)
-                        .putExtra("screen_components", me_screen_components)
-                        .putExtra("correct_translator_label","me")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, me_screen_components)
+                        .putExtra(translator_label,"me")
+                        .putExtra(translator_lesson_topics,get_model_category())
 
                 );
             }
@@ -65,9 +65,9 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
 
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
-                        .putExtra("screen_components", you_screen_components)
-                        .putExtra("correct_translator_label","you")
-                        .putExtra("translator_lesson_topics",get_model_category())
+                        .putExtra(screen_component, you_screen_components)
+                        .putExtra(translator_label,"you")
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -110,5 +110,8 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
     }
     public String get_model_category(){
         return toString().toLowerCase();
+    }
+    public int get_required_score(){
+        return 50;
     }
 }

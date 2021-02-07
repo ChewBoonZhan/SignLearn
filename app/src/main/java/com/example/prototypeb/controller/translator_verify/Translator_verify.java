@@ -22,7 +22,9 @@ import android.widget.ProgressBar;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Intent_key;
 import com.example.prototypeb.controller.camera.Camera_handle;
+import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.toast.Success_toast;
 import com.example.prototypeb.controller.translator.Translator;
@@ -48,6 +50,7 @@ public class Translator_verify extends AppCompatActivity {
     private Translator translator;
     private String translator_category;
     private String correct_string;
+    private Intent_key intent_key = new Intent_key();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +78,8 @@ public class Translator_verify extends AppCompatActivity {
         });
     }
     private void get_serializable_contents(){
-        correct_string = (String) getIntent().getStringExtra("correct_translator_label");
-        translator_category = (String) getIntent().getStringExtra("translator_lesson_topics");
+        correct_string = (String) getIntent().getStringExtra(intent_key.getTranslator_label());
+        translator_category = (String) getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
     }
     private void get_component_from_screen(){
         camera_frame = findViewById(R.id.camera_frame_verify_lesson);
@@ -107,9 +110,9 @@ public class Translator_verify extends AppCompatActivity {
     }
     private void handle_score_increment(){
         File_connections file_connections = new File_connections(translator_verify_context);
-
+        File_connection_key file_connection_key = new File_connection_key();
         file_connections.save_lesson_not_scored_in_file();
-        String element_to_check = correct_string + "__lesson_passed";
+        String element_to_check = correct_string + file_connection_key.getLesson_passed_back_key();
         boolean lesson_passed = file_connections.getSharedPref().getBoolean(element_to_check,false);
         if(!lesson_passed) {
             file_connections.update_score(file_connections.getScore() + 10);

@@ -39,8 +39,8 @@ public class Lesson_unlocking {
 
     }
     private int get_required_score(Lesson_topics lesson_topics){
-        HashMap<String, Integer> points_to_unlock = app_data.getPoints_to_unlock_category();
-        return(points_to_unlock.get(lesson_topics.toString()));
+
+        return(lesson_topics.get_required_score());
 
     }
 }

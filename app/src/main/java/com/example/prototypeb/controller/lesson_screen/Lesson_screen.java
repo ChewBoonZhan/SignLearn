@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.Intent_key;
 import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -18,7 +19,7 @@ public class Lesson_screen extends AppCompatActivity {
     private TextView lesson_text_title;
     private TextView lesson_info_defcontent;
     private Button check_translator_info_lesson;
-
+    private Intent_key intent_key = new Intent_key();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -29,7 +30,7 @@ public class Lesson_screen extends AppCompatActivity {
         set_components_value();
     }
     private void set_components_value(){
-        Lesson_screen_components lesson_screen_components = (Lesson_screen_components) getIntent().getSerializableExtra("screen_components");
+        Lesson_screen_components lesson_screen_components = (Lesson_screen_components) getIntent().getSerializableExtra(intent_key.getScreen_component());
         lesson_info_defcontent.setText(lesson_screen_components.get_content_id());
         lesson_text_title.setText(lesson_screen_components.get_title_id());
         gifImageView.setImageResource(lesson_screen_components.get_gif_id());
@@ -37,15 +38,15 @@ public class Lesson_screen extends AppCompatActivity {
 
     }
     private void set_translator_button_on_click(){
-        String correct_translator_label = getIntent().getStringExtra("correct_translator_label");
-        String translator_lesson_topics = getIntent().getStringExtra("translator_lesson_topics");
+        String correct_translator_label = getIntent().getStringExtra(intent_key.getTranslator_label());
+        String translator_lesson_topics = getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
         check_translator_info_lesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Translator_verify.class)
 
-                        .putExtra("correct_translator_label",correct_translator_label)
-                        .putExtra("translator_lesson_topics",translator_lesson_topics)
+                        .putExtra(intent_key.getTranslator_label(),correct_translator_label)
+                        .putExtra(intent_key.getTranslator_lesson_topics(),translator_lesson_topics)
 
                 );
             }
