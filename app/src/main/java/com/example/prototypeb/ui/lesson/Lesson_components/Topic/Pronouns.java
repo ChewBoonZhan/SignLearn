@@ -47,9 +47,9 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
             }
 
             public void openActivity() {
-                pronouns_context.startActivity(new Intent(pronouns_context, Lesson_screen.class)
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, me_screen_components)
-                        .putExtra(translator_label,"me")
+                        .putExtra(translator_label,"Me")
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );
@@ -66,7 +66,7 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, you_screen_components)
-                        .putExtra(translator_label,"you")
+                        .putExtra(translator_label,"You")
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }

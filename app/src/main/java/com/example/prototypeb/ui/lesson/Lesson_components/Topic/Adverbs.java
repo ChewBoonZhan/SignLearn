@@ -52,7 +52,7 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, yes_screen_components)
-                        .putExtra(translator_label,"yes")
+                        .putExtra(translator_label,"Yes")
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );
@@ -74,7 +74,7 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, no_screen_components)
-                        .putExtra(translator_label,"no")
+                        .putExtra(translator_label,"No")
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
 

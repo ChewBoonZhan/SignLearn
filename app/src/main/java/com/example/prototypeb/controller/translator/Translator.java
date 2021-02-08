@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class Translator {
         this.camera_num = camera_num;
 
     }
-    private Translator_verify translator_verify;
+    private Translator_verify translator_verify= null;
     private Activity activity;
     private int camera_num;
 
@@ -90,18 +91,22 @@ public class Translator {
         return imageProcessor.process(inputImageBuffer);
         //resize the image, and return it as a tensorimage
     }
-
+    
     /**
      * Load the model into tflite
      */
     public void load_model_tflite(String classify_category){
+
+
         this.classify_category = classify_category;
+
         try{
             //initializing the intepretor
             tflite=new Interpreter(loadmodelfile(activity,classify_category));   //get the activity from translator_fragment
         }catch (Exception e) {
             e.printStackTrace();
         }
+
     }
     /**
      * Loads the mode, and return it as a map byte buffer

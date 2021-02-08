@@ -157,5 +157,7 @@ public class Translator_verify extends AppCompatActivity {
     private void reset_progress_bar(){
         verify_progress.setProgress(0);
     }
-
+    public String getCorrect_string(){
+        return correct_string;
+    }
 }
