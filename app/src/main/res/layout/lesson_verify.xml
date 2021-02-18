@@ -51,7 +51,7 @@
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:gravity="center"
-        android:text="Note: You need to maintain the symbol for a few Seconds for the system to register"
+        android:textSize="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

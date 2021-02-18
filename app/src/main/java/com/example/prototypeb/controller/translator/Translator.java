@@ -91,7 +91,7 @@ public class Translator {
         return imageProcessor.process(inputImageBuffer);
         //resize the image, and return it as a tensorimage
     }
-    
+
     /**
      * Load the model into tflite
      */

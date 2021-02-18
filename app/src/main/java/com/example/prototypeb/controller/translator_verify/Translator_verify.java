@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
@@ -43,6 +44,7 @@ import static java.security.AccessController.getContext;
 public class Translator_verify extends AppCompatActivity {
     private FrameLayout camera_frame;
     private Button switch_camera;
+    private TextView title_text;
     private ProgressBar verify_progress;
     private Context translator_verify_context;
     private Activity translator_verify_activity;
@@ -51,16 +53,22 @@ public class Translator_verify extends AppCompatActivity {
     private String translator_category;
     private String correct_string;
     private Intent_key intent_key = new Intent_key();
+    private int title_text_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson_verify);
         get_serializable_contents();
         get_component_from_screen();
+        set_title();
         set_switch_camera_onclick();
         set_progress_bar_width();
         get_context_and_activity();
         setup_translator();
+
+    }
+    private void set_title(){
+        title_text.setText(title_text_id);
     }
     private void set_progress_bar_width(){
 
@@ -78,10 +86,12 @@ public class Translator_verify extends AppCompatActivity {
         });
     }
     private void get_serializable_contents(){
+        title_text_id = (int)getIntent().getIntExtra(intent_key.getTranslator_screen_title_id(),0);
         correct_string = (String) getIntent().getStringExtra(intent_key.getTranslator_label());
         translator_category = (String) getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
     }
     private void get_component_from_screen(){
+        title_text = findViewById(R.id.text_desc_lesson_verify);
         camera_frame = findViewById(R.id.camera_frame_verify_lesson);
         switch_camera = findViewById(R.id.switch_camera_verify_lesson);
         verify_progress = findViewById(R.id.verify_progress_lesson_verify);

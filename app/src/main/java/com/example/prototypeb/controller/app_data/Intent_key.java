@@ -16,4 +16,8 @@ public class Intent_key {
         return translator_lesson_topics;
     }
 
+    private String translator_screen_title_id = "translator_screen_title_id";
+    public String getTranslator_screen_title_id(){
+        return translator_screen_title_id;
+    }
 }

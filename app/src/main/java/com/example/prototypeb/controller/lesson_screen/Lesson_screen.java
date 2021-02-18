@@ -19,6 +19,7 @@ public class Lesson_screen extends AppCompatActivity {
     private TextView lesson_text_title;
     private TextView lesson_info_defcontent;
     private Button check_translator_info_lesson;
+    private int title_text_id;
     private Intent_key intent_key = new Intent_key();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,9 @@ public class Lesson_screen extends AppCompatActivity {
     }
     private void set_components_value(){
         Lesson_screen_components lesson_screen_components = (Lesson_screen_components) getIntent().getSerializableExtra(intent_key.getScreen_component());
+        title_text_id = lesson_screen_components.get_title_id();
         lesson_info_defcontent.setText(lesson_screen_components.get_content_id());
-        lesson_text_title.setText(lesson_screen_components.get_title_id());
+        lesson_text_title.setText(title_text_id);
         gifImageView.setImageResource(lesson_screen_components.get_gif_id());
         set_translator_button_on_click();
 
@@ -44,7 +46,7 @@ public class Lesson_screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Translator_verify.class)
-
+                        .putExtra(intent_key.getTranslator_screen_title_id(),title_text_id)
                         .putExtra(intent_key.getTranslator_label(),correct_translator_label)
                         .putExtra(intent_key.getTranslator_lesson_topics(),translator_lesson_topics)
 
