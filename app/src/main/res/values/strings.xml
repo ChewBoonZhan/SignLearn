@@ -34,7 +34,7 @@
     <string name="dislike_content">Other similar words such as bad, disapprove, etc. The hand is showing a thumbs down.</string>
     //attachments.iloveyou
     <string name="iloveyou_title">I Love You</string>
-    <string name="iloveyou_content"> Used to express "I Love You" in different contexts. The ILY handshape is a combination of the three fingerspelled letters: I+L+Y (I Love You). It is used to, often informally, express "I love you" among family members, as well as sometimes among very close friends, whenever appropriate. It can be used at parting, or used as a different meaning in contexts. </string>
+    <string name="iloveyou_content"> It is used to, often informally, express "I love you" among family members, as well as sometimes among very close friends, whenever appropriate. </string>
     //numbers.num1
     <string name="num1_title">1 (One)</string>
     <string name="num1_content">The lowest cardinal number; half of two; the numeral symbol of 1. Palm in for the cardinal number. Note, palm out for age, address, phone number, and some others. </string>
