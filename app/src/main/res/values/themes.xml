@@ -7,13 +7,4 @@
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Theme.PrototypeB.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.PrototypeB.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.PrototypeB.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -22,5 +22,4 @@
         android:name="com.example.prototypeb.ui.game.GameFragment"
         android:label="@string/title_game"
         tools:layout="@layout/fragment_game" />
-
 </navigation>
