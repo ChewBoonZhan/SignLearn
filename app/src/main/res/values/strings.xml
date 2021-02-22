@@ -1,53 +1,5 @@
 <resources>
-    <string name="app_name">SignLearn</string>
-    <string name="title_game">Game</string>
-    <string name="title_lesson">Lesson</string>
-    <string name="title_translator">Translator</string>
-    <string name="text_topic">Topic</string>
-    /Curriculum Section
-    //main
-    <string name="def">Definition :</string>
-    //adverb.yes
-    <string name="yes_title">Yes</string>>
-    <string name="yes_content">Used to give a positive answer or reply to a question, request, or offer; used to give an affirmative response.</string>
-    //adverb.no
-    <string name="no_title">No</string>
-    <string name="no_content">Used to give a negative response; the opposite of yes. The movement is sometimes once, sometimes twice, sometimes plural, depending on the contexts. </string>
-    >
-    //alphabets.A
-    <string name="a_title">A</string>
-    <string name="a_content">The first letter of the English alphabet, a vowel. Not to be confused with the letter "S". The thumb should be on the outside, not on the closed fingers. </string>
-    //alphabets.B
-    <string name="b_title">B</string>
-    <string name="b_content">The second letter of the English alphabet, a consonant. </string>
-    //alphabets.C
-    <string name="c_title">C</string>
-    <string name="c_content">The third letter of the English alphabet, a consonant. </string>
-    //alphabets.Y
-    <string name="y_title">Y</string>
-    <string name="y_content">The 25th letter of the English alphabet, a consonant. </string>
-    //attachments.like
-    <string name="like_title">Like</string>
-    <string name="like_content">Other similar words such as good, approve, etc. The hand is showing a thumbs up.</string>
-    //attachments.dislike
-    <string name="dislike_title">Dislike</string>
-    <string name="dislike_content">Other similar words such as bad, disapprove, etc. The hand is showing a thumbs down.</string>
-    //attachments.iloveyou
-    <string name="iloveyou_title">I Love You</string>
-    <string name="iloveyou_content"> It is used to, often informally, express "I love you" among family members, as well as sometimes among very close friends, whenever appropriate. </string>
-    //numbers.num1
-    <string name="num1_title">1 (One)</string>
-    <string name="num1_content">The lowest cardinal number; half of two; the numeral symbol of 1. Palm in for the cardinal number. Note, palm out for age, address, phone number, and some others. </string>
-    //numbers.num2
-    <string name="num2_title">2 (Two)</string>
-    <string name="num2_content">Equivalent to the sum of one and one; one less than three; a symbol for this number as 2 or II. The orientation of the palm faces the signer for a number, but faces the listener for two o clock and age. </string>
-    //numbers.num3
-    <string name="num10_title">10 (Ten)</string>
-    <string name="num10_content">The number ten. The palm facing the signer is generally used in cardinal number.</string>
-    //pronouns.me
-    <string name="me_title">I (Me)</string>
-    <string name="me_content">The ASL signs/words "I" and "me" are the same. It is a pronoun. The object or subject of the pronoun can be identified in sentence structure.</string>
-    //pronouns.you
-    <string name="you_title">You</string>
-    <string name="you_content">The pronoun of the second person singular, used of the person being addressed.</string>
+    <string name="app_name">Animated Navigation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

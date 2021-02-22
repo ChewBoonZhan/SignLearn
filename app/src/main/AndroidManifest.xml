@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prototypeb">
-    <uses-permission android:name="android.hardware.Camera"></uses-permission>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name = "android.hardware.Camera" android:required = "true" />
+    package="com.example.animatednavigation">
 
     <application
         android:allowBackup="true"
@@ -13,32 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PrototypeB">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.game.Game_components.Game_adverbs"></activity>
-        <activity android:name=".ui.game.Game_components.Game_pronoun"></activity>
-        <activity android:name=".ui.game.Game_components.Game_numbers"></activity>
-        <activity android:name=".ui.game.Game_components.Game_attachments"></activity>
-        <activity android:name=".ui.game.Game_components.Game_alphabets"></activity>
-
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Adverbs"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Alphabets"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Attachments"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Numbers"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Pronouns"></activity>
-        <activity android:name=".controller.lesson_screen.Lesson_screen"></activity>
-        <activity android:name=".controller.translator_verify.Translator_verify"></activity>
-
-
-
     </application>
 
 </manifest>

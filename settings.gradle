@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "prototypeB"
+rootProject.name = "Animated Navigation"
