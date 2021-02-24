@@ -24,7 +24,7 @@ public class Loading_screen_task extends TimerTask {
     }
     @Override
     public void run() {
-        mainActivity.done_loading_screen();
+        //mainActivity.done_loading_screen();
     }
 
 }

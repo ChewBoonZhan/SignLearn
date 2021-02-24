@@ -5,7 +5,7 @@
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="invisible"
+    android:visibility="visible"
     tools:context=".ui.translator.TranslatorFragment">
 
 
@@ -13,10 +13,10 @@
         android:id="@+id/camera_frame"
         android:layout_width="409dp"
         android:layout_height="302dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/translator_camera_permission" />
 
     <TextView
         android:id="@+id/classitext"
@@ -29,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_frame"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.039" />
 
     <Spinner
         android:id="@+id/category_selector"
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <Button
         android:id="@+id/switch_camera"
@@ -51,8 +51,20 @@
         android:text="Switch Camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classitext"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.04" />
+
+    <Button
+        android:id="@+id/translator_camera_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Allow Camera Permission"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_selector" />
 
 </android.support.constraint.ConstraintLayout>

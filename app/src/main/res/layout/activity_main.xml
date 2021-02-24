@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#FFFFFF"
     android:paddingTop="?attr/actionBarSize">
 
     <android.support.design.widget.BottomNavigationView
@@ -36,41 +36,5 @@
         app:layout_constraintVertical_bias="0.714"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <ImageView
-        android:id="@+id/beginning_loading_logo"
-        android:layout_width="344dp"
-        android:layout_height="338dp"
-        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421"
-        tools:srcCompat="@drawable/logo3" />
-
-    <TextView
-        android:id="@+id/beginning_loading_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to SignLearn"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beginning_loading_logo"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/request_permission_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Allow Camera Permission"
-        app:layout_constraintBottom_toTopOf="@+id/beginning_loading_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
 
 </android.support.constraint.ConstraintLayout>
