@@ -4,18 +4,29 @@
 
     <item
         android:id="@+id/navigation_translator"
-
+        android:icon = "@drawable/translator_logo"
         android:title="@string/title_translator"
-
+        app:cnb_textColor="@color/light_1"
+        app:cnb_iconColor = "@color/light_1"
+        app:cnb_backgroundColor = "@color/dark_1"
         />
 
     <item
         android:id="@+id/navigation_lesson"
-
-        android:title="@string/title_lesson" />
+        android:icon = "@drawable/learn_logo"
+        android:title="@string/title_lesson"
+        app:cnb_textColor="@color/light_1"
+        app:cnb_iconColor = "@color/light_1"
+        app:cnb_backgroundColor = "@color/dark_1"
+        />
 
     <item
         android:id="@+id/navigation_game"
-        android:title="@string/title_game" />
+        android:icon="@drawable/game_logo"
+        android:title="@string/title_game"
+        app:cnb_textColor="@color/light_1"
+        app:cnb_iconColor = "@color/light_1"
+        app:cnb_backgroundColor = "@color/dark_1"
+        />
 
 </menu>
