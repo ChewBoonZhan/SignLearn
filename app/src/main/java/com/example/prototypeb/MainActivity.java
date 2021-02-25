@@ -90,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-        nav_fragment.setItemSelected(R.id.navigation_translator,true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new TranslatorFragment()).commit();
+        nav_fragment.setItemSelected(R.id.navigation_lesson,true);
+        fragment = new LessonFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
 
         nav_fragment.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
@@ -109,9 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                if (fragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+                if(fragment !=null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
                 }
+
+
             }
         });
         /*
