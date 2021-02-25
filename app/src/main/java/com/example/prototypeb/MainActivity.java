@@ -7,12 +7,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView loading_text;
     private View body_components;
     private BottomNavigationView nav_fragment;
-    private ConstraintLayout main_layout;
+
 
     private static boolean ready = false;
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         nav_fragment = findViewById(R.id.nav_view);
         body_components = findViewById(R.id.nav_host_fragment);
-        main_layout = findViewById(R.id.container);
+
 
 
 
