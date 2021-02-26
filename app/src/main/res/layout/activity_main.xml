@@ -14,10 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:alpha="255"
-        android:background="@color/dark_1"
+        android:background="@color/background_secondary"
         android:translationZ="1sp"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:cnb_unselectedColor="@color/white" />
+
     <FrameLayout
         android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"

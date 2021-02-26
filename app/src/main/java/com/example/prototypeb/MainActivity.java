@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ChipNavigationBar nav_fragment;
 
     private Fragment fragment;
-    private static boolean ready = false;
+
 
     
 
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(int i) {
                 switch (i) {
                     case R.id.navigation_translator:
+
                         fragment = new TranslatorFragment();
                         break;
                     case R.id.navigation_lesson:
@@ -112,28 +115,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(fragment !=null){
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+
                 }
 
 
             }
         });
-        /*
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_translator, R.id.navigation_lesson, R.id.navigation_game)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(nav_fragment, navController);
-        */
+
     }
-    public static boolean get_first_loaded_or_not(){
-        return ready;
-    }
-    /*
-    public static Categories getCategories(){
-        return categories;
-    }
-    */
+
 
 
 

@@ -8,7 +8,7 @@
         android:title="@string/title_translator"
         app:cnb_textColor="@color/black"
         app:cnb_iconColor = "@color/black"
-        app:cnb_backgroundColor = "@color/light_3"
+        app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 
     <item
@@ -17,7 +17,7 @@
         android:title="@string/title_lesson"
         app:cnb_textColor="@color/black"
         app:cnb_iconColor = "@color/black"
-        app:cnb_backgroundColor = "@color/light_3"
+        app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 
     <item
@@ -26,7 +26,7 @@
         android:title="@string/title_game"
         app:cnb_textColor="@color/black"
         app:cnb_iconColor = "@color/black"
-        app:cnb_backgroundColor = "@color/light_3"
+        app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 
 </menu>

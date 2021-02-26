@@ -1,11 +1,18 @@
 package com.example.prototypeb.controller.translator_verify;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -20,11 +27,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.app_data.Intent_key;
 import com.example.prototypeb.controller.camera.Camera_handle;
+import com.example.prototypeb.controller.choice_message.Two_choice_message;
 import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.toast.Success_toast;
@@ -53,7 +62,9 @@ public class Translator_verify extends AppCompatActivity {
     private String translator_category;
     private String correct_string;
     private Intent_key intent_key = new Intent_key();
+    private Button lesson_camera_permission;
     private int title_text_id;
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +73,7 @@ public class Translator_verify extends AppCompatActivity {
         get_component_from_screen();
         set_title();
         set_switch_camera_onclick();
+        set_camera_permission_onclick();
         set_progress_bar_width();
         get_context_and_activity();
         setup_translator();
@@ -69,6 +81,16 @@ public class Translator_verify extends AppCompatActivity {
     }
     private void set_title(){
         title_text.setText(title_text_id);
+    }
+    private void set_camera_permission_onclick(){
+        lesson_camera_permission.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+
+                request_permission_thread();
+            }
+        });
     }
     private void set_progress_bar_width(){
 
@@ -95,17 +117,19 @@ public class Translator_verify extends AppCompatActivity {
         camera_frame = findViewById(R.id.camera_frame_verify_lesson);
         switch_camera = findViewById(R.id.switch_camera_verify_lesson);
         verify_progress = findViewById(R.id.verify_progress_lesson_verify);
-
+        lesson_camera_permission = findViewById(R.id.lesson_camera_permission);
     }
     private void get_context_and_activity(){
         translator_verify_context = TranslatorFragment.getContext_here();
         translator_verify_activity = TranslatorFragment.getActivity_here();
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setup_translator(){
         camera_handle = new Camera_handle(translator_verify_context,translator_verify_activity,camera_frame,this);
         translator = camera_handle.getTranslator();
         translator.load_model_tflite(translator_category);
-        camera_handle.start_camera_met();
+        start_request_permission();
+
     }
     public void text_changed(String text){
         text =text.toLowerCase();
@@ -169,5 +193,101 @@ public class Translator_verify extends AppCompatActivity {
     }
     public String getCorrect_string(){
         return correct_string;
+    }
+
+
+    //permissions, as dealing with fragments is too complicated.
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void start_request_permission() {
+
+        if (ContextCompat.checkSelfPermission(translator_verify_context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            permission_not_granted(false);
+            request_permission_thread();
+        } else {
+
+
+
+            permission_granted(true);
+
+        }
+    }
+   
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void request_permission_thread() {
+
+
+        requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull String[] permissions, @androidx.annotation.NonNull int[] grantResults) {
+
+
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                permission_granted(false);
+            } else {
+                permission_not_granted(true);
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void permission_granted(boolean permission_initially_granted) {
+        if(!permission_initially_granted){
+            Toast.makeText(translator_verify_context, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+            //loading_screen.start_timer();
+
+
+        }
+        camera_handle.start_camera_met();
+        enable_or_disable_button(lesson_camera_permission,false);
+        show_translator_elements(true);
+        //TranslatorFragment.all_important_buttons_status(true);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void permission_not_granted(boolean user_clicked_no) {
+        if(user_clicked_no){
+            Toast.makeText(translator_verify_context, "Camera Permission not Granted", Toast.LENGTH_SHORT).show();
+        }
+
+
+        enable_or_disable_button(lesson_camera_permission,true);
+        show_translator_elements(false);
+        //TranslatorFragment.all_important_buttons_status(false);
+
+    }
+    private void show_translator_elements(boolean show){
+        if(show){
+            enable_or_disable_button(switch_camera,true);
+            camera_frame.setVisibility(View.VISIBLE);
+            title_text.setVisibility(View.VISIBLE);
+            verify_progress.setVisibility(View.VISIBLE);
+
+
+        }
+        else{
+            enable_or_disable_button(switch_camera,false);
+            camera_frame.setVisibility(View.GONE);
+            title_text.setVisibility(View.GONE);
+            verify_progress.setVisibility(View.GONE);
+
+        }
+    }
+    private void enable_or_disable_button(Button button,boolean enable){
+        if(enable){
+            button.setVisibility(View.VISIBLE);
+            button.setEnabled(true);
+        }
+        else{
+            button.setVisibility(View.GONE);
+            button.setEnabled(false);
+        }
     }
 }

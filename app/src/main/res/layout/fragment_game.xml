@@ -23,10 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Choose a Game Category:"
+                android:text="Game Categories"
 
                 android:textAlignment="center"
                 android:textSize="24sp" />

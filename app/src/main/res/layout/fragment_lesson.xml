@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:background="#28346E"
+                android:background="@color/primary"
                 android:text="Adverbs"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:background="#28346E"
+                android:background="@color/primary"
                 android:text="Alphabets"
                 android:textColor="@color/white"
                 android:visibility="visible"
@@ -62,7 +63,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:background="#28346E"
+                android:background="@color/primary"
                 android:text="Attachments"
                 android:textColor="@color/white"
                 android:visibility="visible"
@@ -80,7 +81,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:background="#28346E"
+                android:background="@color/primary"
                 android:text="Numbers"
                 android:textColor="@color/white"
                 android:visibility="visible"
@@ -88,7 +89,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lesson3_id" />
-
 
 
             <Button
@@ -100,7 +100,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:background="#28346E"
+                android:background="@color/primary"
                 android:text="Pronouns"
                 android:textColor="@color/white"
                 android:visibility="visible"

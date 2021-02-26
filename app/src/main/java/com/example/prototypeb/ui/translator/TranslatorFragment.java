@@ -81,7 +81,7 @@ public class TranslatorFragment extends Fragment {
 
 
     private Translator_categories translator_categories;
-    private boolean camera_permission_acquired;
+
 
     /**
      * This method is called when the view is created for the first time, or each time user comes to "translator" winndow
@@ -109,17 +109,11 @@ public class TranslatorFragment extends Fragment {
         classify_category  =translator_categories.get_Beginning_Category();
         translator.load_model_tflite(classify_category);
         start_request_permission();
-        if(getCamera_permission_acquired()){
-            camera_handle.start_camera_met();
-        }
 
 
 
 
         return root;
-    }
-    public boolean getCamera_permission_acquired(){
-        return camera_permission_acquired;
     }
 
 
@@ -199,7 +193,7 @@ public class TranslatorFragment extends Fragment {
             request_permission();
         } else {
 
-            camera_permission_acquired = true;
+
 
             permission_granted(true);
 
@@ -264,10 +258,10 @@ public class TranslatorFragment extends Fragment {
         if(!permission_initially_granted){
             Toast.makeText(context_here, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
             //loading_screen.start_timer();
-            camera_handle.start_camera_met();
+
 
         }
-
+        camera_handle.start_camera_met();
         enable_or_disable_button(camera_permission,false);
         show_translator_elements(true);
         //TranslatorFragment.all_important_buttons_status(true);
