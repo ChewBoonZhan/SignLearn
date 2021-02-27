@@ -33,13 +33,17 @@ public class LessonFragment extends Fragment {
 
     private LessonViewModel lessonViewModel;
     private File_connections file_connections;
-    private static Activity lesson_activity;
+
     private static Context lesson_context;
     private static ArrayList <Button> category_buttons;
     private View lesson_root;
     private App_data app_data;
     private Lesson_topics_init lesson_topics_init;
     private Category_init category_init;
+    public LessonFragment(Context context){
+        this.lesson_context = context;
+
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         lessonViewModel =
@@ -70,9 +74,7 @@ public class LessonFragment extends Fragment {
     public static ArrayList<Button> getCategory_buttons(){
         return category_buttons;
     }
-    public static void setLesson_activity(Activity activity){
-        lesson_activity = activity;
-    }
+
     public static void setLesson_context(Context context){
         lesson_context = context;
     }

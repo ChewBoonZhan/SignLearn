@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         init_background_scenes();
         //categories = new Categories(this);
 
-        set_context_activity_for_use();
+
 
 
     }
@@ -77,15 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void set_context_activity_for_use(){
-        TranslatorFragment.setActivity_here(MainActivity.this);
-        TranslatorFragment.setContext_here(MainActivity.this);
-        GameFragment.setGame_context(MainActivity.this);
-        GameFragment.setGame_activity(MainActivity.this);
-        LessonFragment.setLesson_activity(MainActivity.this);
-        LessonFragment.setLesson_context(MainActivity.this);
-
-    }
 
 
     private void init_background_scenes(){
@@ -93,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
 
         nav_fragment.setItemSelected(R.id.navigation_lesson,true);
-        fragment = new LessonFragment();
+        new TranslatorFragment(MainActivity.this,MainActivity.this);
+        fragment = new LessonFragment(MainActivity.this);
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
 
         nav_fragment.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
@@ -102,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (i) {
                     case R.id.navigation_translator:
 
-                        fragment = new TranslatorFragment();
+                        fragment = new TranslatorFragment(MainActivity.this,MainActivity.this);
                         break;
                     case R.id.navigation_lesson:
-                        fragment = new LessonFragment();
+                        fragment = new LessonFragment(MainActivity.this);
                         break;
                     case R.id.navigation_game:
-                        fragment = new GameFragment();
+                        fragment = new GameFragment(MainActivity.this);
                         break;
 
                 }

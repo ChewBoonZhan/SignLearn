@@ -81,7 +81,10 @@ public class TranslatorFragment extends Fragment {
 
 
     private Translator_categories translator_categories;
-
+    public TranslatorFragment(Activity activity,Context context){
+        this.activity_here = activity;
+        this.context_here = context;
+    }
 
     /**
      * This method is called when the view is created for the first time, or each time user comes to "translator" winndow
@@ -172,13 +175,7 @@ public class TranslatorFragment extends Fragment {
     public static Activity getActivity_here() {
         return activity_here;
     }
-    public static void setActivity_here(Activity activity_here) {
-        TranslatorFragment.activity_here = activity_here;
-    }
 
-    public static void setContext_here(Context context_here) {
-        TranslatorFragment.context_here = context_here;
-    }
     public static Context getContext_here() {
         return context_here;
     }

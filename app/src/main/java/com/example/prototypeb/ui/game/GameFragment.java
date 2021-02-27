@@ -41,14 +41,16 @@ public class GameFragment extends Fragment {
 
     private GameViewModel gameViewModel;
     private static Context game_context;
-    private static Activity game_activity;
+
     private View game_root;
     private ArrayList <Button> category_buttons;
     private File_connections file_connections;
     private App_data app_data;
     private Game_classes_init game_classes_init;
     private Category_init category_init;
-
+    public GameFragment(Context context){
+        this.game_context = context;
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         gameViewModel =
@@ -86,12 +88,7 @@ public class GameFragment extends Fragment {
     }
 
 
-    public static void setGame_context(Context context){
-        game_context = context;
-    }
-    public static void setGame_activity(Activity activity){game_activity = activity;}
 
-    public static Activity getGame_activity(){
-        return game_activity;
-    }
+
+
 }
