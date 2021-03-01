@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -80,13 +81,17 @@ public class Game_adverbs extends AppCompatActivity {
         newAdverbsSign.remove(index); //removing the correct option
         Collections.shuffle(newAdverbsSign); //randomize option placements
         int correctAnswerPosition = random.nextInt(4); //randomize correct answer position
+        int get_adverbs_index = 0;
         for(int i=0; i<4; i++){
+
             if(i == correctAnswerPosition)
                 answers[i] = adverbsSign.get(index);
-            else
-                answers[i] = newAdverbsSign.get(i);
-        }
+            else{
+                answers[i] = newAdverbsSign.get(get_adverbs_index);
+                get_adverbs_index++;
+            }
 
+        }
         //Assign image to ImageButtons
         int opt1ID = getResources().getIdentifier(answers[0],"drawable", getPackageName());
         opt1.setImageResource(opt1ID);
