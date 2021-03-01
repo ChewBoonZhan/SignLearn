@@ -4,5 +4,10 @@
     <string name="title_lesson">Lesson</string>
     <string name="title_translator">Translator</string>
     <string name="text_topic">Topic</string>
+    <string name="back_btn">BACK</string>
+    <string name="my_string">YES</string>
+    <string name="game_topic">ADVERBS</string>
+    <string name="coins_bal">Coins:0</string>
+    <string name="timer">10</string>
 
 </resources>

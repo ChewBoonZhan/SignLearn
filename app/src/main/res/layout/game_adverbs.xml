@@ -1,20 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="120dp"
-        android:layout_height="21dp"
-        android:text="Game Adverbs"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/text_view_cat"
+        android:layout_width="87dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/game_topic"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.211" />
+
+
+    <TextView
+        android:id="@+id/text_view_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/coins_bal"
+        android:textColor="#3F51B5"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backbtn1"
+        android:layout_width="69dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="#C10606"
+        android:fontFamily="casual"
+        android:onClick="backtogame"
+        android:text="@string/back_btn"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/symbol_adverbs"
+        android:layout_width="167dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/my_string"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#3F51B5"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_cat"
+        app:layout_constraintVertical_bias="0.046" />
+
+
+    <TextView
+        android:id="@+id/text_view_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="10"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="36sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_adverbs" />
+
+    <ImageView
+        android:id="@+id/timer_image"
+        android:layout_width="38dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_timer"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_adverbs"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/timer" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/option1"
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="64dp"
+            android:background="#0000FF"
+            android:contentDescription="@null"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="answerSelected"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageButton
+            android:id="@+id/option2"
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="48dp"
+            android:background="#0000FF"
+            android:contentDescription="@null"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="answerSelected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/presence_video_away" />
+
+        <ImageButton
+            android:id="@+id/option3"
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:background="#0000FF"
+            android:contentDescription="@null"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="answerSelected"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option1"
+            app:srcCompat="@android:drawable/sym_call_incoming" />
+
+        <ImageButton
+            android:id="@+id/option4"
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="48dp"
+            android:background="#0000FF"
+            android:contentDescription="@null"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="answerSelected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option2"
+            app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>
