@@ -163,7 +163,6 @@ public class Translator_verify extends AppCompatActivity {
         if ( getFragmentManager().getBackStackEntryCount() > 0)
         {
             getFragmentManager().popBackStack();
-
             return;
         }
         super.onBackPressed();
