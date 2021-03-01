@@ -81,6 +81,7 @@ public class Translator_verify extends AppCompatActivity {
     }
     private void set_title(){
         title_text.setText(title_text_id);
+
     }
     private void set_camera_permission_onclick(){
         lesson_camera_permission.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +94,7 @@ public class Translator_verify extends AppCompatActivity {
         });
     }
     private void set_progress_bar_width(){
-
-
-
         verify_progress.setScaleY(3f);
-
     }
     private void set_switch_camera_onclick(){
         switch_camera.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +106,7 @@ public class Translator_verify extends AppCompatActivity {
     }
     private void get_serializable_contents(){
         title_text_id = (int)getIntent().getIntExtra(intent_key.getTranslator_screen_title_id(),0);
-        correct_string = (String) getIntent().getStringExtra(intent_key.getTranslator_label());
+        setCorrect_string(getIntent().getStringExtra(intent_key.getTranslator_label()));
         translator_category = (String) getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
     }
     private void get_component_from_screen(){
@@ -191,9 +188,7 @@ public class Translator_verify extends AppCompatActivity {
     private void reset_progress_bar(){
         verify_progress.setProgress(0);
     }
-    public String getCorrect_string(){
-        return correct_string;
-    }
+
 
 
     //permissions, as dealing with fragments is too complicated.
@@ -290,4 +285,12 @@ public class Translator_verify extends AppCompatActivity {
             button.setEnabled(false);
         }
     }
+    public void setCorrect_string(String correct_string){
+        this.correct_string = correct_string;
+    }
+    public String getCorrect_string(){
+        return this.correct_string;
+    }
+
+
 }
