@@ -6,8 +6,8 @@
         android:id="@+id/navigation_translator"
         android:icon = "@drawable/translator_logo"
         android:title="@string/title_translator"
-        app:cnb_textColor="@color/black"
-        app:cnb_iconColor = "@color/black"
+        app:cnb_textColor="@color/background_secondary"
+        app:cnb_iconColor = "@color/background_secondary"
         app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 
@@ -15,8 +15,8 @@
         android:id="@+id/navigation_lesson"
         android:icon = "@drawable/learn_logo"
         android:title="@string/title_lesson"
-        app:cnb_textColor="@color/black"
-        app:cnb_iconColor = "@color/black"
+        app:cnb_textColor="@color/background_secondary"
+        app:cnb_iconColor = "@color/background_secondary"
         app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 
@@ -24,8 +24,8 @@
         android:id="@+id/navigation_game"
         android:icon="@drawable/game_logo"
         android:title="@string/title_game"
-        app:cnb_textColor="@color/black"
-        app:cnb_iconColor = "@color/black"
+        app:cnb_textColor="@color/background_secondary"
+        app:cnb_iconColor = "@color/background_secondary"
         app:cnb_backgroundColor = "@color/selected_or_secondary"
         />
 

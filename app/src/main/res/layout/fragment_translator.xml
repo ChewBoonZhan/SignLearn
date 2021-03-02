@@ -41,7 +41,7 @@
         android:layout_height="27dp"
         android:layout_marginTop="64dp"
         android:background="@color/primary"
-        android:dropDownSelector="@color/primary"
+        android:dropDownSelector="@color/white"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:scrollbarThumbHorizontal="@color/white"

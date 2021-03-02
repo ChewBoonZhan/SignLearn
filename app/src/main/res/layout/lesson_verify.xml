@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    >
+    android:background="@color/background">
+
+    <include
+        android:id="@+id/include6"
+        layout="@layout/sub_screen_action_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/camera_frame_verify_lesson"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="354dp"
         android:layout_marginTop="16dp"
         android:textAlignment="center"
@@ -22,7 +29,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:text="Switch Camera"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,22 +59,29 @@
 
     <TextView
         android:id="@+id/text_desc_lesson_verify"
-        android:layout_width="345dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include6" />
 
     <Button
         android:id="@+id/lesson_camera_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:text="Request Camera Permission"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+</androidx.constraintlayout.widget.ConstraintLayout>
