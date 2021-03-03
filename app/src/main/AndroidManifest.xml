@@ -22,21 +22,61 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
         </activity>
-        <activity android:name=".ui.home.HomeFragment"></activity>
-        <activity android:name=".ui.game.Game_components.Game_adverbs"></activity>
-        <activity android:name=".ui.game.Game_components.Game_pronoun"></activity>
-        <activity android:name=".ui.game.Game_components.Game_numbers"></activity>
-        <activity android:name=".ui.game.Game_components.Game_attachments"></activity>
-        <activity android:name=".ui.game.Game_components.Game_alphabets"></activity>
+        <activity android:name=".ui.home.HomeFragment"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.game.Game_components.Game_adverbs"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.game.Game_components.Game_pronoun"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.game.Game_components.Game_numbers"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.game.Game_components.Game_attachments"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.game.Game_components.Game_alphabets"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
 
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Adverbs"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Alphabets"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Attachments"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Numbers"></activity>
-        <activity android:name=".ui.lesson.Lesson_components.Topic.Pronouns"></activity>
-        <activity android:name=".controller.lesson_screen.Lesson_screen"></activity>
-        <activity android:name=".controller.translator_verify.Translator_verify"></activity>
+        <activity android:name=".ui.lesson.Lesson_components.Topic.Adverbs"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.lesson.Lesson_components.Topic.Alphabets"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.lesson.Lesson_components.Topic.Attachments"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.lesson.Lesson_components.Topic.Numbers"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".ui.lesson.Lesson_components.Topic.Pronouns"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".controller.lesson_screen.Lesson_screen"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".controller.translator_verify.Translator_verify"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
 
 
 
