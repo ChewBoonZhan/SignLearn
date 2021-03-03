@@ -22,7 +22,8 @@
             android:layout_height="30dp"
             android:background="@null"
             app:srcCompat="@drawable/abc_vector_test"
-            tools:srcCompat="@drawable/abc_vector_test" />
+
+            />
 
         <TextView
             android:id="@+id/screen_title"

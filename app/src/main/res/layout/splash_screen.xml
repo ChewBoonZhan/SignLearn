@@ -34,7 +34,7 @@
         android:id="@+id/splash_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Learn, Explore, and more"
+        android:text="Connecting the Deaf to the World"
         android:textColor="@color/selected_or_secondary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

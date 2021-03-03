@@ -41,7 +41,7 @@
         android:layout_alignParentBottom="true"
         android:alpha="255"
         android:background="@color/background_secondary"
-        android:translationZ="1sp"
+        android:translationZ="1dp"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:cnb_unselectedColor="@color/white" />
 
