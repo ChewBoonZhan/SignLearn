@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 
 import com.example.prototypeb.ui.home.HomeFragment;
+import com.example.prototypeb.ui.registration.RegistrationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
         get_screen_elements();
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, HomeFragment.class);
+                Intent intent = new Intent(MainActivity.this, RegistrationFragment.class);
                 startActivity(intent);
                 finish();
             }

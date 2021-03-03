@@ -34,7 +34,7 @@ public class HomeFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         setContentView(R.layout.activity_main);
         file_connections = new File_connections(HomeFragment.this);
         init_elements();

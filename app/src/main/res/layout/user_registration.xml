@@ -32,27 +32,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="328dp"
+        android:id="@+id/register_first_name"
+        android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="56dp"
         android:ems="10"
+        android:hint="First Name"
         android:inputType="textPersonName"
-        android:text="First Name"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="328dp"
-        android:layout_height="47sp"
+        android:id="@+id/register_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Last Name"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/register_first_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
