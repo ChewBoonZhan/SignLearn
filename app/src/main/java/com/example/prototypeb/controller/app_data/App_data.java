@@ -10,20 +10,7 @@ public class App_data {
         return categories;
     }
 
-    private String button_default_color = "#28346E";
-    public String getButton_default_color() {
-        return button_default_color;
-    }
-
-    private String button_disabled_color = "#949ED1";
-    public String getButton_disabled_color() {
-        return button_disabled_color;
-    }
-
-
     public App_data(){
-
-
 
     }
 

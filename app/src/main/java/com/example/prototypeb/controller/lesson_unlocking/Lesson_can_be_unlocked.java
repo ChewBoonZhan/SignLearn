@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
+import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.choice_message.Two_choice_message;
 import com.example.prototypeb.controller.file_connections.File_connections;
@@ -55,7 +57,10 @@ public class Lesson_can_be_unlocked {
                 Lesson_button lesson_button = new Lesson_button();
                 Button button = lesson_button.get_specific_button(lesson_to_be_unlocked);
                 button.setOnClickListener(lesson_topics.get_unlocked_On_click());
-                button.setBackgroundColor(Color.parseColor(app_data.getButton_default_color()));
+
+                int color = ContextCompat.getColor(lesson_can_be_unlocked_context, R.color.warning);
+                button.setBackgroundColor(color);
+
 
                 new Success_toast(lesson_can_be_unlocked_context,"Sucessfully unlocked: " + lesson_to_be_unlocked).show_toast();
 

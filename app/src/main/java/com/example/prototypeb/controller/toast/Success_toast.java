@@ -8,8 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
+import com.example.prototypeb.R;
+
 public class Success_toast implements Custom_toasts{
-    private String background_color = "#c7ffbd";
+
     private Context success_toast_context;
     private String message;
 
@@ -22,11 +26,14 @@ public class Success_toast implements Custom_toasts{
         View view = toast.getView();
 
         //Gets the actual oval background of the Toast then sets the colour filter
-        view.getBackground().setColorFilter(Color.parseColor(background_color), PorterDuff.Mode.SRC_IN);
+        int background_color = ContextCompat.getColor(success_toast_context, R.color.warning);
+        view.getBackground().setColorFilter((background_color), PorterDuff.Mode.SRC_IN);
 
         //Gets the TextView from the Toast so it can be editted
         TextView text = view.findViewById(android.R.id.message);
-        text.setTextColor(Color.parseColor(string_color));
+
+        int string_color = ContextCompat.getColor(success_toast_context, R.color.white);
+        text.setTextColor((string_color));
         text.setGravity(Gravity.CENTER);
 
         toast.show();
