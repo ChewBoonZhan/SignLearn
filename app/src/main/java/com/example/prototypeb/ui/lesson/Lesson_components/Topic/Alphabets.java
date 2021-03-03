@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,10 +18,11 @@ import com.example.prototypeb.controller.lesson_screen.Alphabets.C_screen_compon
 import com.example.prototypeb.controller.lesson_screen.Alphabets.Y_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 
 
-public class Alphabets extends AppCompatActivity implements  Lesson_topics{
+public class Alphabets extends Sub_action_bar implements  Lesson_topics{
     private Context alphabets_context;
     private Button button;
     private A_screen_components a_screen_components;
@@ -27,6 +30,8 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
     private C_screen_components c_screen_components;
     private Y_screen_components y_screen_components;
     private Lesson_topics lesson_topics = this;
+
+
     public Alphabets(){
         a_screen_components = new A_screen_components();
         b_screen_components = new B_screen_components();
@@ -41,7 +46,14 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alphabets_menu);
+        set_buttons_on_click();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
 
+    }
+
+    private void set_buttons_on_click(){
         //telling the button what to do
         //A button
         button = (Button) findViewById(R.id.a_id);
@@ -107,8 +119,6 @@ public class Alphabets extends AppCompatActivity implements  Lesson_topics{
                 );
             }
         });
-
-
 
     }
     public View.OnClickListener get_unlocked_On_click(){

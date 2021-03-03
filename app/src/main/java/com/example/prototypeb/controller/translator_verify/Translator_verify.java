@@ -36,6 +36,7 @@ import com.example.prototypeb.controller.camera.Camera_handle;
 import com.example.prototypeb.controller.choice_message.Two_choice_message;
 import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.toast.Success_toast;
 import com.example.prototypeb.controller.translator.Translator;
 import com.example.prototypeb.ui.lesson.LessonFragment;
@@ -50,7 +51,7 @@ import java.util.List;
 
 import static java.security.AccessController.getContext;
 
-public class Translator_verify extends AppCompatActivity {
+public class Translator_verify extends Sub_action_bar {
     private FrameLayout camera_frame;
     private Button switch_camera;
     private TextView title_text;
@@ -70,6 +71,11 @@ public class Translator_verify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lesson_verify);
         get_serializable_contents();
+
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(title_text_id);
+
         get_component_from_screen();
         set_title();
         set_switch_camera_onclick();
@@ -77,6 +83,8 @@ public class Translator_verify extends AppCompatActivity {
         set_progress_bar_width();
         get_context_and_activity();
         setup_translator();
+
+
 
     }
     private void set_title(){
@@ -159,12 +167,6 @@ public class Translator_verify extends AppCompatActivity {
     }
     private void press_back(){
         //equal to pressing the back button
-
-        if ( getFragmentManager().getBackStackEntryCount() > 0)
-        {
-            getFragmentManager().popBackStack();
-            return;
-        }
         super.onBackPressed();
 
 

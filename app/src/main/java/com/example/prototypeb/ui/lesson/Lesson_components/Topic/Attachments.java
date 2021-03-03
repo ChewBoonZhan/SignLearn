@@ -15,9 +15,10 @@ import com.example.prototypeb.controller.lesson_screen.Attachments.Iloveyou_scre
 import com.example.prototypeb.controller.lesson_screen.Attachments.Like_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 
 
-public class Attachments extends AppCompatActivity implements Lesson_topics{
+public class Attachments extends Sub_action_bar implements Lesson_topics{
     private Context attachments_context;
     private Button button;
     private Dislike_screen_components dislike_screen_components;
@@ -38,7 +39,14 @@ public class Attachments extends AppCompatActivity implements Lesson_topics{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.attachments_menu);
+        set_buttons_on_click();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
 
+
+    }
+    private void set_buttons_on_click(){
         //telling the button what to do
         //Like button
         button = (Button) findViewById(R.id.like_id);
@@ -88,7 +96,6 @@ public class Attachments extends AppCompatActivity implements Lesson_topics{
                 );
             }
         });
-
     }
     public View.OnClickListener get_unlocked_On_click(){
 

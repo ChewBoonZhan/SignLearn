@@ -14,4 +14,5 @@ public interface Lesson_topics extends Category_components, Serializable {
     public String screen_component = intent_key.getScreen_component();
     public String translator_label = intent_key.getTranslator_label();
     public String translator_lesson_topics = intent_key.getTranslator_lesson_topics();
+
 }

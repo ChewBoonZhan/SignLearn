@@ -3,12 +3,14 @@ package com.example.prototypeb;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
 
+import com.example.prototypeb.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -16,8 +18,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,88 +47,45 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 //import com.example.prototypeb.controller.file_connections.Categories;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView loading_logo_image;
-    private TextView loading_text;
-    private View body_components;
-    private ChipNavigationBar nav_fragment;
-
-    private Fragment fragment;
-
-
-    
-
-    //private static Categories categories;
-    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private Animation top_anim, bottom_anim;
+    private TextView title_text, desc_text;
+    private ImageView logo;
+    private final int SPLASH_SCREEN_DURATION = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init_elements();
-        init_background_scenes();
-        //categories = new Categories(this);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.splash_screen);
+        get_screen_elements();
+        load_animations();
+        set_elements_animation();
 
-
-
-
+        set_splash_timeout();
     }
+    private void set_splash_timeout(){
+        new Handler().postDelayed(new Runnable(){
 
-    private void init_elements(){
-
-
-        nav_fragment = findViewById(R.id.nav_view);
-        body_components = findViewById(R.id.nav_host_fragment);
-
-
-
-
-    }
-
-
-
-    private void init_background_scenes(){
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-
-        nav_fragment.setItemSelected(R.id.navigation_lesson,true);
-        new TranslatorFragment(MainActivity.this,MainActivity.this);
-        fragment = new LessonFragment(MainActivity.this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-
-        nav_fragment.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(int i) {
-                switch (i) {
-                    case R.id.navigation_translator:
-
-                        fragment = new TranslatorFragment(MainActivity.this,MainActivity.this);
-                        break;
-                    case R.id.navigation_lesson:
-                        fragment = new LessonFragment(MainActivity.this);
-                        break;
-                    case R.id.navigation_game:
-                        fragment = new GameFragment(MainActivity.this);
-                        break;
-
-                }
-
-                if(fragment !=null){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-
-                }
-
-
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, HomeFragment.class);
+                startActivity(intent);
+                finish();
             }
-        });
+        },SPLASH_SCREEN_DURATION);
+    }
+    private void load_animations(){
+        top_anim = AnimationUtils.loadAnimation(this,R.anim.splash_top_anim);
+        bottom_anim = AnimationUtils.loadAnimation(this,R.anim.splash_bottom_anim);
+    }
+    private void get_screen_elements(){
+        title_text = findViewById(R.id.splash_title);
+        desc_text = findViewById(R.id.splash_desc);
+        logo = findViewById(R.id.splash_logo);
 
     }
-
-
-
-
-
-
-
-
-
+    private void set_elements_animation(){
+        logo.setAnimation(top_anim);
+        title_text.setAnimation(bottom_anim);
+        desc_text.setAnimation(bottom_anim);
+    }
 }

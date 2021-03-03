@@ -15,8 +15,9 @@ import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.Me_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.You_screen_components;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 
-public class Pronouns extends AppCompatActivity implements Lesson_topics{
+public class Pronouns extends Sub_action_bar implements Lesson_topics{
     private Context pronouns_context;
     private Button button;
     private Me_screen_components me_screen_components;
@@ -36,7 +37,13 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pronouns_menu);
+        set_buttons_on_click();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
 
+    }
+    private void set_buttons_on_click(){
         //telling the button what to do
         //I button
         button = (Button) findViewById(R.id.me_id);
@@ -71,7 +78,6 @@ public class Pronouns extends AppCompatActivity implements Lesson_topics{
                 );
             }
         });
-
     }
     public View.OnClickListener get_unlocked_On_click(){
 

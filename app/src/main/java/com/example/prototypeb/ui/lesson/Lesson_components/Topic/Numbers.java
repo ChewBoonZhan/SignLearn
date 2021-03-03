@@ -15,9 +15,10 @@ import com.example.prototypeb.controller.lesson_screen.Numbers.Num10_screen_comp
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num1_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num2_screen_components;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 
 
-public class Numbers extends AppCompatActivity implements Lesson_topics{
+public class Numbers extends Sub_action_bar implements Lesson_topics{
     private Context numbers_context;
     private Button button;
     private Num1_screen_components num1_screen_components;
@@ -37,7 +38,13 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.numbers_menu);
+        set_buttons_on_click();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
 
+    }
+    private void set_buttons_on_click(){
         //telling the button what to do
         //1 button
         button = (Button) findViewById(R.id.num1_id);

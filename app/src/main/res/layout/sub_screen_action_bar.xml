@@ -15,13 +15,14 @@
         android:layout_height="wrap_content"
         android:padding = "16dp">
 
-        <ImageView
+
+        <ImageButton
+            android:id="@+id/back_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:background="@null"
             app:srcCompat="@drawable/abc_vector_test"
-            tools:srcCompat="@drawable/abc_vector_test">
-
-        </ImageView>
+            tools:srcCompat="@drawable/abc_vector_test" />
 
         <TextView
             android:id="@+id/screen_title"
@@ -30,7 +31,7 @@
             android:layout_marginStart="45dp"
             android:text="Screen Title"
             android:textColor="@color/white"
-            android:textSize="20sp">
+            android:textSize="18sp">
 
         </TextView>
 

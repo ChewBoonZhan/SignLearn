@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,13 +18,14 @@ import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 import com.example.prototypeb.ui.game.Game_components.Game_components;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 
-
-public class Adverbs extends AppCompatActivity implements Lesson_topics{
+public class Adverbs extends Sub_action_bar implements Lesson_topics{
     private Context adverbs_context;
     private Button button;
     private No_screen_components no_screen_components;
     private Yes_screen_components yes_screen_components;
+
     private Lesson_topics lesson_topics = this;
 
     public Adverbs(){
@@ -40,6 +43,15 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adverbs_menu);
 
+        set_buttons_on_click();
+        get_screen_elements();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
+
+    }
+
+    private void set_buttons_on_click(){
         //telling the button what to do
         //Yes button
         button = (Button) findViewById(R.id.yes_id);
@@ -56,11 +68,6 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );
-                /*
-                Intent intent = new Intent(getApplicationContext(), Lesson_screen.class);
-                startActivity(intent);
-
-                 */
             }
         });
         //No button
@@ -82,9 +89,8 @@ public class Adverbs extends AppCompatActivity implements Lesson_topics{
         });
 
 
-
-
     }
+
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
