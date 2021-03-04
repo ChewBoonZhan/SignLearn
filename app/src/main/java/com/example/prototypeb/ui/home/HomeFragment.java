@@ -20,14 +20,12 @@ import com.example.prototypeb.ui.translator.TranslatorFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class HomeFragment extends AppCompatActivity {
-    private ImageView loading_logo_image;
-    private TextView loading_text;
-    private View body_components;
+
     private ChipNavigationBar nav_fragment;
     private File_connections file_connections;
-    private TextView points_text;
+    private TextView points_text,user_name;
     private Fragment fragment;
-
+    private ImageView user_main_logo;
 
     //private static Categories categories;
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -40,17 +38,24 @@ public class HomeFragment extends AppCompatActivity {
         init_elements();
         init_background_scenes();
         init_points();
-        //categories = new Categories(this);
+        init_user_name_and_icon();
+
     }
     private void init_points(){
         points_text.setText(file_connections.getScore() + "");
     }
     private void init_elements(){
         nav_fragment = findViewById(R.id.nav_view);
-        body_components = findViewById(R.id.nav_host_fragment);
         points_text = findViewById(R.id.point_display);
+        user_name = findViewById(R.id.user_name);
+        user_main_logo = findViewById(R.id.user_main_logo);
 
     }
+    private void init_user_name_and_icon(){
+        user_name.setText(file_connections.get_user_name());
+        user_main_logo.setImageResource(file_connections.get_user_icon());
+    }
+
 
 
 

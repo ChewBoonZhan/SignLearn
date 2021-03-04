@@ -70,6 +70,17 @@ public class File_connections {
 
 
     }
+
+    public void set_user_name(String name){
+        editor = sharedPref.edit();
+        editor.putString(file_connection_key.getUser_name(),name);
+        editor.apply();
+    }
+    public void set_user_icon(int user_icon){
+        editor = sharedPref.edit();
+        editor.putInt(file_connection_key.getUser_icon(),user_icon);
+        editor.apply();
+    }
     public void update_score(int score){
         editor = sharedPref.edit();
         editor.putInt(file_connection_key.getScore_key(),score);
@@ -94,6 +105,12 @@ public class File_connections {
     }
     public int getScore(){
         return sharedPref.getInt(file_connection_key.getScore_key(),-1);
+    }
+    public String get_user_name(){
+        return sharedPref.getString(file_connection_key.getUser_name(),"");
+    }
+    public int get_user_icon(){
+        return sharedPref.getInt(file_connection_key.getUser_icon(),0);
     }
     public SharedPreferences getSharedPref(){
         return sharedPref;

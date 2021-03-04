@@ -25,4 +25,14 @@ public class File_connection_key {
     public String getScore_key(){
         return score_key;
     }
+
+    private String user_name = "user_name";
+    public String getUser_name(){
+        return user_name;
+    }
+
+    private String user_icon = "user_icon";
+    public String getUser_icon(){
+        return user_icon;
+    }
 }

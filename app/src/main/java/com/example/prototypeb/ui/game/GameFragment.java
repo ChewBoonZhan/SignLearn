@@ -64,15 +64,12 @@ public class GameFragment extends Fragment {
         category_init = new Category_init(game_context,game_classes_init);
         init_category_buttons();
         init_category_button_according_to_unlocked();
-        set_score_text();
+
 
         return root;
     }
 
-    private void set_score_text(){
-        TextView score_text = game_root.findViewById(R.id.score_text);
-        score_text.setText("Score: " + file_connections.getScore());
-    }
+   
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();
         category_buttons.add(game_root.findViewById(R.id.game1_button_id));

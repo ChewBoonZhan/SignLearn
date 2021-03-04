@@ -53,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView title_text, desc_text;
     private ImageView logo;
     private final int SPLASH_SCREEN_DURATION = 5000;
+    private File_connections file_connections;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
+        file_connections = new File_connections(this);
         get_screen_elements();
         load_animations();
         set_elements_animation();
@@ -66,15 +68,29 @@ public class MainActivity extends AppCompatActivity {
         set_splash_timeout();
     }
     private void set_splash_timeout(){
-        new Handler().postDelayed(new Runnable(){
+        if((file_connections.get_user_name().isEmpty()) &&(file_connections.get_user_icon() == 0)){
+            new Handler().postDelayed(new Runnable(){
 
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, RegistrationFragment.class);
-                startActivity(intent);
-                finish();
-            }
-        },SPLASH_SCREEN_DURATION);
+                @Override
+                public void run() {
+                    Intent intent = new Intent(MainActivity.this, RegistrationFragment.class);
+                    startActivity(intent);
+                    finish();
+                }
+            },SPLASH_SCREEN_DURATION);
+        }
+        else{
+            new Handler().postDelayed(new Runnable(){
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(MainActivity.this, HomeFragment.class);
+                    startActivity(intent);
+                    finish();
+                }
+            },SPLASH_SCREEN_DURATION);
+        }
+
     }
     private void load_animations(){
         top_anim = AnimationUtils.loadAnimation(this,R.anim.splash_top_anim);

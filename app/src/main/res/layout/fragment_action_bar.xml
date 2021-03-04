@@ -17,10 +17,11 @@
         android:padding="16dp">
 
         <ImageView
+            android:id="@+id/user_main_logo"
             android:layout_width="30dp"
+
+
             android:layout_height="30dp"
-
-
             app:srcCompat="@drawable/user">
 
         </ImageView>
@@ -46,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="65dp"
+                android:layout_marginEnd="35dp"
                 android:text="0"
                 android:textColor="@color/selected_or_secondary"
                 android:textSize="20sp">
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
 
-                android:text="Points"
+                android:text="Pts"
                 android:textColor="@color/selected_or_secondary"
                 android:textSize="20sp">
 
