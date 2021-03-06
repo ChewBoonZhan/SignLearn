@@ -57,7 +57,7 @@
         android:id="@+id/switch_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/unique"
+        android:background="@color/primary"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="Switch Camera"
