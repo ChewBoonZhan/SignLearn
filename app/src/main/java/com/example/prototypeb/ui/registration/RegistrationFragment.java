@@ -19,6 +19,7 @@ import com.example.prototypeb.MainActivity;
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.new_screen.New_screen;
+import com.example.prototypeb.controller.valid_name.Check_valid_name;
 import com.example.prototypeb.ui.home.HomeFragment;
 import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Adverbs;
 
@@ -32,7 +33,7 @@ public class RegistrationFragment extends AppCompatActivity {
     private int button_selected_index= 0;
     private final Pattern NAME_PATTERN = Pattern.compile("[a-zA-Z ]{2,10}$");
     private final int MIN_NAME_LENGTH = 2;
-    private final int DELAY_BEFORE_HOME_SCREEN = 1000;
+    private final int DELAY_BEFORE_HOME_SCREEN = 500;
     private New_screen new_screen;
     private File_connections file_connections;
     @Override
@@ -71,7 +72,8 @@ public class RegistrationFragment extends AppCompatActivity {
         });
     }
     private void check_name_complete(){
-        if((!name_has_error(first_name,"First Name",5)) &&(!name_has_error(last_name,"Last Name",10))){
+        if((!name_has_error(first_name,5)) &&(!name_has_error(last_name,10))){
+            disable_screen_elements();
             String name = first_name.getText().toString() + " " + last_name.getText().toString();
 
 
@@ -82,26 +84,29 @@ public class RegistrationFragment extends AppCompatActivity {
 
         }
     }
-    private boolean name_has_error(EditText name, String field_name,int max_name_length){
+    private boolean name_has_error(EditText name,int max_name_length){
+        Check_valid_name check_valid_name = new Check_valid_name();
+
         String name_field_value = name.getText().toString();
-        String name_field_value_trimmed = name_field_value.trim();
-        if(name_field_value.isEmpty() || name_field_value_trimmed.isEmpty()){
-            name.setError(field_name + " cannot be empty.");
+        if(check_valid_name.check_valid_name(name_field_value,MIN_NAME_LENGTH,max_name_length)){
+            name.setError(name.getHint() + check_valid_name.getError_message());
             return true;
         }
-        else if(name_field_value.length() < MIN_NAME_LENGTH || name_field_value_trimmed.length() < MIN_NAME_LENGTH){
-            name.setError(field_name + " must be longer than "+MIN_NAME_LENGTH + " characters.");
-            return true;
+        else{
+            return false;
         }
-        else if(name_field_value.length() > max_name_length || name_field_value_trimmed.length() > max_name_length){
-            name.setError(field_name + " must be shorter than "+max_name_length + " characters.");
-            return true;
+    }
+    private void disable_screen_elements(){
+        first_name.setEnabled(false);
+        last_name.setEnabled(false);
+        completed_register.setEnabled(false);
+        disable_user_button();
+    }
+    private void disable_user_button(){
+        int length = user_icon.size();
+        for(int i = 0;i<length;i++){
+            user_icon.get(i).setEnabled(false);
         }
-        else if(!NAME_PATTERN.matcher(name_field_value).matches()){
-            name.setError(field_name + " must only contain Characters and Spaces.");
-            return true;
-        }
-        return false;
     }
     private void get_user_name(){
         first_name = findViewById(R.id.register_first_name);
