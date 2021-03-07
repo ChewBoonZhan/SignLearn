@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.example.prototypeb.MainActivity;
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.controller.new_screen.New_screen;
 import com.example.prototypeb.ui.home.HomeFragment;
 import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Adverbs;
 
@@ -31,12 +32,14 @@ public class RegistrationFragment extends AppCompatActivity {
     private int button_selected_index= 0;
     private final Pattern NAME_PATTERN = Pattern.compile("[a-zA-Z ]{2,10}$");
     private final int MIN_NAME_LENGTH = 2;
-
+    private final int DELAY_BEFORE_HOME_SCREEN = 1000;
+    private New_screen new_screen;
     private File_connections file_connections;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_registration);
+        new_screen = new New_screen(DELAY_BEFORE_HOME_SCREEN,this,this);
         file_connections = new File_connections(this);
         get_screen_elements();
         set_user_icon_on_click();
@@ -74,15 +77,7 @@ public class RegistrationFragment extends AppCompatActivity {
 
             file_connections.set_user_name(name);
             file_connections.set_user_icon((int)user_icon.get(button_selected_index).getTag());
-            new Handler().postDelayed(new Runnable(){
-
-                @Override
-                public void run() {
-                    Intent intent = new Intent(RegistrationFragment.this, HomeFragment.class);
-                    startActivity(intent);
-                    finish();
-                }
-            },1000);
+            new_screen.go_to_new_screen("com.example.prototypeb.ui.home.HomeFragment");
 
 
         }

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import com.example.prototypeb.controller.new_screen.New_screen;
 import com.example.prototypeb.ui.home.HomeFragment;
 import com.example.prototypeb.ui.registration.RegistrationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,6 +50,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 //import com.example.prototypeb.controller.file_connections.Categories;
 
 public class MainActivity extends AppCompatActivity {
+    private New_screen new_screen;
     private Animation top_anim, bottom_anim;
     private TextView title_text, desc_text;
     private ImageView logo;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
+        new_screen = new New_screen(SPLASH_SCREEN_DURATION,this,this);
         file_connections = new File_connections(this);
         get_screen_elements();
         load_animations();
@@ -68,28 +71,14 @@ public class MainActivity extends AppCompatActivity {
         set_splash_timeout();
     }
     private void set_splash_timeout(){
+        String class_to_go;
         if((file_connections.get_user_name().isEmpty()) &&(file_connections.get_user_icon() == 0)){
-            new Handler().postDelayed(new Runnable(){
-
-                @Override
-                public void run() {
-                    Intent intent = new Intent(MainActivity.this, RegistrationFragment.class);
-                    startActivity(intent);
-                    finish();
-                }
-            },SPLASH_SCREEN_DURATION);
+            class_to_go = "com.example.prototypeb.ui.registration.RegistrationFragment";
         }
         else{
-            new Handler().postDelayed(new Runnable(){
-
-                @Override
-                public void run() {
-                    Intent intent = new Intent(MainActivity.this, HomeFragment.class);
-                    startActivity(intent);
-                    finish();
-                }
-            },SPLASH_SCREEN_DURATION);
+            class_to_go = "com.example.prototypeb.ui.home.HomeFragment";
         }
+        new_screen.go_to_new_screen(class_to_go);
 
     }
     private void load_animations(){
