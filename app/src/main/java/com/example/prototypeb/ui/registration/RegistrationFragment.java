@@ -88,7 +88,7 @@ public class RegistrationFragment extends AppCompatActivity {
         Check_valid_name check_valid_name = new Check_valid_name();
 
         String name_field_value = name.getText().toString();
-        if(check_valid_name.check_valid_name(name_field_value,MIN_NAME_LENGTH,max_name_length)){
+        if(!check_valid_name.check_valid_name(name_field_value,MIN_NAME_LENGTH,max_name_length)){
             name.setError(name.getHint() + check_valid_name.getError_message());
             return true;
         }
