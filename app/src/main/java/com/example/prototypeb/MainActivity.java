@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             class_to_go = "com.example.prototypeb.ui.home.HomeFragment";
         }
-        new_screen.go_to_new_screen(class_to_go);
+        new_screen.go_to_new_screen(class_to_go,true);
 
     }
     private void load_animations(){

@@ -1,6 +1,7 @@
 package com.example.prototypeb.controller.lesson_unlocking;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.file_connections.File_connections;
@@ -14,8 +15,10 @@ public class Lesson_unlocking {
     private App_data app_data;
     private File_connections file_connections;
     private Lesson_topics lesson_topics;
-    public Lesson_unlocking(Context context,Lesson_topics lesson_topics){
+    private View v;
+    public Lesson_unlocking(Context context,Lesson_topics lesson_topics,View v){
         lesson_unlock_context = context;
+        this.v = v;
         file_connections = new File_connections(lesson_unlock_context);
         app_data = new App_data();
         this.lesson_topics = lesson_topics;
@@ -28,11 +31,11 @@ public class Lesson_unlocking {
             String lesson_to_be_unlocked =lesson_topics.toString();
             String title = "Unlock: " + lesson_to_be_unlocked;
 
-            Lesson_can_be_unlocked lesson_can_be_unlocked = new Lesson_can_be_unlocked(lesson_unlock_context,title,required_score,lesson_to_be_unlocked, lesson_topics,score);
+            Lesson_can_be_unlocked lesson_can_be_unlocked = new Lesson_can_be_unlocked(lesson_unlock_context,title,required_score,lesson_to_be_unlocked, lesson_topics,score,v);
             lesson_can_be_unlocked.show_choice_message();
         }
         else if(score < required_score){
-            Lesson_cannot_be_unlocked lesson_cannot_be_unlocked = new Lesson_cannot_be_unlocked(lesson_unlock_context,required_score - score);
+            Lesson_cannot_be_unlocked lesson_cannot_be_unlocked = new Lesson_cannot_be_unlocked(lesson_unlock_context,required_score);
             lesson_cannot_be_unlocked.show_toast();
             //send out a warning, saying not enough points
         }

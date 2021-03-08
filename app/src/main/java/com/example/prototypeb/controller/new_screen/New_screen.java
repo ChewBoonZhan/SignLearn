@@ -20,7 +20,7 @@ public class New_screen {
         this.context = context;
         this.activity = activity;
     }
-    public void go_to_new_screen(String screen_name){
+    public void go_to_new_screen(String screen_name,boolean clear_screen){
         new Handler().postDelayed(new Runnable(){
 
             @Override
@@ -33,7 +33,10 @@ public class New_screen {
                     e.printStackTrace();
                 }
                 context.startActivity(intent);
-                activity.finish();
+                if(clear_screen){
+                    activity.finish();
+                }
+
             }
         },this.delay_before_new_screen);
     }

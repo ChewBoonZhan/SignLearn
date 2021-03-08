@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,7 +19,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
+
 import com.example.prototypeb.controller.category.Category_init;
+import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Adverbs;
 import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Alphabets;
 import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Attachments;
@@ -28,6 +32,7 @@ import com.example.prototypeb.ui.lesson.Lesson_components.Topic.Pronouns;
 import com.example.prototypeb.controller.file_connections.File_connections;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LessonFragment extends Fragment {
 
@@ -35,9 +40,10 @@ public class LessonFragment extends Fragment {
     private File_connections file_connections;
 
     private static Context lesson_context;
-    private static ArrayList <Button> category_buttons;
+    private ArrayList <Button> category_buttons;
+    public static ArrayList <TextView> category_notifi;
     private View lesson_root;
-    private App_data app_data;
+
     private Lesson_topics_init lesson_topics_init;
     private Category_init category_init;
     public LessonFragment(Context context){
@@ -50,18 +56,57 @@ public class LessonFragment extends Fragment {
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LessonViewModel.class);
         View root = inflater.inflate(R.layout.fragment_lesson, container, false);
         lesson_root = root;
-        app_data = new App_data();
+
         lesson_topics_init = new Lesson_topics_init(lesson_context);
         file_connections = new File_connections(lesson_context);
+
         category_init = new Category_init(lesson_context,lesson_topics_init);
         init_category_buttons();
-        init_category_button_according_to_unlocked();
+        get_screen_lesson_notifi();
+        init_categories_according_to_unlocked();
 
 
         return root;
     }
-    private void init_category_button_according_to_unlocked(){
-        category_init.init_category_button_according_to_unlocked(category_buttons);
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init_lesson_learnt();
+    }
+    private void get_screen_lesson_notifi(){
+        category_notifi = new ArrayList<TextView>();
+        category_notifi.add(lesson_root.findViewById(R.id.lesson_1_notifi));
+        category_notifi.add(lesson_root.findViewById(R.id.lesson_2_notifi));
+        category_notifi.add(lesson_root.findViewById(R.id.lesson_3_notifi));
+        category_notifi.add(lesson_root.findViewById(R.id.lesson_4_notifi));
+        category_notifi.add(lesson_root.findViewById(R.id.lesson_5_notifi));
+    }
+    private void init_lesson_learnt(){
+
+        App_data app_data = new App_data();
+        Category_elements category_elements = new Category_elements();
+        HashMap <String, ArrayList <String>> all_category_elements = category_elements.getCategory_elements();
+        String[] categories = app_data.getCategories();
+        int length = categories.length;
+        for(int i = 0;i<length;i++){
+            ArrayList <String> elements = all_category_elements.get(categories[i]);
+
+            int category_elements_length  = elements.size();
+
+
+            int number_of_unpassed = 0;
+            for(int j = 0;j<category_elements_length;j++){
+                if(!file_connections.check_lesson_learnt(elements.get(j))){
+                    number_of_unpassed++;
+                }
+            }
+            category_notifi.get(i).setText((String)(number_of_unpassed + ""));
+
+        }
+    }
+    private void init_categories_according_to_unlocked(){
+        category_init.init_category_button_according_to_unlocked(category_buttons,category_notifi);
     }
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();
@@ -70,10 +115,13 @@ public class LessonFragment extends Fragment {
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson3_id));
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson4_id));
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson5_id));
+
+
     }
-    public static ArrayList<Button> getCategory_buttons(){
-        return category_buttons;
+    public static ArrayList <TextView> getCategory_notifi(){
+        return category_notifi;
     }
+
 
     public static void setLesson_context(Context context){
         lesson_context = context;

@@ -36,6 +36,7 @@ import com.example.prototypeb.controller.camera.Camera_handle;
 import com.example.prototypeb.controller.choice_message.Two_choice_message;
 import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.controller.new_screen.New_screen;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.toast.Success_toast;
 import com.example.prototypeb.controller.translator.Translator;
@@ -65,6 +66,7 @@ public class Translator_verify extends Sub_action_bar {
     private Intent_key intent_key = new Intent_key();
     private Button lesson_camera_permission;
     private int title_text_id;
+    private boolean complete_verifying = false;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,15 +152,18 @@ public class Translator_verify extends Sub_action_bar {
     private void handle_score_increment(){
         File_connections file_connections = new File_connections(translator_verify_context);
         File_connection_key file_connection_key = new File_connection_key();
-        file_connections.save_lesson_not_scored_in_file();
-        String element_to_check = correct_string + file_connection_key.getLesson_passed_back_key();
+
+        String element_to_check = correct_string.toLowerCase() + file_connection_key.getLesson_passed_back_key();
         boolean lesson_passed = file_connections.getSharedPref().getBoolean(element_to_check,false);
         if(!lesson_passed) {
             file_connections.update_score(file_connections.getScore() + 10);
 
             file_connections.unlock_category(element_to_check);
-            new Success_toast(translator_verify_context, "Sign Language: \"" + correct_string.toUpperCase() + "\" was learnt!\n 10 Points are awarded").show_toast();
+            new Success_toast(translator_verify_context, "Sign: \"" + correct_string.toUpperCase() + "\" was learnt!\n + 10 Points").show_toast();
 
+        }
+        else{
+            new Success_toast(translator_verify_context, "Sign: \"" + correct_string.toUpperCase() + "\" was correct!").show_toast();
         }
 
         //go back to the screen
@@ -172,17 +177,23 @@ public class Translator_verify extends Sub_action_bar {
 
     }
     private void handle_leave_screen(){
+        //New_screen new_screen = new New_screen(1000, translator_verify_context,translator_verify_activity);
+        //otenew_screen.go_to_new_screen("com.example.prototypeb.ui.home.HomeFragment",false);
         press_back();
     }
     private void increment_progress_bar(){
-        if(verify_progress.getProgress() >= verify_progress.getMax()){
-            //done~
-            handle_score_increment();
+        if(!complete_verifying){
+            if(verify_progress.getProgress() >= verify_progress.getMax()){
+                //done~
+                handle_score_increment();
+                complete_verifying = true;
 
+            }
+            else{
+                verify_progress.incrementProgressBy(1);
+            }
         }
-        else{
-            verify_progress.incrementProgressBy(1);
-        }
+
 
 
     }
@@ -200,9 +211,6 @@ public class Translator_verify extends Sub_action_bar {
             permission_not_granted(false);
             request_permission_thread();
         } else {
-
-
-
             permission_granted(true);
 
         }
@@ -288,6 +296,7 @@ public class Translator_verify extends Sub_action_bar {
     }
     public void setCorrect_string(String correct_string){
         this.correct_string = correct_string;
+
     }
     public String getCorrect_string(){
         return this.correct_string;

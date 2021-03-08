@@ -84,10 +84,8 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
                         .putExtra(translator_label,"No")
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
-
             }
         });
-
 
     }
 
@@ -103,6 +101,7 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
 
         @Override
         public void onClick(View v) {
+
             Intent intent = new Intent(v.getContext(), Adverbs.class);
             adverbs_context.startActivity(intent);
 
@@ -113,7 +112,7 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
 
         @Override
         public void onClick(View v) {
-            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(adverbs_context,lesson_topics);
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(adverbs_context,lesson_topics,v);
             lesson_unlocking.user_clicks_locked_lesson();
 
 

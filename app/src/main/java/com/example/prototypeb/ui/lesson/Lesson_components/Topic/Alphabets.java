@@ -144,7 +144,7 @@ public class Alphabets extends Sub_action_bar implements  Lesson_topics{
         @Override
         public void onClick(View v) {
 
-            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(alphabets_context,lesson_topics);
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(alphabets_context,lesson_topics,v);
             lesson_unlocking.user_clicks_locked_lesson();
 
         }

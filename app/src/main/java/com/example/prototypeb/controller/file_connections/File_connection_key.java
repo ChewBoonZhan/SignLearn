@@ -11,10 +11,7 @@ public class File_connection_key {
         return complete_initial_init;
     }
 
-    private String complete_init_lesson_passed = "init_lesson_passed";
-    public String getComplete_init_lesson_passed(){
-        return complete_init_lesson_passed;
-    }
+
 
     private String lesson_passed_back_key = "_lesson_passed";
     public String getLesson_passed_back_key(){

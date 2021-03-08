@@ -11,6 +11,7 @@ import java.util.HashMap;
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.app_data.Category_elements;
+import com.example.prototypeb.ui.Show_Score;
 
 public class File_connections {
     private File_connection_key file_connection_key;
@@ -41,35 +42,9 @@ public class File_connections {
             //save_lesson_not_scored_in_file();
             save_other_data_in_file();
             editor.apply();
-
         }
-
     }
-    public void save_lesson_not_scored_in_file(){
-        String key_dic = file_connection_key.getComplete_init_lesson_passed();
-        if(sharedPref.getBoolean(key_dic,false)){
-            Category_elements category_elements_object = new Category_elements();
-            HashMap <String, ArrayList<String>> category_elements = category_elements_object.getCategory_elements();
-            editor = sharedPref.edit();
-            int length = category_elements.size();
-            String[] categories = app_data.getCategories();
-            String lesson_passed_back_key = file_connection_key.getLesson_passed_back_key();
-            for(int i = 0;i<length;i++){
-                String category = categories[i];
-                ArrayList <String> elements = category_elements.get(category);
-                int elements_length = elements.size();
-                for(int j = 0;j<elements_length;i++){
-                    String editor_title_of_component = elements.get(j) + lesson_passed_back_key;
-                    editor.putBoolean(editor_title_of_component,false);
-                }
-            }
-            editor.putBoolean(key_dic,true);
-            editor.apply();
-        }
 
-
-
-    }
 
     public void set_user_name(String name){
         editor = sharedPref.edit();
@@ -85,6 +60,7 @@ public class File_connections {
         editor = sharedPref.edit();
         editor.putInt(file_connection_key.getScore_key(),score);
         editor.apply();
+        new Show_Score().update_points(this);
     }
     private void save_other_data_in_file(){
         editor.putInt(file_connection_key.getScore_key(),50);
@@ -102,6 +78,11 @@ public class File_connections {
 
             editor.putBoolean(categories[i],false);
         }
+    }
+    public boolean check_lesson_learnt(String lesson_key){
+        String lesson_passed_back_key = file_connection_key.getLesson_passed_back_key();
+        lesson_key = lesson_key + lesson_passed_back_key;
+        return sharedPref.getBoolean(lesson_key,false);
     }
     public int getScore(){
         return sharedPref.getInt(file_connection_key.getScore_key(),-1);

@@ -63,7 +63,7 @@ public class GameFragment extends Fragment {
         game_classes_init = new Game_classes_init(game_context);
         category_init = new Category_init(game_context,game_classes_init);
         init_category_buttons();
-        init_category_button_according_to_unlocked();
+        init_categories_according_to_unlocked();
 
 
         return root;
@@ -79,7 +79,7 @@ public class GameFragment extends Fragment {
         category_buttons.add(game_root.findViewById(R.id.game5_button_id));
     }
 
-    private void init_category_button_according_to_unlocked(){
+    private void init_categories_according_to_unlocked(){
         category_init.init_category_button_according_to_unlocked(category_buttons);
 
     }

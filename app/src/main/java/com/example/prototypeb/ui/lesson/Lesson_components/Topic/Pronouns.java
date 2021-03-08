@@ -101,7 +101,7 @@ public class Pronouns extends Sub_action_bar implements Lesson_topics{
 
         @Override
         public void onClick(View v) {
-            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(pronouns_context,lesson_topics);
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(pronouns_context,lesson_topics,v);
             lesson_unlocking.user_clicks_locked_lesson();
 
 
