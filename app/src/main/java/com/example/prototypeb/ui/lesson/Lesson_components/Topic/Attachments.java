@@ -5,17 +5,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Dislike_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Iloveyou_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Like_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
+import com.example.prototypeb.ui.lesson.LessonFragment;
+
+import java.util.ArrayList;
 
 
 public class Attachments extends Sub_action_bar implements Lesson_topics{
@@ -25,11 +31,13 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
     private Iloveyou_screen_components iloveyou_screen_components;
     private Like_screen_components like_screen_components;
     private Lesson_topics lesson_topics = this;
-
+    private ArrayList<TextView> notifi_text;
+    private ArrayList <String> category_elements;
     public Attachments(){
         dislike_screen_components = new Dislike_screen_components();
         iloveyou_screen_components = new Iloveyou_screen_components();
         like_screen_components = new Like_screen_components();
+        this.attachments_context = LessonFragment.getLesson_context();
     }
     public Attachments(Context attachments_context){
         this.attachments_context = attachments_context;
@@ -43,8 +51,33 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
         get_screen_elements();
         set_back_button_onclick();
         set_title_text(this.toString()+" Syllabus");
+        init_category_elements();
+        get_noti_text();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        set_notifi_text_visible();
+    }
 
-
+    private void init_category_elements(){
+        Category_elements all_category_elements = new Category_elements();
+        category_elements = all_category_elements.getCategory_elements().get(toString());
+    }
+    private void get_noti_text(){
+        notifi_text = new ArrayList<TextView>();
+        notifi_text.add(findViewById(R.id.like_notifi));
+        notifi_text.add(findViewById(R.id.dislike_notifi));
+        notifi_text.add(findViewById(R.id.iloveyou_notifi));
+    }
+    private void set_notifi_text_visible(){
+        File_connections file_connections = new File_connections(attachments_context);
+        int length = notifi_text.size();
+        for(int i = 0;i<length;i++){
+            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
+                notifi_text.get(i).setVisibility(View.GONE);
+            }
+        }
     }
     private void set_buttons_on_click(){
         //telling the button what to do
@@ -59,7 +92,7 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, like_screen_components)
-                        .putExtra(translator_label,"Like")
+                        .putExtra(translator_label,category_elements.get(0))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -74,7 +107,7 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, dislike_screen_components)
-                        .putExtra(translator_label,"Dislike")
+                        .putExtra(translator_label,category_elements.get(1))
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );
@@ -90,7 +123,7 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, iloveyou_screen_components)
-                        .putExtra(translator_label,"I Love You")
+                        .putExtra(translator_label,category_elements.get(2))
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );

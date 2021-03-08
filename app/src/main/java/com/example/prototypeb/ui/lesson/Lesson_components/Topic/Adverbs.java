@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.lesson_screen.Adverbs.No_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Adverbs.Yes_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
@@ -19,18 +21,26 @@ import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 import com.example.prototypeb.ui.game.Game_components.Game_adverbs;
 import com.example.prototypeb.ui.game.Game_components.Game_components;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
+import com.example.prototypeb.ui.lesson.LessonFragment;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 
 public class Adverbs extends Sub_action_bar implements Lesson_topics{
     private Context adverbs_context;
     private Button button;
     private No_screen_components no_screen_components;
     private Yes_screen_components yes_screen_components;
-
+    private ArrayList<TextView> notifi_text;
+    private ArrayList<String> category_elements;
     private Lesson_topics lesson_topics = this;
 
     public Adverbs(){
         no_screen_components = new No_screen_components();
         yes_screen_components = new Yes_screen_components();
+        this.adverbs_context = LessonFragment.getLesson_context();
 
     }
     public Adverbs(Context adverbs_context){
@@ -45,12 +55,39 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
 
         set_buttons_on_click();
         get_screen_elements();
-        get_screen_elements();
+        get_noti_text();
+
         set_back_button_onclick();
         set_title_text(this.toString()+" Syllabus");
 
+        init_category_elements();
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        set_notifi_text_visible();
+    }
+
+    private void init_category_elements(){
+        Category_elements all_category_elements = new Category_elements();
+        category_elements = all_category_elements.getCategory_elements().get(toString());
+    }
+    private void get_noti_text(){
+        notifi_text = new ArrayList<TextView>();
+        notifi_text.add(findViewById(R.id.yes_notifi));
+        notifi_text.add(findViewById(R.id.no_notifi));
+    }
+    private void set_notifi_text_visible(){
+        File_connections file_connections = new File_connections(adverbs_context);
+        int length = notifi_text.size();
+        for(int i = 0;i<length;i++){
+            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
+                notifi_text.get(i).setVisibility(View.GONE);
+            }
+        }
+    }
     private void set_buttons_on_click(){
         //telling the button what to do
         //Yes button
@@ -64,7 +101,7 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, yes_screen_components)
-                        .putExtra(translator_label,"Yes")
+                        .putExtra(translator_label,category_elements.get(0))
                         .putExtra(translator_lesson_topics,get_model_category())
 
                 );
@@ -81,7 +118,7 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, no_screen_components)
-                        .putExtra(translator_label,"No")
+                        .putExtra(translator_label,category_elements.get(1))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -90,7 +127,6 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
     }
 
     public View.OnClickListener get_unlocked_On_click(){
-
         return on_unlocked_click;
     }
 
@@ -98,7 +134,6 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
         return locked_On_click;
     }
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
-
         @Override
         public void onClick(View v) {
 

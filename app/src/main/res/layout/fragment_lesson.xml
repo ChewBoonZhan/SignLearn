@@ -21,7 +21,8 @@
             android:orientation="vertical">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/lesson1_lesson">
 
                 <Button
                     android:id="@+id/lesson1_id"
@@ -58,7 +59,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/lesson2_lesson"
+                >
                 <Button
                     android:id="@+id/lesson2_id"
                     android:layout_width="match_parent"
@@ -96,7 +99,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/lesson3_lesson"
+                >
                 <Button
                     android:id="@+id/lesson3_id"
                     android:layout_width="match_parent"
@@ -134,7 +139,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/lesson4_lesson"
+                >
                 <Button
                     android:id="@+id/lesson4_id"
                     android:layout_width="match_parent"
@@ -172,7 +179,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/lesson5_lesson"
+                >
                 <Button
                     android:id="@+id/lesson5_id"
                     android:layout_width="match_parent"

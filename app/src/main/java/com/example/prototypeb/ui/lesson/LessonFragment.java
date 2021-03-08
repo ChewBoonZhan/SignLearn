@@ -97,11 +97,17 @@ public class LessonFragment extends Fragment {
 
             int number_of_unpassed = 0;
             for(int j = 0;j<category_elements_length;j++){
-                if(!file_connections.check_lesson_learnt(elements.get(j))){
+                if(!file_connections.check_lesson_learnt(elements.get(j).toLowerCase())){
                     number_of_unpassed++;
                 }
             }
-            category_notifi.get(i).setText((String)(number_of_unpassed + ""));
+            if(number_of_unpassed <= 0){
+                category_notifi.get(i).setVisibility(View.GONE);
+            }
+            else{
+                category_notifi.get(i).setText((String)(number_of_unpassed + ""));
+            }
+
 
         }
     }
@@ -123,7 +129,8 @@ public class LessonFragment extends Fragment {
     }
 
 
-    public static void setLesson_context(Context context){
-        lesson_context = context;
+
+    public static Context getLesson_context(){
+        return lesson_context;
     }
 }

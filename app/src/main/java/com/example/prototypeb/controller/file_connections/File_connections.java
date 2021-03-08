@@ -45,7 +45,6 @@ public class File_connections {
         }
     }
 
-
     public void set_user_name(String name){
         editor = sharedPref.edit();
         editor.putString(file_connection_key.getUser_name(),name);
@@ -80,6 +79,7 @@ public class File_connections {
         }
     }
     public boolean check_lesson_learnt(String lesson_key){
+        lesson_key =lesson_key.toLowerCase();
         String lesson_passed_back_key = file_connection_key.getLesson_passed_back_key();
         lesson_key = lesson_key + lesson_passed_back_key;
         return sharedPref.getBoolean(lesson_key,false);
