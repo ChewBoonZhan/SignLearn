@@ -24,15 +24,14 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 import java.util.ArrayList;
 
 
-public class Attachments extends Sub_action_bar implements Lesson_topics{
+public class Attachments extends Button_notification implements Lesson_topics{
     private Context attachments_context;
     private Button button;
     private Dislike_screen_components dislike_screen_components;
     private Iloveyou_screen_components iloveyou_screen_components;
     private Like_screen_components like_screen_components;
     private Lesson_topics lesson_topics = this;
-    private ArrayList<TextView> notifi_text;
-    private ArrayList <String> category_elements;
+
     public Attachments(){
         dislike_screen_components = new Dislike_screen_components();
         iloveyou_screen_components = new Iloveyou_screen_components();
@@ -57,28 +56,17 @@ public class Attachments extends Sub_action_bar implements Lesson_topics{
     @Override
     protected void onResume() {
         super.onResume();
-        set_notifi_text_visible();
+        set_notifi_text_visible(attachments_context);
     }
 
-    private void init_category_elements(){
-        Category_elements all_category_elements = new Category_elements();
-        category_elements = all_category_elements.getCategory_elements().get(toString());
-    }
+
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.like_notifi));
         notifi_text.add(findViewById(R.id.dislike_notifi));
         notifi_text.add(findViewById(R.id.iloveyou_notifi));
     }
-    private void set_notifi_text_visible(){
-        File_connections file_connections = new File_connections(attachments_context);
-        int length = notifi_text.size();
-        for(int i = 0;i<length;i++){
-            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
-                notifi_text.get(i).setVisibility(View.GONE);
-            }
-        }
-    }
+
     private void set_buttons_on_click(){
         //telling the button what to do
         //Like button

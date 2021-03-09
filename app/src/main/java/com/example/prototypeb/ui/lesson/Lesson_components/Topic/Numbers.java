@@ -24,7 +24,7 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 import java.util.ArrayList;
 
 
-public class Numbers extends Sub_action_bar implements Lesson_topics{
+public class Numbers extends Button_notification implements Lesson_topics{
     private Context numbers_context;
     private Button button;
     private Num1_screen_components num1_screen_components;
@@ -32,8 +32,7 @@ public class Numbers extends Sub_action_bar implements Lesson_topics{
     private Num10_screen_components num10_screen_components;
     private Lesson_topics lesson_topics = this;
 
-    private ArrayList <TextView> notifi_text;
-    private ArrayList<String> category_elements;
+
 
     public Numbers(){
         num1_screen_components = new Num1_screen_components();
@@ -59,28 +58,17 @@ public class Numbers extends Sub_action_bar implements Lesson_topics{
     @Override
     protected void onResume() {
         super.onResume();
-        set_notifi_text_visible();
+        set_notifi_text_visible(numbers_context);
     }
 
-    private void init_category_elements(){
-        Category_elements all_category_elements = new Category_elements();
-        category_elements = all_category_elements.getCategory_elements().get(toString());
-    }
+
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.num1_notifi));
         notifi_text.add(findViewById(R.id.num2_notifi));
         notifi_text.add(findViewById(R.id.num10_notifi));
     }
-    private void set_notifi_text_visible(){
-        File_connections file_connections = new File_connections(numbers_context);
-        int length = notifi_text.size();
-        for(int i = 0;i<length;i++){
-            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
-                notifi_text.get(i).setVisibility(View.GONE);
-            }
-        }
-    }
+
     private void set_buttons_on_click(){
         //telling the button what to do
         //1 button

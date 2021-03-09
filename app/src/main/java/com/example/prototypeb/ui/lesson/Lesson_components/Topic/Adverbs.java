@@ -28,13 +28,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 
-public class Adverbs extends Sub_action_bar implements Lesson_topics{
+public class Adverbs extends Button_notification implements Lesson_topics{
     private Context adverbs_context;
     private Button button;
     private No_screen_components no_screen_components;
     private Yes_screen_components yes_screen_components;
-    private ArrayList<TextView> notifi_text;
-    private ArrayList<String> category_elements;
+
     private Lesson_topics lesson_topics = this;
 
     public Adverbs(){
@@ -67,27 +66,16 @@ public class Adverbs extends Sub_action_bar implements Lesson_topics{
     @Override
     protected void onResume() {
         super.onResume();
-        set_notifi_text_visible();
+        set_notifi_text_visible(adverbs_context);
     }
 
-    private void init_category_elements(){
-        Category_elements all_category_elements = new Category_elements();
-        category_elements = all_category_elements.getCategory_elements().get(toString());
-    }
+
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.yes_notifi));
         notifi_text.add(findViewById(R.id.no_notifi));
     }
-    private void set_notifi_text_visible(){
-        File_connections file_connections = new File_connections(adverbs_context);
-        int length = notifi_text.size();
-        for(int i = 0;i<length;i++){
-            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
-                notifi_text.get(i).setVisibility(View.GONE);
-            }
-        }
-    }
+
     private void set_buttons_on_click(){
         //telling the button what to do
         //Yes button

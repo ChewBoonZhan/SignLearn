@@ -29,7 +29,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 
-public class Alphabets extends Sub_action_bar implements  Lesson_topics{
+public class Alphabets extends Button_notification implements  Lesson_topics{
     private Context alphabets_context;
     private Button button;
     private A_screen_components a_screen_components;
@@ -37,8 +37,7 @@ public class Alphabets extends Sub_action_bar implements  Lesson_topics{
     private C_screen_components c_screen_components;
     private Y_screen_components y_screen_components;
     private Lesson_topics lesson_topics = this;
-    private ArrayList <TextView> notifi_text;
-    private ArrayList <String> category_elements;
+
     public Alphabets(){
         a_screen_components = new A_screen_components();
         b_screen_components = new B_screen_components();
@@ -64,13 +63,10 @@ public class Alphabets extends Sub_action_bar implements  Lesson_topics{
     @Override
     protected void onResume() {
         super.onResume();
-        set_notifi_text_visible();
+        set_notifi_text_visible(alphabets_context);
     }
 
-    private void init_category_elements(){
-        Category_elements all_category_elements = new Category_elements();
-        category_elements = all_category_elements.getCategory_elements().get(toString());
-    }
+
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.a_notifi));
@@ -78,15 +74,7 @@ public class Alphabets extends Sub_action_bar implements  Lesson_topics{
         notifi_text.add(findViewById(R.id.c_notifi));
         notifi_text.add(findViewById(R.id.y_notifi));
     }
-    private void set_notifi_text_visible(){
-        File_connections file_connections = new File_connections(alphabets_context);
-        int length = notifi_text.size();
-        for(int i = 0;i<length;i++){
-            if(file_connections.check_lesson_learnt(category_elements.get(i).toLowerCase())){
-                notifi_text.get(i).setVisibility(View.GONE);
-            }
-        }
-    }
+
     private void set_buttons_on_click(){
         //telling the button what to do
         //A button
