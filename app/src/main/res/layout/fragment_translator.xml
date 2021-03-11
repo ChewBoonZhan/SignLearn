@@ -39,7 +39,7 @@
         android:id="@+id/category_selector"
         android:layout_width="322dp"
         android:layout_height="27dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="10dp"
         android:background="@color/primary"
         android:dropDownSelector="@color/white"
         android:paddingTop="5dp"
