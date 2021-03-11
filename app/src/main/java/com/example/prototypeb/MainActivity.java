@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         desc_text = findViewById(R.id.splash_desc);
         logo = findViewById(R.id.splash_logo);
 
+
     }
     private void set_elements_animation(){
         logo.setAnimation(top_anim);
