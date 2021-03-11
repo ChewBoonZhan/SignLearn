@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="invisible"
+    android:background="@color/background"
+    android:visibility="visible"
     tools:context=".ui.translator.TranslatorFragment">
 
 
@@ -13,46 +14,74 @@
         android:id="@+id/camera_frame"
         android:layout_width="409dp"
         android:layout_height="302dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/category_selector">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/classitext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Good"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_frame"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.093" />
 
     <Spinner
         android:id="@+id/category_selector"
         android:layout_width="322dp"
         android:layout_height="27dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/primary"
+        android:dropDownSelector="@color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:scrollbarThumbHorizontal="@color/white"
+        android:scrollbarThumbVertical="@color/white"
         android:spinnerMode="dialog"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/camera_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/switch_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:text="Switch Camera"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classitext"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <Button
+        android:id="@+id/translator_camera_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Allow Camera Permission"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classitext"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

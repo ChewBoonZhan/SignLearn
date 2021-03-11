@@ -2,7 +2,7 @@ package com.example.prototypeb.controller.lesson_screen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.Intent_key;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class Lesson_screen extends AppCompatActivity {
+public class Lesson_screen extends Sub_action_bar {
     private GifImageView gifImageView;
     private TextView lesson_text_title;
     private TextView lesson_info_defcontent;
@@ -29,6 +30,10 @@ public class Lesson_screen extends AppCompatActivity {
 
         get_components_screen();
         set_components_value();
+
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(title_text_id);
     }
     private void set_components_value(){
         Lesson_screen_components lesson_screen_components = (Lesson_screen_components) getIntent().getSerializableExtra(intent_key.getScreen_component());

@@ -5,29 +5,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num10_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num1_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Numbers.Num2_screen_components;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
+import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
+import com.example.prototypeb.ui.lesson.LessonFragment;
+
+import java.util.ArrayList;
 
 
-public class Numbers extends AppCompatActivity implements Lesson_topics{
+public class Numbers extends Button_notification implements Lesson_topics{
     private Context numbers_context;
     private Button button;
     private Num1_screen_components num1_screen_components;
     private Num2_screen_components num2_screen_components;
     private Num10_screen_components num10_screen_components;
     private Lesson_topics lesson_topics = this;
+
+
+
     public Numbers(){
         num1_screen_components = new Num1_screen_components();
         num2_screen_components = new Num2_screen_components();
         num10_screen_components = new Num10_screen_components();
+        this.numbers_context = LessonFragment.getLesson_context();
     }
     public Numbers(Context numbers_context){
         this.numbers_context = numbers_context;
@@ -37,7 +48,28 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.numbers_menu);
+        set_buttons_on_click();
+        get_screen_elements();
+        set_back_button_onclick();
+        set_title_text(this.toString()+" Syllabus");
+        init_category_elements();
+        get_noti_text();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        set_notifi_text_visible(numbers_context);
+    }
 
+
+    private void get_noti_text(){
+        notifi_text = new ArrayList<TextView>();
+        notifi_text.add(findViewById(R.id.num1_notifi));
+        notifi_text.add(findViewById(R.id.num2_notifi));
+        notifi_text.add(findViewById(R.id.num10_notifi));
+    }
+
+    private void set_buttons_on_click(){
         //telling the button what to do
         //1 button
         button = (Button) findViewById(R.id.num1_id);
@@ -50,7 +82,7 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num1_screen_components)
-                        .putExtra(translator_label,"one")
+                        .putExtra(translator_label,category_elements.get(0))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -66,7 +98,7 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num2_screen_components)
-                        .putExtra(translator_label,"two")
+                        .putExtra(translator_label,category_elements.get(1))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -82,7 +114,7 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num10_screen_components)
-                        .putExtra(translator_label,"ten")
+                        .putExtra(translator_label,category_elements.get(2))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -111,7 +143,7 @@ public class Numbers extends AppCompatActivity implements Lesson_topics{
         @Override
         public void onClick(View v) {
 
-            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(numbers_context,lesson_topics);
+            Lesson_unlocking lesson_unlocking = new Lesson_unlocking(numbers_context,lesson_topics,v);
             lesson_unlocking.user_clicks_locked_lesson();
 
         }

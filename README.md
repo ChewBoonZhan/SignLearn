@@ -12,3 +12,10 @@ SignLearn allows translation from Sign Language to text
 
 1. If the file contents of how they are initially saved are changed (SharedPreferences), the effects will not take place immediately.
 2. You will need to go to settings and clear the app data in order to see the effect taking place
+
+## Facing issue when changing Android Studio Branches
+
+This issue is normally faced when you're changing branches, especially when the branch have different dependencies
+
+1. In android studio, go to File -> Invalidate Caches / Restart
+2. Follow the instructions to invalidate cache and restart.
