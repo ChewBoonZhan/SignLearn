@@ -42,7 +42,7 @@ public class HomeFragment extends AppCompatActivity {
 
     }
     private void init_points(){
-        points_text.setText(file_connections.getScore() + "");
+        points_text.setText(((String)(file_connections.getScore() + "")));
     }
     private void init_elements(){
         nav_fragment = findViewById(R.id.nav_view);

@@ -18,11 +18,19 @@ public class File_connections {
     private Context category_context;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private int default_user_icon_value,default_score_value;
+    private String default_user_name;
     public File_connections(Context context){
+        init_default_value();
         app_data = new App_data();
         file_connection_key = new File_connection_key();
         category_context = context;
         init_file();
+    }
+    private void init_default_value(){
+        default_user_icon_value = 0;
+        default_score_value = 50;
+        default_user_name = "";
     }
     public void unlock_category(String category){
         editor = sharedPref.edit();
@@ -87,7 +95,7 @@ public class File_connections {
         editor.apply();
     }
     private void save_other_data_in_file(){
-        editor.putInt(file_connection_key.getScore_key(),50);
+        editor.putInt(file_connection_key.getScore_key(),default_score_value);
         editor.putBoolean(file_connection_key.getComplete_initial_init(),true);
     }
     private void save_category_in_file(){
@@ -104,16 +112,40 @@ public class File_connections {
         }
     }
     public int getScore(){
-        return sharedPref.getInt(file_connection_key.getScore_key(),-1);
+        return sharedPref.getInt(file_connection_key.getScore_key(),default_score_value);
     }
     public String get_user_name(){
-        return sharedPref.getString(file_connection_key.getUser_name(),"");
+        return sharedPref.getString(file_connection_key.getUser_name(),default_user_name);
     }
     public int get_user_icon(){
-        return sharedPref.getInt(file_connection_key.getUser_icon(),0);
+        return sharedPref.getInt(file_connection_key.getUser_icon(),default_user_icon_value);
     }
     public SharedPreferences getSharedPref(){
         return sharedPref;
+    }
+    public void reset_name(){
+        editor = sharedPref.edit();
+        editor.putString(file_connection_key.getUser_name(),default_user_name);
+        editor.apply();
+    }
+    public void reset_icon(){
+        editor = sharedPref.edit();
+        editor.putInt(file_connection_key.getUser_icon(),default_user_icon_value);
+        editor.apply();
+    }
+    public void reset_score(){
+        editor = sharedPref.edit();
+        editor.putInt(file_connection_key.getScore_key(),default_score_value);
+        editor.apply();
+    }
+    public int getDefault_user_icon_value(){
+        return default_user_icon_value;
+    }
+    public int getDefault_score_value(){
+        return default_score_value;
+    }
+    public String getDefault_user_name(){
+        return default_user_name;
     }
 
 }

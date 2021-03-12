@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void set_splash_timeout(){
         String class_to_go;
-        if((file_connections.get_user_name().isEmpty()) &&(file_connections.get_user_icon() == 0)){
+        if((file_connections.get_user_name().equals(file_connections.getDefault_user_name())) &&(file_connections.get_user_icon() == file_connections.getDefault_user_icon_value())){
             class_to_go = "com.example.prototypeb.ui.registration.RegistrationFragment";
         }
         else{
