@@ -9,23 +9,23 @@ public class Check_valid_name {
         String name_field_value_trimmed = name.trim();
         if(name.isEmpty() || name_field_value_trimmed.isEmpty()){
             error_message = " cannot be empty.";
-            return true;
+            return false;
         }
         else if(name.length() < min_length || name_field_value_trimmed.length() < min_length){
             error_message=" must be longer than "+min_length + " characters.";
-            return true;
+            return false;
         }
         else if(name.length() > max_length || name_field_value_trimmed.length() > max_length){
             error_message = " must be shorter than "+max_length + " characters.";
-            return true;
+            return false;
         }
         else if(!NAME_PATTERN.matcher(name).matches()){
             error_message = " must only contain Characters and Spaces.";
-            return true;
+            return false;
         }
         else{
             error_message = "";
-            return false;
+            return true;
         }
     }
     public String getError_message(){

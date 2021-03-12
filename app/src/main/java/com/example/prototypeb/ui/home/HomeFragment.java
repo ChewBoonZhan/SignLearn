@@ -44,7 +44,11 @@ public class HomeFragment extends AppCompatActivity {
         init_points();
     }
     private void init_points(){
+
+        points_text.setText(((String)(file_connections.getScore() + "")));
+
         new Show_Score().update_points(file_connections);
+
     }
 
     private void init_elements(){
