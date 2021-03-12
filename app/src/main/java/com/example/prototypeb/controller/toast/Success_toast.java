@@ -12,30 +12,17 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototypeb.R;
 
-public class Success_toast implements Custom_toasts{
+public class Success_toast extends Custom_toasts{
 
-    private Context success_toast_context;
+
     private String message;
-
+    private final int TOAST_COLOR = R.color.primary;
     public Success_toast(Context context, String message){
-        success_toast_context = context;
+        super(context);
         this.message = message;
     }
+
     public void show_toast(){
-        Toast toast = Toast.makeText(success_toast_context, message, Toast.LENGTH_LONG);
-        View view = toast.getView();
-
-        //Gets the actual oval background of the Toast then sets the colour filter
-        int background_color = ContextCompat.getColor(success_toast_context, R.color.primary);
-        view.getBackground().setColorFilter((background_color), PorterDuff.Mode.SRC_IN);
-
-        //Gets the TextView from the Toast so it can be editted
-        TextView text = view.findViewById(android.R.id.message);
-
-        int string_color = ContextCompat.getColor(success_toast_context, R.color.white);
-        text.setTextColor((string_color));
-        text.setGravity(Gravity.CENTER);
-
-        toast.show();
+        super.show_toast(this.message,TOAST_COLOR);
     }
 }

@@ -2,6 +2,7 @@ package com.example.prototypeb.controller.toast;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.Gravity;
@@ -13,31 +14,17 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototypeb.R;
 
-public class Alert_toast implements Custom_toasts{
-    private Context alert_toast_context;
-    private String message;
+public class Alert_toast extends Custom_toasts{
 
+    private String message;
+    private final int TOAST_COLOR = R.color.warning;
 
     public Alert_toast(Context context, String message){
-        alert_toast_context = context;
+        super(context);
         this.message = message;
     }
     public void show_toast(){
-        Toast toast = Toast.makeText(alert_toast_context, message, Toast.LENGTH_LONG);
-        View view = toast.getView();
-
-        //Gets the actual oval background of the Toast then sets the colour filter
-        int background_color = ContextCompat.getColor(alert_toast_context, R.color.warning);
-        view.getBackground().setColorFilter((background_color), PorterDuff.Mode.SRC_IN);
-
-        //Gets the TextView from the Toast so it can be editted
-        TextView text = view.findViewById(android.R.id.message);
-
-        int string_color = ContextCompat.getColor(alert_toast_context, R.color.white);
-        text.setTextColor((string_color));
-        text.setGravity(Gravity.CENTER);
-
-        toast.show();
+        super.show_toast(this.message,TOAST_COLOR);
     }
 
 }
