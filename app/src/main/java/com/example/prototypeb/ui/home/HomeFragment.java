@@ -2,6 +2,7 @@ package com.example.prototypeb.ui.home;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.prototypeb.MainActivity;
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.ui.Show_Score;
 import com.example.prototypeb.ui.game.GameFragment;
 import com.example.prototypeb.ui.lesson.LessonFragment;
 import com.example.prototypeb.ui.translator.TranslatorFragment;
@@ -37,26 +39,30 @@ public class HomeFragment extends AppCompatActivity {
         file_connections = new File_connections(HomeFragment.this);
         init_elements();
         init_background_scenes();
-        init_points();
-        init_user_name_and_icon();
 
+        init_user_name_and_icon();
+        init_points();
     }
     private void init_points(){
+
         points_text.setText(((String)(file_connections.getScore() + "")));
+
+        new Show_Score().update_points(file_connections);
+
     }
+
     private void init_elements(){
         nav_fragment = findViewById(R.id.nav_view);
         points_text = findViewById(R.id.point_display);
         user_name = findViewById(R.id.user_name);
         user_main_logo = findViewById(R.id.user_main_logo);
+        Show_Score.setPoints_text(points_text);
 
     }
     private void init_user_name_and_icon(){
         user_name.setText(file_connections.get_user_name());
         user_main_logo.setImageResource(file_connections.get_user_icon());
     }
-
-
 
 
     private void init_background_scenes(){
@@ -80,7 +86,6 @@ public class HomeFragment extends AppCompatActivity {
                     case R.id.navigation_game:
                         fragment = new GameFragment(HomeFragment.this);
                         break;
-
                 }
 
                 if(fragment !=null){

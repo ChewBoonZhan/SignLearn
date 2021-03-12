@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -46,7 +47,11 @@ public class RegistrationFragment extends AppCompatActivity {
         set_user_icon_on_click();
         set_complete_register_on_click();
         set_button_tag();
+
     }
+
+
+
     private void set_button_tag(){
 
         user_icon.get(0).setTag(R.drawable.male_icon);
@@ -79,7 +84,7 @@ public class RegistrationFragment extends AppCompatActivity {
 
             file_connections.set_user_name(name);
             file_connections.set_user_icon((int)user_icon.get(button_selected_index).getTag());
-            new_screen.go_to_new_screen("com.example.prototypeb.ui.home.HomeFragment");
+            new_screen.go_to_new_screen("com.example.prototypeb.ui.home.HomeFragment",true);
 
 
         }

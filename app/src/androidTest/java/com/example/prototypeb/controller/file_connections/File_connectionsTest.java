@@ -3,12 +3,13 @@ package com.example.prototypeb.controller.file_connections;
 import android.content.Context;
 
 import androidx.test.core.app.ActivityScenario;
+
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.prototypeb.MainActivity;
+
 import com.example.prototypeb.R;
+
 
 import junit.framework.TestCase;
 
@@ -21,6 +22,7 @@ public class File_connectionsTest extends TestCase {
             new ActivityScenarioRule( MainActivity.class);
     private Context context;
     private File_connections file_connections;
+
     @Before
     public void setUp() throws Exception {
         /*
@@ -34,6 +36,7 @@ public class File_connectionsTest extends TestCase {
         context = ApplicationProvider.getApplicationContext();
         file_connections = new File_connections(context);
     }
+    
     public void testUnlock_category() {
 
     }
@@ -42,6 +45,7 @@ public class File_connectionsTest extends TestCase {
     }
 
     public void testSet_user_name() {
+
         String user_name= "Destiny James";
         file_connections.set_user_name(user_name);
         assertEquals(file_connections.get_user_name(),user_name);
@@ -59,10 +63,16 @@ public class File_connectionsTest extends TestCase {
         file_connections.set_user_icon(user_icon);
         assertEquals(file_connections.get_user_icon(),user_icon);
         file_connections.reset_icon();
+
+    }
+
+    public void testSet_user_icon() {
+
     }
 
     public void testUpdate_score() {
         int score = 10;
+
         file_connections.update_score(score);
         assertEquals(file_connections.getScore(),score);
         file_connections.reset_score();
@@ -87,6 +97,18 @@ public class File_connectionsTest extends TestCase {
     }
     public void testGet_user_icon(){
         assertEquals(file_connections.get_user_icon(),file_connections.getDefault_user_icon_value());
+
+
+    }
+
+    public void testGetScore() {
+    }
+
+    public void testGet_user_name() {
+    }
+
+    public void testGet_user_icon() {
+
     }
 
     public void testGetSharedPref() {

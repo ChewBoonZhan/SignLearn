@@ -23,7 +23,7 @@ public class Alert_toast implements Custom_toasts{
         this.message = message;
     }
     public void show_toast(){
-        Toast toast = Toast.makeText(alert_toast_context, message, (int)duration);
+        Toast toast = Toast.makeText(alert_toast_context, message, Toast.LENGTH_LONG);
         View view = toast.getView();
 
         //Gets the actual oval background of the Toast then sets the colour filter
