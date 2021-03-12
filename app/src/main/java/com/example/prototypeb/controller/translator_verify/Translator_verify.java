@@ -154,7 +154,8 @@ public class Translator_verify extends Sub_action_bar {
         File_connection_key file_connection_key = new File_connection_key();
 
         String element_to_check = correct_string.toLowerCase() + file_connection_key.getLesson_passed_back_key();
-        boolean lesson_passed = file_connections.getSharedPref().getBoolean(element_to_check,false);
+        boolean lesson_passed = file_connections.check_lesson_learnt(correct_string);
+
         if(!lesson_passed) {
             file_connections.update_score(file_connections.getScore() + 10);
 

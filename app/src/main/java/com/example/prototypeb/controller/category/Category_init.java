@@ -32,23 +32,25 @@ public class Category_init {
         this.category_classes =category_classes;
     }
     public void init_category_button_according_to_unlocked(ArrayList<Button> category_buttons, ArrayList<TextView> category_notifi){
-        SharedPreferences sharedPreferences = file_connections.getSharedPref();
+
         String[] categories = app_data.getCategories();
 
         for(int i = 0;i<category_buttons.size();i++){
             String category = categories[i];
-            boolean unlocked = sharedPreferences.getBoolean(category,false);
+            boolean unlocked = file_connections.is_category_unlocked(category);
+
             set_button_correctly(category_buttons.get(i),category_notifi.get(i),i,unlocked);
 
         }
     }
     public void init_category_button_according_to_unlocked(ArrayList<Button> category_buttons){
-        SharedPreferences sharedPreferences = file_connections.getSharedPref();
+
         String[] categories = app_data.getCategories();
 
         for(int i = 0;i<category_buttons.size();i++){
             String category = categories[i];
-            boolean unlocked = sharedPreferences.getBoolean(category,false);
+            boolean unlocked = file_connections.is_category_unlocked(category);
+
             set_button_correctly(category_buttons.get(i),i,unlocked);
 
         }

@@ -11,6 +11,9 @@ public class Show_Score {
         points_text = points_text_in;
     }
     public void update_points(File_connections file_connections){
-        points_text.setText(file_connections.getScore() + "");
+        if(points_text!=null){
+            points_text.setText(file_connections.getScore() + "");
+        }
+
     }
 }

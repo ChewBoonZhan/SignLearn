@@ -38,6 +38,12 @@ public class File_connections {
         editor.putBoolean(category,true);
         editor.apply();
     }
+    public void lock_category(String category){
+        editor = sharedPref.edit();
+        editor.putBoolean(category,false);
+        editor.apply();
+    }
+
 
 
     private void init_file(){
@@ -87,10 +93,14 @@ public class File_connections {
         }
     }
     public boolean check_lesson_learnt(String lesson_key){
+
         lesson_key =lesson_key.toLowerCase();
         String lesson_passed_back_key = file_connection_key.getLesson_passed_back_key();
         lesson_key = lesson_key + lesson_passed_back_key;
         return sharedPref.getBoolean(lesson_key,false);
+    }
+    public boolean is_category_unlocked(String category){
+        return sharedPref.getBoolean(category,false);
     }
     public int getScore(){
         return sharedPref.getInt(file_connection_key.getScore_key(),default_score_value);
@@ -101,9 +111,8 @@ public class File_connections {
     public int get_user_icon(){
         return sharedPref.getInt(file_connection_key.getUser_icon(),default_user_icon_value);
     }
-    public SharedPreferences getSharedPref(){
-        return sharedPref;
-    }
+
+
     public void reset_name(){
         editor = sharedPref.edit();
         editor.putString(file_connection_key.getUser_name(),default_user_name);
