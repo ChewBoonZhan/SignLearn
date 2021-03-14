@@ -183,7 +183,7 @@ public class TranslatorFragment extends Fragment {
 
     //permissions, as dealing with fragments is too complicated.
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void start_request_permission() {
+    private void start_request_permission() {
 
         if (ContextCompat.checkSelfPermission(context_here, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             permission_not_granted(false);
@@ -197,7 +197,7 @@ public class TranslatorFragment extends Fragment {
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void request_permission() {
+    private void request_permission() {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity_here, Manifest.permission.CAMERA)) {
             //user denied it before, therefore explain why we need it

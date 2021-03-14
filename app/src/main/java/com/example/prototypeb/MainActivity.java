@@ -56,29 +56,43 @@ public class MainActivity extends AppCompatActivity {
     private ImageView logo;
     private final int SPLASH_SCREEN_DURATION = 5000;
     private File_connections file_connections;
+    private String class_to_go;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
-        new_screen = new New_screen(SPLASH_SCREEN_DURATION,this,this);
+        new_screen = new New_screen(0,this,this);
         file_connections = new File_connections(this);
         get_screen_elements();
         load_animations();
         set_elements_animation();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         set_splash_timeout();
     }
+
     private void set_splash_timeout(){
-        String class_to_go;
-        if((file_connections.get_user_name().equals(file_connections.getDefault_user_name())) &&(file_connections.get_user_icon() == file_connections.getDefault_user_icon_value())){
-            class_to_go = "com.example.prototypeb.ui.registration.RegistrationFragment";
-        }
-        else{
-            class_to_go = "com.example.prototypeb.ui.home.HomeFragment";
-        }
-        new_screen.go_to_new_screen(class_to_go,true);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if((file_connections.get_user_name().equals(file_connections.getDefault_user_name())) &&(file_connections.get_user_icon() == file_connections.getDefault_user_icon_value())){
+                    class_to_go = "com.example.prototypeb.ui.registration.RegistrationFragment";
+                }
+                else{
+                    class_to_go = "com.example.prototypeb.ui.home.HomeFragment";
+                }
+                new_screen.go_to_new_screen(class_to_go,true);
+            }
+        }, SPLASH_SCREEN_DURATION);
+
 
     }
     private void load_animations(){
