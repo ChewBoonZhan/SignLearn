@@ -29,8 +29,7 @@ public class File_connectionsTest extends TestCase {
     create a method reset_state in file connection if required to reset the state of set datas.
      */
     @Rule
-    public ActivityScenarioRule mActivityRule =
-            new ActivityScenarioRule( MainActivity.class);
+
     private Context context;
     private File_connections file_connections;
 
@@ -54,7 +53,7 @@ public class File_connectionsTest extends TestCase {
         String category = categories[0];
         file_connections.unlock_category(category);
         assertEquals(file_connections.is_category_unlocked(category),true);
-        file_connections.lock_category(category);
+
 
 
     }

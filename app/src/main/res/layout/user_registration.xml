@@ -81,7 +81,7 @@
 
 
             <HorizontalScrollView
-                android:id="@+id/horizontalScrollView2"
+                android:id="@+id/icon_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -89,7 +89,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8">>
+                app:layout_constraintTop_toBottomOf="@+id/textView8">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -189,11 +189,11 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="8dp"
                 android:background="@color/primary"
                 android:rotation="180"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
+                app:layout_constraintTop_toBottomOf="@+id/icon_scroll_view"
                 app:srcCompat="@drawable/abc_vector_test" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
