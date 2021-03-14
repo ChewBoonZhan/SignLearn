@@ -110,7 +110,9 @@ public class RegistrationFragmentTest extends TestCase {
         int length = user_icons.size();
         for(int i = 0;i<length;i++){
             int user_icon_here = user_icons.get(i);
-            onView(withId(user_icon_here)).perform(scrollTo(),forceClick());
+            onView(withId(user_icon_here))
+                    .check(matches(isDisplayed()))
+                    .perform(scrollTo(),forceClick());
             onView(withId(user_icon_here))
                     .check(matches(testBackgroundColour(clicked_score_color)))
                     .check(matches(isDisplayed()));
