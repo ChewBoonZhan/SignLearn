@@ -29,6 +29,7 @@ import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
@@ -111,7 +112,8 @@ public class RegistrationFragmentTest extends TestCase {
             int user_icon_here = user_icons.get(i);
             onView(withId(user_icon_here)).perform(scrollTo(),forceClick());
             onView(withId(user_icon_here))
-                    .check(matches(testBackgroundColour(clicked_score_color)));
+                    .check(matches(testBackgroundColour(clicked_score_color)))
+                    .check(matches(isDisplayed()));
             selected_drawable = user_icons_drawable.get(i);
 
             //check that the other icons are no colour as it is not selected. or the icon before it
@@ -126,9 +128,13 @@ public class RegistrationFragmentTest extends TestCase {
             end_name_index = 4;
 		}
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText(name.substring(begin_name_index,end_name_index)),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasNoErrorText()));
     }
     private void test_name(boolean is_first_name){
@@ -146,41 +152,65 @@ public class RegistrationFragmentTest extends TestCase {
         }
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText(name.charAt(0) + ""),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " must be longer than "+min_length + " characters.")));
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText("  a "),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " must be longer than "+min_length + " characters.")));
 
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText(""),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " cannot be empty.")));
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText("   "),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " cannot be empty.")));
 
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText(name),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " must be shorter than "+max_length + " characters.")));
 
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .perform(clearText(),typeText("!@#$%"),closeSoftKeyboard());
-        onView(withId(R.id.register_complete)).perform(forceClick());
+        onView(withId(R.id.register_complete))
+                .check(matches(isDisplayed()))
+                .perform(forceClick());
         onView(withId(edit_text_id))
+                .check(matches(isDisplayed()))
                 .check(matches(hasErrorText(hint +  " must only contain Characters and Spaces.")));
 
 
