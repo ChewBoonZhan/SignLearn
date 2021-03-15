@@ -27,6 +27,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -95,9 +96,19 @@ public class RegistrationFragmentTest extends TestCase {
         test_name(false);
         test_icon();
         test_file_connection_saved();
+        test_go_to_main_screen();
 
     }
+    private void test_go_to_main_screen(){
+        //check if the element is main_screen is displayed
+        onView(withId(R.id.fragment_action_bar))
+                .check(matches(isDisplayed()));
 
+        //check if the element in registration fragment is not shown.
+        onView(withId(R.id.register_last_name))
+                .check(doesNotExist());
+
+    }
 
     private void test_file_connection_saved(){
 		press_go_button(R.id.register_last_name,false);
@@ -111,7 +122,6 @@ public class RegistrationFragmentTest extends TestCase {
         for(int i = 0;i<length;i++){
             int user_icon_here = user_icons.get(i);
             onView(withId(user_icon_here))
-                    .check(matches(isDisplayed()))
                     .perform(scrollTo(),forceClick());
             onView(withId(user_icon_here))
                     .check(matches(testBackgroundColour(clicked_score_color)))
@@ -135,9 +145,11 @@ public class RegistrationFragmentTest extends TestCase {
         onView(withId(R.id.register_complete))
                 .check(matches(isDisplayed()))
                 .perform(forceClick());
-        onView(withId(edit_text_id))
-                .check(matches(isDisplayed()))
-                .check(matches(hasNoErrorText()));
+        if(is_first_name){
+            onView(withId(edit_text_id))
+                    .check(matches(hasNoErrorText()));
+        }
+
     }
     private void test_name(boolean is_first_name){
         int min_length = 2;

@@ -34,7 +34,7 @@ public class RegistrationFragment extends AppCompatActivity {
     private int button_selected_index= 0;
     private final Pattern NAME_PATTERN = Pattern.compile("[a-zA-Z ]{2,10}$");
     private final int MIN_NAME_LENGTH = 2;
-    private final int DELAY_BEFORE_HOME_SCREEN = 500;
+    private final int DELAY_BEFORE_HOME_SCREEN = 0;
     private New_screen new_screen;
     private File_connections file_connections;
     @Override

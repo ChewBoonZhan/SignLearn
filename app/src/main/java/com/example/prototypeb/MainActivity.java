@@ -68,14 +68,8 @@ public class MainActivity extends AppCompatActivity {
         get_screen_elements();
         load_animations();
         set_elements_animation();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         set_splash_timeout();
+
     }
 
     private void set_splash_timeout(){
