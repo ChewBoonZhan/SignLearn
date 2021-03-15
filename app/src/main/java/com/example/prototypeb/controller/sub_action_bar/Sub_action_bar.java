@@ -11,11 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.prototypeb.R;
 
 public abstract class Sub_action_bar extends AppCompatActivity {
-    private TextView title_text;
+    private TextView title_text,points_text;
     private ImageButton back_button;
     public void get_screen_elements(){
         title_text = findViewById(R.id.screen_title);
         back_button = findViewById(R.id.back_button);
+        points_text = findViewById(R.id.sub_screen_points);
     }
     private void back_button_pressed(){
         super.onBackPressed();
@@ -33,6 +34,14 @@ public abstract class Sub_action_bar extends AppCompatActivity {
     }
     public void set_title_text(int title_id){
         title_text.setText(title_id);
+    }
+    public void set_points(int points){
+        points_text.setText((String)(points + " Pts"));
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 
 }

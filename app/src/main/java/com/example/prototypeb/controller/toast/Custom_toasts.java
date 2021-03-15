@@ -30,9 +30,18 @@ public class Custom_toasts {
         return toast;
     }
     public void show_toast(String message,int toast_color){
+        show_toast(message,toast_color,false);
+    }
+    public void show_toast(String message,int toast_color,boolean long_toast){
         toast_shown = false;
-
-        toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        int toast_duration;
+        if(long_toast){
+            toast_duration = Toast.LENGTH_LONG;
+        }
+        else{
+            toast_duration = Toast.LENGTH_SHORT;
+        }
+        toast = Toast.makeText(context, message, toast_duration);
         View view = toast.getView();
 
         //Gets the actual oval background of the Toast then sets the colour filter

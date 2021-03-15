@@ -10,11 +10,38 @@ import android.view.View;
 
 import com.example.prototypeb.R;
 
-public class Game_attachments extends AppCompatActivity implements Game_components{
+import java.util.ArrayList;
+
+public class Game_attachments extends Game_screen implements Game_components{
     private Context attachments_context;
+    private ArrayList<String> signLang = new ArrayList<String>();
     public Game_attachments(){}
     public Game_attachments(Context context){
         attachments_context = context;
+    }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_attachments);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        super.setContext(this);
+        init_syallabus();
+        init_game_elements();
+
+    }
+    private void init_syallabus(){
+
+
+        //Initialize Question image via String
+        signLang.add("like");
+        signLang.add("dislike");
+        signLang.add("adore");
+        signLang.add("iloveyou");
+
+        super.setSignLang(signLang);
     }
     public View.OnClickListener get_unlocked_On_click(){
 
@@ -34,9 +61,5 @@ public class Game_attachments extends AppCompatActivity implements Game_componen
         }
     };
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_attachments);
-    }
+
 }

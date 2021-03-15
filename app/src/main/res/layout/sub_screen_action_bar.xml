@@ -36,6 +36,15 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/sub_screen_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:textColor="@color/selected_or_secondary"
+            android:textSize="18sp" />
+
 
     </RelativeLayout>
 </RelativeLayout>

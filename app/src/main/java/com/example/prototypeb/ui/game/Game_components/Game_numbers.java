@@ -10,12 +10,41 @@ import android.view.View;
 
 import com.example.prototypeb.R;
 
-public class Game_numbers extends AppCompatActivity implements Game_components{
+import java.util.ArrayList;
+
+public class Game_numbers extends Game_screen implements Game_components{
     private Context numbers_context;
+    private ArrayList <String> signLang = new ArrayList<String>();
     public Game_numbers(){}
     public Game_numbers(Context context){
         numbers_context = context;
     }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_numbers);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        super.setContext(this);
+        init_syallabus();
+        init_game_elements();
+
+    }
+    private void init_syallabus(){
+
+
+        //Initialize Question image via String
+        signLang.add("one");
+        signLang.add("two");
+        signLang.add("three");
+        signLang.add("four");
+
+        super.setSignLang(signLang);
+    }
+
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
@@ -33,9 +62,5 @@ public class Game_numbers extends AppCompatActivity implements Game_components{
 
         }
     };
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_numbers);
-    }
+
 }

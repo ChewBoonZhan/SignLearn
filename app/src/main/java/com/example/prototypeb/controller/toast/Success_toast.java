@@ -21,8 +21,13 @@ public class Success_toast extends Custom_toasts{
         super(context);
         this.message = message;
     }
-
+    public Success_toast(Context context){
+        super(context);
+    }
     public void show_toast(){
         super.show_toast(this.message,TOAST_COLOR);
+    }
+    public void show_toast(String message,boolean long_toast){
+        super.show_toast(message,TOAST_COLOR,long_toast);
     }
 }
