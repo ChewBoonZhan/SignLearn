@@ -1,4 +1,4 @@
-package com.example.prototypeb.ui.game;
+ package com.example.prototypeb.ui.game;
 
 import android.app.Activity;
 import android.content.Context;

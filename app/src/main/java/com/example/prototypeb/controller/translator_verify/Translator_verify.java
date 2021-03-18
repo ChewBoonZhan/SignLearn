@@ -53,6 +53,7 @@ import java.util.List;
 import static java.security.AccessController.getContext;
 
 public class Translator_verify extends Sub_action_bar {
+    private final int SCORE_INCREMENT = 3;
     private FrameLayout camera_frame;
     private Button switch_camera;
     private TextView title_text;
@@ -157,7 +158,7 @@ public class Translator_verify extends Sub_action_bar {
         boolean lesson_passed = file_connections.check_lesson_learnt(correct_string);
 
         if(!lesson_passed) {
-            file_connections.update_score(file_connections.getScore() + 10);
+            file_connections.update_score(file_connections.getScore() + SCORE_INCREMENT);
 
             file_connections.unlock_category(element_to_check);
             new Success_toast(translator_verify_context, "Sign: \"" + correct_string.toUpperCase() + "\" was learnt!\n + 10 Points").show_toast();
