@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,35 +14,42 @@ import androidx.annotation.Nullable;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.choice_message.One_choice_message;
+import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.toast.Alert_toast;
 import com.example.prototypeb.controller.toast.Custom_toasts;
 import com.example.prototypeb.controller.toast.Success_toast;
+import com.example.prototypeb.ui.game.GameFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Game_screen extends Sub_action_bar {
+public abstract class Game_screen extends Sub_action_bar implements  Game_components{
     private ArrayList<Button> options;
     private ArrayList <String> signLang;
     private HashMap<String, String> map;
+    private HashMap <String,Boolean> sign_passed;
     private CountDownTimer countDownTimer;
     private TextView timer;
     private Context context;
+    private Context game_main_context;
     private int index, currentPoints;
     private Alert_toast alert_toast;
     private Success_toast success_toast;
     private ImageView imageQuestion, timerImage;
-    public Game_screen(){
+    private File_connections file_connections;
 
+    public Game_screen(){
+        game_main_context = GameFragment.getGame_context();
         index = 0;
         currentPoints = 0;
-
+        file_connections = new File_connections(game_main_context);
 
     }
-   public void init_game_elements(){
+   private void init_game_elements(){
+
        get_screen_button_options();
        get_screen_elements();
        set_title_text("Adverbs");
@@ -61,15 +69,21 @@ public class Game_screen extends Sub_action_bar {
         options.add(findViewById(R.id.opt4));
 
     }
-    public ArrayList <Button> get_options(){
-        return options;
-    }
+
     public void setSignLang(ArrayList <String> signLang){
         this.signLang = signLang;
         init_map();
+        init_game_passed();
         Collections.shuffle(signLang);
     }
-    public void init_map(){
+    private void init_game_passed(){
+        sign_passed = new HashMap<String,Boolean>();
+        int length = signLang.size();
+        for(int i = 0;i<length;i++){
+            sign_passed.put(signLang.get(i),file_connections.check_game_category_passed(signLang.get(i)));
+        }
+    }
+    private void init_map(){
         map= new HashMap<String, String>();
         int length = signLang.size();
         for(int i = 0;i<length;i++){
@@ -77,19 +91,61 @@ public class Game_screen extends Sub_action_bar {
         }
 
     }
+    @Override
+    public boolean check_all_categories_passed(){
+        boolean categories_passed = true;
+        int length = sign_passed.size();
+        for(int i = 0;i<length;i++){
+            categories_passed = categories_passed & file_connections.check_game_category_passed(signLang.get(i));
+        }
+        return categories_passed;
+    }
     public HashMap<String, String> getMap(){
         return map;
     }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init_game_elements();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //cancel the timer when user leave the screen
+        countDownTimer.cancel();
+    }
+
     //When an option(answer) is selected
     public void answerSelected(View view) {
         countDownTimer.cancel();
         String answer = ((Button)view).getText().toString(); //assign var answer to option selected via String
         //If answer equals to question text (Correct answer)
         if (answer.equals(signLang.get(index))) {
-            currentPoints++;
 
-            set_points(currentPoints);
-            success_toast.show_toast("Correct Answer!",false);
+            if(!sign_passed.get(answer)){
+
+                currentPoints++;
+
+                set_points(currentPoints);
+
+                file_connections.set_game_category_passed(answer);
+
+                success_toast.show_toast("Correct Answer!\nPoint +1",false);
+
+            }
+            else{
+                success_toast.show_toast("Correct Answer!",false);
+            }
+
+
 
         }
         else {
@@ -113,12 +169,18 @@ public class Game_screen extends Sub_action_bar {
         super.onBackPressed();
     }
     //Dialog for end game
-    public void openDialog() {
-        String opening_string = "Good Job! Y";
-        String closing_string = "successfully";
+    private void openDialog() {
+        String message = "Good job! You have successfully collected:\n\n"+ currentPoints+" Points!";
+
         if(currentPoints<1){
-            opening_string = "Unfortunately, y";
-            closing_string = "only";
+            if(check_all_categories_passed()){
+                message = "You did well, however no points are collected as you have already scored all categories before.";
+            }
+            else{
+                message = "Unfortunately, you have only collected: \n\n"+currentPoints+" Points.";
+
+            }
+
         }
         DialogInterface.OnClickListener on_click =new DialogInterface.OnClickListener() {
             @Override
@@ -127,12 +189,13 @@ public class Game_screen extends Sub_action_bar {
             }
         };
 
-        One_choice_message one_choice_message = new One_choice_message(this,"GAME ENDED",opening_string+"ou have "+closing_string+" collected:\n\n" + currentPoints + " Points.","Okay",on_click);
+        One_choice_message one_choice_message = new One_choice_message(this,"GAME ENDED",message,"Okay",on_click);
         one_choice_message.show_message();
+        file_connections.update_score(file_connections.getScore()+getCurrentPoints());
 
     }
     //Method for setting up questions/rounds
-    public void generateQuestions(int index) {
+    private void generateQuestions(int index) {
         String[] answers = new String[4];
         ArrayList<String> newSignLang = new ArrayList<>();
         start_timer();
@@ -166,7 +229,7 @@ public class Game_screen extends Sub_action_bar {
     }
 
     //Countdown Timer
-    public void start_timer(){
+    private void start_timer(){
         timer = findViewById(R.id.text_view_timer);
 
         countDownTimer = new CountDownTimer(11000, 1000) {

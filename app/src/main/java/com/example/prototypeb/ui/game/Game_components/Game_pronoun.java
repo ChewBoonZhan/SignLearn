@@ -12,24 +12,29 @@ import com.example.prototypeb.R;
 
 import java.util.ArrayList;
 
-public class Game_pronoun extends Game_screen implements Game_components{
+public class Game_pronoun extends Game_screen {
     private Context pronoun_context;
     private ArrayList<String> signLang = new ArrayList<String>();
-    public Game_pronoun(){}
+    public Game_pronoun(){
+        super();
+        init_syallabus();
+    }
     public Game_pronoun(Context context){
+        super();
         pronoun_context = context;
+        init_syallabus();
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_pronoun);
+
     }
     @Override
     protected void onResume() {
         super.onResume();
         super.setContext(this);
-        init_syallabus();
-        init_game_elements();
+
+
 
     }
     private void init_syallabus(){

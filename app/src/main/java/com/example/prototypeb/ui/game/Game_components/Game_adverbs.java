@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.choice_message.One_choice_message;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.toast.Alert_toast;
@@ -30,15 +31,18 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class Game_adverbs extends Game_screen implements  Game_components{
+public class Game_adverbs extends Game_screen {
     private Context adverbs_context;
     private ArrayList <String> signLang = new ArrayList<String>();
 
     public Game_adverbs(){
         super();
+        init_syallabus();
     }
 
     public Game_adverbs(Context context){
+        super();
+        init_syallabus();
         adverbs_context = context;
     }
 
@@ -46,15 +50,14 @@ public class Game_adverbs extends Game_screen implements  Game_components{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_adverbs);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         super.setContext(this);
-        init_syallabus();
-        init_game_elements();
+
 
     }
 
@@ -86,6 +89,8 @@ public class Game_adverbs extends Game_screen implements  Game_components{
             adverbs_context.startActivity(intent);
         }
     };
+
+
 
 
 }

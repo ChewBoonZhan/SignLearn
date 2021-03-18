@@ -12,25 +12,30 @@ import com.example.prototypeb.R;
 
 import java.util.ArrayList;
 
-public class Game_alphabets extends Game_screen implements Game_components{
+public class Game_alphabets extends Game_screen {
     private Context alphabet_context;
     private ArrayList <String> signLang = new ArrayList<String>();
-    public Game_alphabets(){}
+    public Game_alphabets(){
+        super();
+        init_syallabus();
+    }
     public Game_alphabets(Context context){
+        super();
+        init_syallabus();
         alphabet_context = context;
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_alphabets);
+
 
     }
     @Override
     protected void onResume() {
         super.onResume();
         super.setContext(this);
-        init_syallabus();
-        init_game_elements();
+
+
 
     }
     private void init_syallabus(){

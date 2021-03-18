@@ -12,24 +12,29 @@ import com.example.prototypeb.R;
 
 import java.util.ArrayList;
 
-public class Game_attachments extends Game_screen implements Game_components{
+public class Game_attachments extends Game_screen {
     private Context attachments_context;
     private ArrayList<String> signLang = new ArrayList<String>();
-    public Game_attachments(){}
+    public Game_attachments(){
+        super();
+        init_syallabus();
+    }
     public Game_attachments(Context context){
+        super();
         attachments_context = context;
+        init_syallabus();
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_attachments);
+
     }
     @Override
     protected void onResume() {
         super.onResume();
         super.setContext(this);
-        init_syallabus();
-        init_game_elements();
+
+
 
     }
     private void init_syallabus(){

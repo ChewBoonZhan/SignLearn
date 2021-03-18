@@ -44,6 +44,7 @@ public class GameFragment extends Fragment {
 
     private View game_root;
     private ArrayList <Button> category_buttons;
+    private ArrayList <TextView> category_notifi;
     private File_connections file_connections;
     private App_data app_data;
     private Game_classes_init game_classes_init;
@@ -57,19 +58,30 @@ public class GameFragment extends Fragment {
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
         View root = inflater.inflate(R.layout.fragment_game, container, false);
         game_root = root;
-
+        init_notifi();
         file_connections = new File_connections(game_context);
         app_data = new App_data();
         game_classes_init = new Game_classes_init(game_context);
         category_init = new Category_init(game_context,game_classes_init);
         init_category_buttons();
-        init_categories_according_to_unlocked();
-
-
         return root;
     }
 
-   
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        init_categories_according_to_unlocked();
+    }
+
+    private void init_notifi(){
+       category_notifi = new ArrayList <TextView>();
+       category_notifi.add(game_root.findViewById(R.id.game_1_notifi));
+       category_notifi.add(game_root.findViewById(R.id.game_2_notifi));
+       category_notifi.add(game_root.findViewById(R.id.game_3_notifi));
+       category_notifi.add(game_root.findViewById(R.id.game_4_notifi));
+       category_notifi.add(game_root.findViewById(R.id.game_5_notifi));
+   }
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();
         category_buttons.add(game_root.findViewById(R.id.game1_button_id));
@@ -80,8 +92,11 @@ public class GameFragment extends Fragment {
     }
 
     private void init_categories_according_to_unlocked(){
-        category_init.init_category_button_according_to_unlocked(category_buttons);
+        category_init.init_category_button_according_to_unlocked(category_buttons,category_notifi,true);
 
+    }
+    public static Context getGame_context(){
+        return game_context;
     }
 
 

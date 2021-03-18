@@ -112,7 +112,7 @@ public class LessonFragment extends Fragment {
         }
     }
     private void init_categories_according_to_unlocked(){
-        category_init.init_category_button_according_to_unlocked(category_buttons,category_notifi);
+        category_init.init_category_button_according_to_unlocked(category_buttons,category_notifi,false);
     }
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();

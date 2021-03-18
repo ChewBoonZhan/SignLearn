@@ -11,6 +11,10 @@ public class File_connection_key {
         return complete_initial_init;
     }
 
+    private String game_passed_key = "_game_passed";
+    public String getGame_passed_key(){
+        return game_passed_key;
+    }
 
 
     private String lesson_passed_back_key = "_lesson_passed";

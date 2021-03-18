@@ -92,6 +92,18 @@ public class File_connections {
             editor.putBoolean(categories[i],false);
         }
     }
+    public boolean check_game_category_passed(String game_category_key){
+        String game_passed_key = file_connection_key.getGame_passed_key();
+        game_category_key = game_category_key + game_passed_key;
+        return sharedPref.getBoolean(game_category_key,false);
+    }
+    public void set_game_category_passed(String game_category_passed){
+        String game_category_passed_key =file_connection_key.getGame_passed_key();
+        game_category_passed = game_category_passed + game_category_passed_key;
+        editor = sharedPref.edit();
+        editor.putBoolean(game_category_passed,true);
+        editor.apply();
+    }
     public boolean check_lesson_learnt(String lesson_key){
 
         lesson_key =lesson_key.toLowerCase();

@@ -1,6 +1,7 @@
 package com.example.prototypeb.controller.sub_action_bar;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +18,8 @@ public abstract class Sub_action_bar extends AppCompatActivity {
         title_text = findViewById(R.id.screen_title);
         back_button = findViewById(R.id.back_button);
         points_text = findViewById(R.id.sub_screen_points);
+
+        set_back_button_onclick();
     }
     private void back_button_pressed(){
         super.onBackPressed();
