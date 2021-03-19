@@ -154,16 +154,18 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
             //wrongToast.setGravity(Gravity.CENTER_VERTICAL,0,0);
 
         }
-        index++;
-        if (index > signLang.size() - 1){
-            imageQuestion.setVisibility(View.GONE);
-            timer.setVisibility(View.GONE);
-            timerImage.setVisibility(View.GONE);
-            openDialog();
-        }
-        else {
-            generateQuestions(index);
-        }
+        single_question_over();
+    }
+    private boolean no_more_questions(){
+        return (index > (signLang.size() - 1));
+    }
+    private void end_game(){
+        imageQuestion.setVisibility(View.GONE);
+        timer.setVisibility(View.GONE);
+        timerImage.setVisibility(View.GONE);
+        countDownTimer.cancel();
+        openDialog();
+
     }
     private void press_back(){
         //equal to pressing the back button
@@ -242,13 +244,20 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
             public void onFinish() {
                 timer.setText("TIME'S UP!");
                 alert_toast.show_toast("Time's Up! No answer selected!",false);
-
-                index++;
-                generateQuestions(index);
-
+                single_question_over();
             }
         };
         countDownTimer.start();
+    }
+    private void single_question_over(){
+        index++;
+        if(no_more_questions()){
+            end_game();
+        }
+        else {
+
+            generateQuestions(index);
+        }
     }
     public int getCurrentPoints(){
         return currentPoints;

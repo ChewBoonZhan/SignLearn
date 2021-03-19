@@ -30,7 +30,7 @@ public class File_connections {
     }
     private void init_default_value(){
         default_user_icon_value = 0;
-        default_score_value = 50;
+        default_score_value = 10;
         default_user_name = "";
     }
     public void unlock_category(String category){

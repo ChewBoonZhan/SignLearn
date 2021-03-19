@@ -48,7 +48,6 @@
         android:background="@null"
         android:contentDescription="ImageQuestion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adverb_game_action_bar"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
