@@ -56,15 +56,23 @@ public class Lesson_screen extends Sub_action_bar {
         String correct_translator_label = getIntent().getStringExtra(intent_key.getTranslator_label());
         String translator_lesson_topics = getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
         View.OnClickListener check_on_click = null;
-        if((correct_translator_label == "") && (translator_lesson_topics == "")){
-            DialogInterface.OnClickListener positive_choice = new DialogInterface.OnClickListener() {
+        if((correct_translator_label.equals("")) && (translator_lesson_topics.equals(""))){
+
+
+           Lesson_screen lesson_screen = this;
+            check_on_click = new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    press_back();
+                public void onClick(View v) {
+                    DialogInterface.OnClickListener positive_choice = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    };
+                    One_choice_message one_choice_message = new One_choice_message(lesson_screen,"Content Unavailable.","The verification feature for this category will be released in the upcoming update! We apologize for any difficulties or misunderstanding caused.","Okay.",positive_choice);
+                    one_choice_message.show_message();
                 }
             };
-            One_choice_message one_choice_message = new One_choice_message(this,"Content Unavailable.","The verification feature for this category will be released in the upcoming update! We apologize for any difficulties or misunderstanding caused.","Okay.",positive_choice);
-            one_choice_message.show_message();
         }
         else{
             check_on_click = new View.OnClickListener() {
@@ -87,12 +95,7 @@ public class Lesson_screen extends Sub_action_bar {
         lesson_info_defcontent = findViewById(R.id.lesson_info_defcontent);
         check_translator_info_lesson = findViewById(R.id.check_translator_info_lesson);
     }
-    private int getImageid(){
-        return R.drawable.alpha_b;
-    }
-    private int gettextID(){
-        return R.string.b_title;
-    }
+
 
 
 

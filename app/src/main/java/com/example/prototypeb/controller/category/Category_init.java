@@ -33,7 +33,7 @@ public class Category_init {
         this.category_classes =category_classes;
     }
     public void init_category_button_according_to_unlocked(ArrayList<Button> category_buttons, ArrayList<TextView> category_notifi,boolean game){
-        Log.d("Odd","Called me?");
+
         String[] categories = app_data.getCategories();
 
         for(int i = 0;i<category_buttons.size();i++){

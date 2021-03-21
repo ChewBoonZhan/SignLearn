@@ -97,9 +97,12 @@ public class LessonFragment extends Fragment {
 
             int number_of_unpassed = 0;
             for(int j = 0;j<category_elements_length;j++){
-                if(!file_connections.check_lesson_learnt(elements.get(j).toLowerCase())){
-                    number_of_unpassed++;
+                if(!category_elements.check_element_not_testable(elements.get(j))){
+                    if(!file_connections.check_lesson_learnt(elements.get(j).toLowerCase())){
+                        number_of_unpassed++;
+                    }
                 }
+
             }
             if(number_of_unpassed <= 0){
                 category_notifi.get(i).setVisibility(View.GONE);

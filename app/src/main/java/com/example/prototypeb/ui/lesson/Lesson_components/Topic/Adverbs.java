@@ -14,6 +14,8 @@ import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.controller.lesson_screen.Adverbs.Almost_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Adverbs.Later_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Adverbs.No_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Adverbs.Yes_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
@@ -33,12 +35,16 @@ public class Adverbs extends Button_notification implements Lesson_topics{
     private Button button;
     private No_screen_components no_screen_components;
     private Yes_screen_components yes_screen_components;
+    private Almost_screen_components almost_screen_components;
+    private Later_screen_components later_screen_components;
 
     private Lesson_topics lesson_topics = this;
 
     public Adverbs(){
         no_screen_components = new No_screen_components();
         yes_screen_components = new Yes_screen_components();
+        almost_screen_components = new Almost_screen_components();
+        later_screen_components = new Later_screen_components();
         this.adverbs_context = LessonFragment.getLesson_context();
 
     }
@@ -108,6 +114,38 @@ public class Adverbs extends Button_notification implements Lesson_topics{
                         .putExtra(screen_component, no_screen_components)
                         .putExtra(translator_label,category_elements.get(1))
                         .putExtra(translator_lesson_topics,get_model_category())
+                );
+            }
+        });
+
+        button = (Button) findViewById(R.id.almost_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+
+            public void openActivity() {
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra(screen_component, almost_screen_components)
+                        .putExtra(translator_label,"")
+                        .putExtra(translator_lesson_topics,"")
+                );
+            }
+        });
+
+        button = (Button) findViewById(R.id.later_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+
+            public void openActivity() {
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra(screen_component, later_screen_components)
+                        .putExtra(translator_label,"")
+                        .putExtra(translator_lesson_topics,"")
                 );
             }
         });

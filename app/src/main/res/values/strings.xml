@@ -14,6 +14,13 @@
     <string name="no_title">No</string>
     <string name="no_content">Used to give a negative response; the opposite of yes. The movement is sometimes once, sometimes twice, sometimes plural, depending on the contexts. </string>
     >
+    <string name="almost_title">Almost</string>
+    <string name="almost_content">Almost means nearly, roughly, or not quite. If you are almost as tall as your brother, it means he is still just a bit taller than you are!</string>
+    >
+
+    <string name="later_title">Later</string>
+    <string name="later_content">At some time subsequent to a given time : subsequently, afterward —often used with on.</string>
+    >
     //alphabets.A
     <string name="a_title">A</string>
     <string name="a_content">The first letter of the English alphabet, a vowel. Not to be confused with the letter "S". The thumb should be on the outside, not on the closed fingers. </string>
@@ -35,12 +42,24 @@
     //attachments.iloveyou
     <string name="iloveyou_title">I Love You</string>
     <string name="iloveyou_content"> It is used to, often informally, express "I love you" among family members, as well as sometimes among very close friends, whenever appropriate. </string>
+
+    <string name="adore_title">Adore</string>
+    <string name="adore_content"> Adore mean to love someone very much, especially in a way that shows a lot of admiration or respect, or to like something very much</string>
+
+
     //numbers.num1
     <string name="num1_title">1 (One)</string>
     <string name="num1_content">The lowest cardinal number; half of two; the numeral symbol of 1. Palm in for the cardinal number. Note, palm out for age, address, phone number, and some others. </string>
     //numbers.num2
     <string name="num2_title">2 (Two)</string>
     <string name="num2_content">Equivalent to the sum of one and one; one less than three; a symbol for this number as 2 or II. The orientation of the palm faces the signer for a number, but faces the listener for two o clock and age. </string>
+
+    <string name="num3_title">3 (Three)</string>
+    <string name="num3_content">Equivalent to the sum of two and one; and is III in Roman. The orientation of the palm faces the signer for a number, and involves the thumb , index and middle finger. </string>
+
+    <string name="num4_title">4 (Four)</string>
+    <string name="num4_content">Equivalent to the sum of two and two; and is IV in Roman. The orientation of the palm faces the signer for a number, and involves all fingers except the thumb. </string>
+
     //numbers.num3
     <string name="num10_title">10 (Ten)</string>
     <string name="num10_content">The number ten. The palm facing the signer is generally used in cardinal number.</string>
@@ -50,4 +69,11 @@
     //pronouns.you
     <string name="you_title">You</string>
     <string name="you_content">The pronoun of the second person singular, used of the person being addressed.</string>
+
+    <string name="we_title">We</string>
+    <string name="we_content">We is used by a speaker to refer to himself or herself and one or more other people considered together.</string>
+
+    <string name="they_title">They</string>
+    <string name="they_content">They is used to refer to a group of people whose gender is not known or does not need to be mentioned.</string>
+
 </resources>

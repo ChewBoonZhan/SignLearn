@@ -9,20 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 
 import java.util.ArrayList;
 
 public class Game_pronoun extends Game_screen {
     private Context pronoun_context;
     private ArrayList<String> signLang = new ArrayList<String>();
+    private int app_data_index = 4;
     public Game_pronoun(){
         super();
-        init_syallabus();
+        init_syllabus(app_data_index);
     }
     public Game_pronoun(Context context){
         super();
         pronoun_context = context;
-        init_syallabus();
+        init_syllabus(app_data_index);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,17 +40,7 @@ public class Game_pronoun extends Game_screen {
 
 
     }
-    private void init_syallabus(){
 
-
-        //Initialize Question image via String
-        signLang.add("me");
-        signLang.add("you");
-        signLang.add("we");
-        signLang.add("they");
-
-        super.setSignLang(signLang);
-    }
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;

@@ -34,18 +34,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/like_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="Like"
+                    android:text="@string/like_title"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -73,18 +72,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/dislike_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="Dislike"
+                    android:text="@string/dislike_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -114,18 +112,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/iloveyou_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="I Love You"
+                    android:text="@string/iloveyou_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -155,18 +152,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/adore_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="Adore"
+                    android:text="@string/adore_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"

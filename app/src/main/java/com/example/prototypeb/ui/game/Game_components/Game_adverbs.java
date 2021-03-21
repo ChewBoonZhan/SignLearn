@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.choice_message.One_choice_message;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 import com.example.prototypeb.controller.toast.Alert_toast;
@@ -34,15 +35,16 @@ import java.util.Random;
 public class Game_adverbs extends Game_screen {
     private Context adverbs_context;
     private ArrayList <String> signLang = new ArrayList<String>();
-
+    private int app_data_index = 0;
     public Game_adverbs(){
         super();
-        init_syallabus();
+        init_syllabus(app_data_index);
     }
 
     public Game_adverbs(Context context){
         super();
-        init_syallabus();
+        init_syllabus(app_data_index);
+
         adverbs_context = context;
     }
 
@@ -58,19 +60,6 @@ public class Game_adverbs extends Game_screen {
         super.onResume();
         super.setContext(this);
 
-
-    }
-
-    private void init_syallabus(){
-
-
-        //Initialize Question image via String
-        signLang.add("yes");
-        signLang.add("no");
-        signLang.add("almost");
-        signLang.add("later");
-
-        super.setSignLang(signLang);
 
     }
     public View.OnClickListener get_unlocked_On_click(){

@@ -9,20 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 
 import java.util.ArrayList;
 
 public class Game_attachments extends Game_screen {
     private Context attachments_context;
     private ArrayList<String> signLang = new ArrayList<String>();
+    private int app_data_index = 2;
     public Game_attachments(){
         super();
-        init_syallabus();
+        init_syllabus(app_data_index);
     }
     public Game_attachments(Context context){
         super();
         attachments_context = context;
-        init_syallabus();
+        init_syllabus(app_data_index);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,17 +40,7 @@ public class Game_attachments extends Game_screen {
 
 
     }
-    private void init_syallabus(){
 
-
-        //Initialize Question image via String
-        signLang.add("like");
-        signLang.add("dislike");
-        signLang.add("adore");
-        signLang.add("iloveyou");
-
-        super.setSignLang(signLang);
-    }
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;

@@ -13,6 +13,7 @@ import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
 import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.file_connections.File_connections;
+import com.example.prototypeb.controller.lesson_screen.Attachments.Adore_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Dislike_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Iloveyou_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Attachments.Like_screen_components;
@@ -30,12 +31,14 @@ public class Attachments extends Button_notification implements Lesson_topics{
     private Dislike_screen_components dislike_screen_components;
     private Iloveyou_screen_components iloveyou_screen_components;
     private Like_screen_components like_screen_components;
+    private Adore_screen_components adore_screen_components;
     private Lesson_topics lesson_topics = this;
 
     public Attachments(){
         dislike_screen_components = new Dislike_screen_components();
         iloveyou_screen_components = new Iloveyou_screen_components();
         like_screen_components = new Like_screen_components();
+        adore_screen_components = new Adore_screen_components();
         this.attachments_context = LessonFragment.getLesson_context();
     }
     public Attachments(Context attachments_context){
@@ -113,6 +116,22 @@ public class Attachments extends Button_notification implements Lesson_topics{
                         .putExtra(screen_component, iloveyou_screen_components)
                         .putExtra(translator_label,category_elements.get(2))
                         .putExtra(translator_lesson_topics,get_model_category())
+
+                );
+            }
+        });
+
+        button = (Button) findViewById(R.id.adore_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openActivity();
+            }
+
+            public void openActivity() {
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra(screen_component, adore_screen_components)
+                        .putExtra(translator_label,"")
+                        .putExtra(translator_lesson_topics,"")
 
                 );
             }

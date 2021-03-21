@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.choice_message.One_choice_message;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
@@ -41,7 +43,8 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
     private Success_toast success_toast;
     private ImageView imageQuestion, timerImage;
     private File_connections file_connections;
-
+    private final int NUMBER_OF_CHOICES = 4;
+    private int app_data_index;
     public Game_screen(){
         game_main_context = GameFragment.getGame_context();
         index = 0;
@@ -53,7 +56,7 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
        get_screen_button_options();
        get_screen_elements();
-       set_title_text("Adverbs");
+
        set_points(getCurrentPoints());
 
        setComponent_images();
@@ -71,12 +74,6 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
     }
 
-    public void setSignLang(ArrayList <String> signLang){
-        this.signLang = signLang;
-        init_map();
-        init_game_passed();
-        Collections.shuffle(signLang);
-    }
     private void init_game_passed(){
         sign_passed = new HashMap<String,Boolean>();
         int length = signLang.size();
@@ -114,7 +111,11 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
     @Override
     protected void onResume() {
         super.onResume();
+        App_data app_data = new App_data();
+
+
         init_game_elements();
+        set_title_text(app_data.getCategories()[app_data_index]);
     }
 
     @Override
@@ -197,6 +198,21 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         file_connections.update_score(file_connections.getScore()+getCurrentPoints());
 
     }
+    public void init_syllabus(int app_data_index){
+        this.app_data_index = app_data_index;
+        Category_elements category_elements = new Category_elements();
+        App_data app_data = new App_data();
+        String[] all_categories = app_data.getCategories();
+        signLang = category_elements.getCategory_elements().get(all_categories[app_data_index]);
+
+
+        init_map();
+        init_game_passed();
+        Collections.shuffle(signLang);
+
+
+    }
+
     //Method for setting up questions/rounds
     private void generateQuestions(int index) {
         String[] answers = new String[4];
@@ -204,15 +220,15 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         start_timer();
         String question = new String(getMap().get(signLang.get(index)));
 
-        int questionChange = getResources().getIdentifier(question+"_still","drawable", getPackageName());
+        int questionChange = getResources().getIdentifier(question.toLowerCase().replaceAll("[\\s\"]", "")+"_still","drawable", getPackageName());
         imageQuestion.setImageResource(questionChange); //set image for question based on string contents in array
 
         newSignLang = (ArrayList<String>) signLang.clone(); //generate wrong options
         newSignLang.remove(index); //removing the correct option
         Collections.shuffle(newSignLang); //randomize option placements
-        int correctAnswerPosition = new Random().nextInt(4); //randomize correct answer position
+        int correctAnswerPosition = new Random().nextInt(NUMBER_OF_CHOICES); //randomize correct answer position
         int get_new_index = 0;
-        for(int i=0; i<4; i++){
+        for(int i=0; i<NUMBER_OF_CHOICES; i++){
 
             if(i == correctAnswerPosition)
                 answers[i] = signLang.get(index);
@@ -225,7 +241,10 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
         int length = options.size();
         for(int i = 0;i<length;i++){
+
             options.get(i).setText(answers[i]);
+
+
         }
 
         newSignLang.clear();

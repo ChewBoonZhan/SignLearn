@@ -16,6 +16,8 @@ import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.controller.lesson_screen.Lesson_screen;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.Me_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Pronouns.They_screen_components;
+import com.example.prototypeb.controller.lesson_screen.Pronouns.We_screen_components;
 import com.example.prototypeb.controller.lesson_screen.Pronouns.You_screen_components;
 import com.example.prototypeb.controller.lesson_unlocking.Lesson_unlocking;
 import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
@@ -28,13 +30,16 @@ public class Pronouns extends Button_notification implements Lesson_topics{
     private Button button;
     private Me_screen_components me_screen_components;
     private You_screen_components you_screen_components;
+    private We_screen_components we_screen_components;
+    private They_screen_components they_screen_components;
     private Lesson_topics lesson_topics = this;
 
     public Pronouns(){
 
         me_screen_components = new Me_screen_components();
         you_screen_components = new You_screen_components();
-
+        we_screen_components = new We_screen_components();
+        they_screen_components = new They_screen_components();
         this.pronouns_context = LessonFragment.getLesson_context();
     }
     public Pronouns(Context pronouns_context){
@@ -99,6 +104,38 @@ public class Pronouns extends Button_notification implements Lesson_topics{
                         .putExtra(screen_component, you_screen_components)
                         .putExtra(translator_label,category_elements.get(1))
                         .putExtra(translator_lesson_topics,get_model_category())
+                );
+            }
+        });
+
+        button = (Button) findViewById(R.id.we_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+
+            public void openActivity() {
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra(screen_component, we_screen_components)
+                        .putExtra(translator_label,"")
+                        .putExtra(translator_lesson_topics,"")
+                );
+            }
+        });
+
+        button = (Button) findViewById(R.id.they_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+
+            public void openActivity() {
+                startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
+                        .putExtra(screen_component, they_screen_components)
+                        .putExtra(translator_label,"")
+                        .putExtra(translator_lesson_topics,"")
                 );
             }
         });

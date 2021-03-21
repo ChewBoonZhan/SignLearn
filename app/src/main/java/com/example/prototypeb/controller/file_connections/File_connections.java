@@ -79,15 +79,14 @@ public class File_connections {
         editor.putInt(file_connection_key.getScore_key(),default_score_value);
         editor.putBoolean(file_connection_key.getComplete_initial_init(),true);
     }
+
+    /**
+     * This function sets such that all the other categories are
+     */
     private void save_category_in_file(){
         String[] categories = app_data.getCategories();
         editor.putBoolean(categories[0],true);
         for(int i = 1;i<categories.length;i++){
-            /* for testing purposes
-            if(i == 1){
-                unlocked = true;
-            }
-            */
 
             editor.putBoolean(categories[i],false);
         }

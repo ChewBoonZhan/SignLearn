@@ -34,18 +34,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/me_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="I"
+                    android:text="@string/me_title"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -73,18 +72,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/you_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="You"
+                    android:text="@string/you_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -113,18 +111,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/we_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="We"
+                    android:text="@string/we_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -138,18 +135,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <Button
                     android:id="@+id/they_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:background="@color/primary"
                     android:backgroundTint="@color/primary"
-                    android:text="They"
+                    android:text="@string/they_title"
                     android:textColor="@color/white"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
