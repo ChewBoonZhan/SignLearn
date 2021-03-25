@@ -65,8 +65,8 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:translationZ="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/game1_button_id"
-                        app:layout_constraintTop_toTopOf="@+id/game1_button_id" />
+                        app:layout_constraintEnd_toEndOf="@+id/lesson1_id"
+                        app:layout_constraintTop_toTopOf="@+id/lesson1_id" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,8 +108,8 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:translationZ="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/game2_button_id"
-                        app:layout_constraintTop_toTopOf="@+id/game2_button_id" />
+                        app:layout_constraintEnd_toEndOf="@+id/lesson2_id"
+                        app:layout_constraintTop_toTopOf="@+id/lesson2_id" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -150,8 +150,8 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:translationZ="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/game3_button_id"
-                        app:layout_constraintTop_toTopOf="@+id/game3_button_id" />
+                        app:layout_constraintEnd_toEndOf="@+id/lesson3_id"
+                        app:layout_constraintTop_toTopOf="@+id/lesson3_id" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -190,8 +190,8 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:translationZ="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/game4_button_id"
-                        app:layout_constraintTop_toTopOf="@+id/game4_button_id" />
+                        app:layout_constraintEnd_toEndOf="@+id/lesson4_id"
+                        app:layout_constraintTop_toTopOf="@+id/lesson4_id" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -230,8 +230,8 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:translationZ="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/game5_button_id"
-                        app:layout_constraintTop_toTopOf="@+id/game5_button_id" />
+                        app:layout_constraintEnd_toEndOf="@+id/lesson5_id"
+                        app:layout_constraintTop_toTopOf="@+id/lesson5_id" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
