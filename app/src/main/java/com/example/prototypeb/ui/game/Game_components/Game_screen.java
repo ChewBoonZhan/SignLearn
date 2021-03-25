@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public abstract class Game_screen extends Sub_action_bar implements  Game_components{
-    private final int SCORE_INCREMENT = 3;
+    private final int SCORE_INCREMENT = 7;
     private ArrayList<Button> options;
     private ArrayList <String> signLang;
     private HashMap<String, String> map;

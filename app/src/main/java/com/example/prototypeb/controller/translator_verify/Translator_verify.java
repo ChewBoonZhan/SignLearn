@@ -53,7 +53,7 @@ import java.util.List;
 import static java.security.AccessController.getContext;
 
 public class Translator_verify extends Sub_action_bar {
-    private final int SCORE_INCREMENT = 3;
+    private final int SCORE_INCREMENT = 7;
     private FrameLayout camera_frame;
     private Button switch_camera;
     private TextView title_text;
