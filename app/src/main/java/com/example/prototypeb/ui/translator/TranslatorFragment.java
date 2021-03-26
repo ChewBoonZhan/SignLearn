@@ -124,7 +124,8 @@ public class TranslatorFragment extends Fragment {
 
     private void init_drop_down(){
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context_here,android.R.layout.simple_spinner_dropdown_item,translator_categories.getItems());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context_here, R.layout.custom_spinner,translator_categories.getItems());
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
         change_category.setAdapter(adapter);
         change_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
