@@ -33,15 +33,17 @@ public class Camera_handle {
     private FrameLayout framelayout;
     private ShowCamera showcamera;
     private Translator translator;
+    private TextView camera_type;
     private int translate_interval;
     private int interval_counter;
 
     private int frame_layout_height;
 
 
-    public Camera_handle(Context context, Activity activity, FrameLayout framelayout, TextView classify_text){
+    public Camera_handle(Context context, Activity activity, FrameLayout framelayout, TextView classify_text,TextView camera_type){
         camera_num = 1;
         this.context = context;
+        this.camera_type = camera_type;
         this.framelayout = framelayout;
         this.translate_interval = 3;
         this.interval_counter = 0;
@@ -51,9 +53,10 @@ public class Camera_handle {
         this.frame_layout_height = 0;
 
     }
-    public Camera_handle(Context context, Activity activity, FrameLayout framelayout, Translator_verify translator_verify){
+    public Camera_handle(Context context, Activity activity, FrameLayout framelayout, Translator_verify translator_verify,TextView camera_type){
         camera_num = 1;
         this.context = context;
+        this.camera_type = camera_type;
         this.framelayout = framelayout;
         this.translate_interval = 3;
         this.interval_counter = 0;
@@ -69,9 +72,11 @@ public class Camera_handle {
         //changing camera ID
         if(camera_num == 1){
             camera_num = 0;
+            camera_type.setText("Back Camera");
         }
         else{
             camera_num = 1;
+            camera_type.setText("Front Camera");
         }
         switching_camera_state = true;
 
@@ -85,6 +90,7 @@ public class Camera_handle {
         framelayout.removeAllViews();
         showcamera.change_camera(camera);
         framelayout.addView(showcamera);
+        // Change text here.
         set_framelayout_dimensions_to_image_sizes();
 
         switching_camera_state = false;

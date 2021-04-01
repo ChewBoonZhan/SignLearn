@@ -56,7 +56,7 @@ public class Translator_verify extends Sub_action_bar {
     private final int SCORE_INCREMENT = 7;
     private FrameLayout camera_frame;
     private Button switch_camera;
-    private TextView title_text;
+    private TextView title_text,camera_type;
     private ProgressBar verify_progress;
     private Context translator_verify_context;
     private Activity translator_verify_activity;
@@ -122,6 +122,7 @@ public class Translator_verify extends Sub_action_bar {
     }
     private void get_component_from_screen(){
         title_text = findViewById(R.id.text_desc_lesson_verify);
+        camera_type =findViewById(R.id.camera_type_verify);
         camera_frame = findViewById(R.id.camera_frame_verify_lesson);
         switch_camera = findViewById(R.id.switch_camera_verify_lesson);
         verify_progress = findViewById(R.id.verify_progress_lesson_verify);
@@ -133,7 +134,7 @@ public class Translator_verify extends Sub_action_bar {
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setup_translator(){
-        camera_handle = new Camera_handle(translator_verify_context,translator_verify_activity,camera_frame,this);
+        camera_handle = new Camera_handle(translator_verify_context,translator_verify_activity,camera_frame,this,camera_type);
         translator = camera_handle.getTranslator();
         translator.load_model_tflite(translator_category);
         start_request_permission();

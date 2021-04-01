@@ -13,16 +13,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/camera_frame_verify_lesson"
-        android:layout_width="match_parent"
-        android:layout_height="354dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_frame_verify_constraint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_marginTop="16dp"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_desc_lesson_verify" />
+        app:layout_constraintTop_toBottomOf="@+id/text_desc_lesson_verify"
+        >
+
+        <FrameLayout
+            android:id="@+id/camera_frame_verify_lesson"
+            android:layout_width="match_parent"
+            android:layout_height="354dp"
+
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/camera_type_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Front Camera"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <Button
         android:id="@+id/switch_camera_verify_lesson"
@@ -38,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera_frame_verify_lesson" />
+        app:layout_constraintTop_toBottomOf="@+id/camera_frame_verify_constraint" />
 
     <ProgressBar
         android:id="@+id/verify_progress_lesson_verify"

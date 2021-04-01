@@ -80,6 +80,20 @@ public class Category_elements {
 
 
     }
+    public ArrayList <String> get_category_elements_testable(int category_index){
+        ArrayList <String> category_elements_testable = new ArrayList<String>();
+        App_data app_data = new App_data();
+        String [] categories = app_data.getCategories();
+        String category = categories[category_index];
+        ArrayList <String> category_elements_total = category_elements.get(category);
+        int length = category_elements_total.size();
+        for (int i = 0;i<length;i++){
+            if(!check_element_not_testable(category_elements_total.get(i))){
+                category_elements_testable.add(category_elements_total.get(i));
+            }
+        }
+        return category_elements_testable;
+    }
     public HashMap <String, ArrayList <String>> getCategory_elements(){
         return category_elements;
     }

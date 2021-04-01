@@ -66,14 +66,14 @@ public class TranslatorFragment extends Fragment {
     private static Context context_here;
 
     //layout components
-    public static FrameLayout framelayout;
+    public FrameLayout framelayout;
 
-    private static Button change_camera;
-    private static Spinner change_category;
+    private Button change_camera;
+    private Spinner change_category;
 
-    private static Button camera_permission;
+    private Button camera_permission;
 
-    private TextView classitext;
+    private TextView classitext,camera_type;
     private String classify_category;
     private View root;
     private Camera_handle camera_handle;
@@ -105,7 +105,7 @@ public class TranslatorFragment extends Fragment {
         set_layout_components();
         set_on_click_switch_camera();
         set_on_click_camera_permission();
-        camera_handle = new Camera_handle(context_here,activity_here,framelayout,classitext);
+        camera_handle = new Camera_handle(context_here,activity_here,framelayout,classitext,camera_type);
         translator = camera_handle.getTranslator();
         translator_categories = new Translator_categories();
         init_drop_down();
@@ -149,9 +149,9 @@ public class TranslatorFragment extends Fragment {
     private void set_layout_components(){
         framelayout = root.findViewById(R.id.camera_frame);
         classitext = root.findViewById(R.id.classitext);
+        camera_type = root.findViewById(R.id.camera_type);
         change_camera = root.findViewById(R.id.switch_camera);
         change_category = root.findViewById(R.id.category_selector);
-
         camera_permission = root.findViewById(R.id.translator_camera_permission);
     }
 
@@ -190,48 +190,18 @@ public class TranslatorFragment extends Fragment {
             permission_not_granted(false);
             request_permission();
         } else {
-
-
-
             permission_granted(true);
 
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void request_permission() {
+        request_permission_thread();
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity_here, Manifest.permission.CAMERA)) {
-            //user denied it before, therefore explain why we need it
-            DialogInterface.OnClickListener positive_choice =new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);
-                    request_permission_thread();
-                }
-            };
-            DialogInterface.OnClickListener negative_choice =new DialogInterface.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //dismiss the dialog
-                    dialog.dismiss();
-                    permission_not_granted(true);
-                }
-            };
-            Two_choice_message two_choice_message = new Two_choice_message(context_here,"Permission needed","This device's camera is needed for the Sign Language translator.","OK","CANCEL",positive_choice,negative_choice);
-            two_choice_message.show_message();
-
-        } else {
-            //request for permission like normal
-            //ActivityCompat.requestPermissions(activity, new String[] {Manifest.permission.CAMERA}, 1);
-            request_permission_thread();
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void request_permission_thread() {
-
-
         requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
     }
 

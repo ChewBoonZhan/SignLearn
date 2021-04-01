@@ -54,21 +54,25 @@ public class File_connectionsTest extends TestCase {
         file_connections.unlock_category(category);
         assertEquals(file_connections.is_category_unlocked(category),true);
 
+        category = categories[1];
+        assertEquals(file_connections.is_category_unlocked(category),false);
+
+        file_connections.unlock_category(category);
+        assertEquals(file_connections.is_category_unlocked(category),true);
+        file_connections.lock_category(category);
 
 
     }
     public void testLock_category(){
         App_data app_data = new App_data();
         String[] categories = app_data.getCategories();
-        String category = categories[0];
+        String category = categories[1];
         file_connections.unlock_category(category);
 
         file_connections.lock_category(category);
         assertEquals(file_connections.is_category_unlocked(category),false);
     }
-    public void testIs_lesson_passed(){
 
-    }
     public void testIs_category_unlocked(){
         App_data app_data = new App_data();
         String[] categories = app_data.getCategories();
@@ -109,12 +113,61 @@ public class File_connectionsTest extends TestCase {
         file_connections.reset_score();
     }
 
+    public void testCheck_game_category_passed(){
+        App_data app_data = new App_data();
+        String[] all_categories = app_data.getCategories();
+        Category_elements category_elements = new Category_elements();
+        ArrayList <String> signLang = category_elements.getCategory_elements().get(all_categories[1]);
+        String game_category = signLang.get(1);
+
+        //initially category is not passed
+        assertEquals(file_connections.check_game_category_passed(game_category),false);
+
+        //unlocking category, and check such that category is passed
+        file_connections.set_game_category_passed(game_category);
+        assertEquals(file_connections.check_game_category_passed(game_category),true);
+
+        //resetting such that game category is locked and not passed
+        file_connections.set_game_category_not_passed(game_category);
+    }
+
+    public void testSet_game_category_passed(){
+        App_data app_data = new App_data();
+        String[] all_categories = app_data.getCategories();
+        Category_elements category_elements = new Category_elements();
+        ArrayList <String> signLang = category_elements.getCategory_elements().get(all_categories[0]);
+        String game_category = signLang.get(0);
+
+        //initially category is not unlocked
+        assertEquals(file_connections.check_game_category_passed(game_category),false);
+
+        //unlocking category, and check such that category is unlocked
+        file_connections.set_game_category_passed(game_category);
+        assertEquals(file_connections.check_game_category_passed(game_category),true);
+
+        //resetting such that game category is locked and not passed
+        file_connections.set_game_category_not_passed(game_category);
+    }
+    public void testSet_game_category_not_passed(){
+        App_data app_data = new App_data();
+        String[] all_categories = app_data.getCategories();
+        Category_elements category_elements = new Category_elements();
+        ArrayList <String> signLang = category_elements.getCategory_elements().get(all_categories[0]);
+        String game_category = signLang.get(0);
+
+        file_connections.set_game_category_passed(game_category);
+        assertEquals(file_connections.check_game_category_passed(game_category),true);
+
+        //resetting such that game category is locked and not passed
+        file_connections.set_game_category_not_passed(game_category);
+        assertEquals(file_connections.check_game_category_passed(game_category),false);
+    }
 
     public void testGetDefault_user_icon_value(){
         assertEquals(file_connections.getDefault_user_icon_value(),0);
     }
     public void testGetDefault_score_value(){
-        assertEquals(file_connections.getDefault_score_value(),50);
+        assertEquals(file_connections.getDefault_score_value(),10);
     }
     public void testGetDefault_user_name(){
         assertEquals(file_connections.getDefault_user_name(),"");

@@ -86,22 +86,22 @@ public class LessonFragment extends Fragment {
 
         App_data app_data = new App_data();
         Category_elements category_elements = new Category_elements();
-        HashMap <String, ArrayList <String>> all_category_elements = category_elements.getCategory_elements();
+
         String[] categories = app_data.getCategories();
         int length = categories.length;
         for(int i = 0;i<length;i++){
-            ArrayList <String> elements = all_category_elements.get(categories[i]);
+            ArrayList <String> elements = category_elements.get_category_elements_testable(i);     //all_category_elements.get(categories[i]);
 
             int category_elements_length  = elements.size();
 
 
             int number_of_unpassed = 0;
             for(int j = 0;j<category_elements_length;j++){
-                if(!category_elements.check_element_not_testable(elements.get(j))){
-                    if(!file_connections.check_lesson_learnt(elements.get(j).toLowerCase())){
-                        number_of_unpassed++;
-                    }
+
+                if(!file_connections.check_lesson_learnt(elements.get(j).toLowerCase())){
+                    number_of_unpassed++;
                 }
+
 
             }
             if(number_of_unpassed <= 0){

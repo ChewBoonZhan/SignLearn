@@ -9,17 +9,39 @@
     android:visibility="visible"
     tools:context=".ui.translator.TranslatorFragment">
 
-
-    <FrameLayout
-        android:id="@+id/camera_frame"
-        android:layout_width="409dp"
-        android:layout_height="302dp"
-        android:layout_marginTop="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_view_constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_selector">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/camera_frame"
+            android:layout_width="409dp"
+            android:layout_height="302dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/camera_type"
+            android:layout_width="123dp"
+            android:layout_height="47dp"
+            android:background="@null"
+            android:text="Front Camera"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/classitext"
@@ -32,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera_frame"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view_constraint"
         app:layout_constraintVertical_bias="0.093" />
 
     <Spinner
