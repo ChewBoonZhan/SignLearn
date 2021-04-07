@@ -54,7 +54,7 @@
         android:layout_height="28dp"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:text="Defination"
+        android:text="Definition"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
