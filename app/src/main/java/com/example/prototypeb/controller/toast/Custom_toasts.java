@@ -21,6 +21,7 @@ public abstract class Custom_toasts {
     private Context context;
     private final int TOAST_TEXT_COLOR = R.color.white;
     private final int TOAST_TEXT_GRAVITY = Gravity.CENTER;
+    private final int DELAY_BETWEEN_TOAST = 2000;  // this is in milliseconds
     private boolean toast_shown = false;
     private Toast toast;
 
@@ -35,12 +36,7 @@ public abstract class Custom_toasts {
         show_toast(message,toast_color,false);
     }
     public void show_toast(String message,int toast_color,boolean long_toast){
-        if(MainActivity.toast_shown){
-
-        }
-        else
-        {
-
+        if(!MainActivity.toast_shown){
             toast_shown = false;
             int toast_duration;
             if(long_toast){
@@ -68,7 +64,7 @@ public abstract class Custom_toasts {
             MainActivity.toast_shown = true;
 
             // for one toast to be displayed at a time only.
-            CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
+            CountDownTimer countDownTimer = new CountDownTimer(DELAY_BETWEEN_TOAST, 1000) {
 
                 @Override
                 public void onTick(long l) {
