@@ -39,15 +39,9 @@ public class Category_init {
         for(int i = 0;i<category_buttons.size();i++){
             String category = categories[i];
             boolean unlocked = file_connections.is_category_unlocked(category);
-
             set_button_correctly(category_buttons.get(i),category_notifi.get(i),i,unlocked,game);
-
         }
     }
-
-
-
-
     private void set_button_correctly(Button button,TextView notifi, int index,boolean unlocked,boolean game){
         HashMap<Integer, Category_components> category_classes_components = category_classes.get_classes();
         Category_components category_components =category_classes_components.get(index);
@@ -56,7 +50,7 @@ public class Category_init {
             if(game){
                 if(((Game_components)category_components).check_all_categories_passed()){
 
-                    Log.d("odd",((Game_components)category_components).check_all_categories_passed()+ "");
+                    //Log.d("odd",((Game_components)category_components).check_all_categories_passed()+ "");
                     //all categories have passed, dont need to see notification for this game anymore.
                     notifi.setVisibility(View.GONE);
                 }
@@ -66,7 +60,6 @@ public class Category_init {
             int color = ContextCompat.getColor(context, R.color.warning);
             notifi.setVisibility(View.GONE);
             button.setBackgroundColor(color);
-
             button.setOnClickListener(category_components.get_locked_On_click());
         }
 

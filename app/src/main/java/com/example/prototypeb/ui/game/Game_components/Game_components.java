@@ -25,6 +25,4 @@ public interface Game_components extends Category_components {
 
     public boolean check_all_categories_passed();
     //so interface can save variable values.
-    
-
 }

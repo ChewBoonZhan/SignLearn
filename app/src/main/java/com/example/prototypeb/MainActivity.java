@@ -50,6 +50,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 //import com.example.prototypeb.controller.file_connections.Categories;
 
 public class MainActivity extends AppCompatActivity {
+    public static boolean toast_shown = false;
     private New_screen new_screen;
     private Animation top_anim, bottom_anim;
     private TextView title_text, desc_text;

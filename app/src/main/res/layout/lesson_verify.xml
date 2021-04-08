@@ -75,7 +75,7 @@
         android:layout_marginTop="28dp"
         android:fadingEdge="horizontal"
         android:keepScreenOn="true"
-        android:max="10"
+        android:max="7"
         android:progress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
