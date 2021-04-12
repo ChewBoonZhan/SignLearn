@@ -10,7 +10,7 @@ import com.example.prototypeb.controller.sub_action_bar.Sub_action_bar;
 
 import java.util.ArrayList;
 
-public abstract class Button_notification extends Sub_action_bar {
+public abstract class Button_notification extends Sub_action_bar implements Lesson_topics{
     public ArrayList<TextView> notifi_text;
     public ArrayList<String> category_elements;
     private Category_elements all_category_elements;

@@ -29,7 +29,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 
-public class Alphabets extends Button_notification implements  Lesson_topics{
+public class Alphabets extends Button_notification{
     private Context alphabets_context;
     private Button button;
     private A_screen_components a_screen_components;

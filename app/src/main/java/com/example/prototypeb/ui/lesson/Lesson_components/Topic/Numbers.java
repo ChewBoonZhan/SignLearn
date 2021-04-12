@@ -26,7 +26,7 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 import java.util.ArrayList;
 
 
-public class Numbers extends Button_notification implements Lesson_topics{
+public class Numbers extends Button_notification {
     private Context numbers_context;
     private Button button;
     private Num1_screen_components num1_screen_components;

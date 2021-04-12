@@ -25,7 +25,7 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 import java.util.ArrayList;
 
 
-public class Attachments extends Button_notification implements Lesson_topics{
+public class Attachments extends Button_notification{
     private Context attachments_context;
     private Button button;
     private Dislike_screen_components dislike_screen_components;

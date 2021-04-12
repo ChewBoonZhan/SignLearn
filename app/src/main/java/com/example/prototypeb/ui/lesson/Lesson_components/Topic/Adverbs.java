@@ -30,7 +30,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 
-public class Adverbs extends Button_notification implements Lesson_topics{
+public class Adverbs extends Button_notification{
     private Context adverbs_context;
     private Button button;
     private No_screen_components no_screen_components;

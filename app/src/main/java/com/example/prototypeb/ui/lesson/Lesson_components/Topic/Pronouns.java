@@ -25,7 +25,7 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 
 import java.util.ArrayList;
 
-public class Pronouns extends Button_notification implements Lesson_topics{
+public class Pronouns extends Button_notification{
     private Context pronouns_context;
     private Button button;
     private Me_screen_components me_screen_components;
