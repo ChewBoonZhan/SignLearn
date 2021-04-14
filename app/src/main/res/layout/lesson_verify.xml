@@ -86,13 +86,13 @@
 
     <TextView
         android:id="@+id/text_desc_lesson_verify"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_width="320dp"
+        android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Please keep your hand steady, and head out of the camera view"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textColor="@color/unique"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include6" />

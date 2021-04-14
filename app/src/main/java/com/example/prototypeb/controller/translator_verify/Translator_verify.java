@@ -80,7 +80,7 @@ public class Translator_verify extends Sub_action_bar {
         set_title_text(title_text_id);
 
         get_component_from_screen();
-        set_title();
+
         set_switch_camera_onclick();
         set_camera_permission_onclick();
         set_progress_bar_width();
@@ -90,10 +90,7 @@ public class Translator_verify extends Sub_action_bar {
 
 
     }
-    private void set_title(){
-        title_text.setText(title_text_id);
 
-    }
     private void set_camera_permission_onclick(){
         lesson_camera_permission.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
