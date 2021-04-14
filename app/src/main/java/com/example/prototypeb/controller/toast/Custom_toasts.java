@@ -21,7 +21,7 @@ public abstract class Custom_toasts {
     private Context context;
     private final int TOAST_TEXT_COLOR = R.color.white;
     private final int TOAST_TEXT_GRAVITY = Gravity.CENTER;
-    private final int DELAY_BETWEEN_TOAST = 2000;  // this is in milliseconds
+    private final int DELAY_BETWEEN_TOAST = 1100;  // this is in milliseconds
     private boolean toast_shown = false;
     private Toast toast;
 

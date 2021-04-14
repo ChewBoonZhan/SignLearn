@@ -35,6 +35,7 @@ public class Category_elements {
 
         not_testable_elements.add(category_elements.get(app_data.getCategories()[3]).get(2));
         not_testable_elements.add(category_elements.get(app_data.getCategories()[3]).get(3));
+        not_testable_elements.add(category_elements.get(app_data.getCategories()[3]).get(4));
 
         not_testable_elements.add(category_elements.get(app_data.getCategories()[4]).get(2));
         not_testable_elements.add(category_elements.get(app_data.getCategories()[4]).get(3));

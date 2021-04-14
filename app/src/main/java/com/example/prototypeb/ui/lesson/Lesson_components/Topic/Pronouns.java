@@ -69,6 +69,8 @@ public class Pronouns extends Button_notification{
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.me_notifi));
         notifi_text.add(findViewById(R.id.you_notifi));
+        notifi_text.add(findViewById(R.id.they_notifi));
+        notifi_text.add(findViewById(R.id.we_notifi));
     }
 
 
@@ -118,8 +120,8 @@ public class Pronouns extends Button_notification{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, we_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(3))
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -134,8 +136,8 @@ public class Pronouns extends Button_notification{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, they_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(2))
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });

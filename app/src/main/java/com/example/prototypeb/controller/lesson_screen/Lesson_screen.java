@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.prototypeb.R;
+import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.app_data.Intent_key;
 import com.example.prototypeb.controller.choice_message.One_choice_message;
 import com.example.prototypeb.controller.choice_message.Two_choice_message;
@@ -26,6 +27,7 @@ public class Lesson_screen extends Sub_action_bar {
     private Button check_translator_info_lesson;
     private int title_text_id;
     private Intent_key intent_key = new Intent_key();
+    private Category_elements category_elements = new Category_elements();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -56,8 +58,7 @@ public class Lesson_screen extends Sub_action_bar {
         String correct_translator_label = getIntent().getStringExtra(intent_key.getTranslator_label());
         String translator_lesson_topics = getIntent().getStringExtra(intent_key.getTranslator_lesson_topics());
         View.OnClickListener check_on_click = null;
-        if((correct_translator_label.equals("")) && (translator_lesson_topics.equals(""))){
-
+        if(category_elements.check_element_not_testable(correct_translator_label)){
 
            Lesson_screen lesson_screen = this;
             check_on_click = new View.OnClickListener() {

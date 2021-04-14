@@ -72,6 +72,8 @@ public class Numbers extends Button_notification {
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.num1_notifi));
         notifi_text.add(findViewById(R.id.num2_notifi));
+        notifi_text.add(findViewById(R.id.num3_notifi));
+        notifi_text.add(findViewById(R.id.num4_notifi));
         notifi_text.add(findViewById(R.id.num10_notifi));
     }
 
@@ -122,7 +124,7 @@ public class Numbers extends Button_notification {
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num10_screen_components)
-                        .putExtra(translator_label,category_elements.get(2))
+                        .putExtra(translator_label,category_elements.get(4))
                         .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
@@ -139,8 +141,8 @@ public class Numbers extends Button_notification {
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num3_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(3))
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -155,7 +157,7 @@ public class Numbers extends Button_notification {
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num4_screen_components)
-                        .putExtra(translator_label,"")
+                        .putExtra(translator_label,category_elements.get(2))
                         .putExtra(translator_lesson_topics,"")
                 );
             }

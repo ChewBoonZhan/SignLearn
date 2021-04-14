@@ -28,6 +28,9 @@ public abstract class Button_notification extends Sub_action_bar implements Less
                 }
 
             }
+            else{
+                notifi_text.get(i).setVisibility(View.GONE);
+            }
         }
     }
     

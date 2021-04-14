@@ -68,6 +68,7 @@ public class Attachments extends Button_notification{
         notifi_text.add(findViewById(R.id.like_notifi));
         notifi_text.add(findViewById(R.id.dislike_notifi));
         notifi_text.add(findViewById(R.id.iloveyou_notifi));
+        notifi_text.add(findViewById(R.id.adore_notifi));
     }
 
     private void set_buttons_on_click(){
@@ -130,8 +131,8 @@ public class Attachments extends Button_notification{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, adore_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(3))
+                        .putExtra(translator_lesson_topics,get_model_category())
 
                 );
             }

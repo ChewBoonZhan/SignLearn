@@ -80,6 +80,8 @@ public class Adverbs extends Button_notification{
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.yes_notifi));
         notifi_text.add(findViewById(R.id.no_notifi));
+        notifi_text.add(findViewById(R.id.almost_notifi));
+        notifi_text.add(findViewById(R.id.later_notifi));
     }
 
     private void set_buttons_on_click(){
@@ -128,8 +130,8 @@ public class Adverbs extends Button_notification{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, almost_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(2))
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
@@ -144,8 +146,8 @@ public class Adverbs extends Button_notification{
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, later_screen_components)
-                        .putExtra(translator_label,"")
-                        .putExtra(translator_lesson_topics,"")
+                        .putExtra(translator_label,category_elements.get(3))
+                        .putExtra(translator_lesson_topics,get_model_category())
                 );
             }
         });
