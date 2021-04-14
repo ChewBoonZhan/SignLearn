@@ -15,6 +15,9 @@ import com.example.prototypeb.controller.toast.Alert_toast;
 
 public interface Game_components extends Category_components {
 
+    /**
+     * Function called when Game Category is locked
+     */
     OnClickListener locked_On_click = new OnClickListener() {
         @Override
         public void onClick(View v) {
