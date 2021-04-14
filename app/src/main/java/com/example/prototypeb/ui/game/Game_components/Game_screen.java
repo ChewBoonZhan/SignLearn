@@ -29,21 +29,36 @@ import java.util.HashMap;
 import java.util.Random;
 
 public abstract class Game_screen extends Sub_action_bar implements  Game_components{
+    //set score increment to const 7 for every correct answer
     private final int SCORE_INCREMENT = 7;
+    //Declare answer options as buttons in array;
     private ArrayList<Button> options;
+    //Declare answer as string in array to be mapped
     private ArrayList <String> signLang;
+    //HashMap for question to answer mapping
     private HashMap<String, String> map;
+    //HashMap for recording whether question has been answered correctly
     private HashMap <String,Boolean> sign_passed;
+    //In-game countdown timer
     private CountDownTimer countDownTimer;
+    //Display remaining time as text
     private TextView timer;
+    //Each game frame components
     private Context context;
+    //Main game component
     private Context game_main_context;
+    //Integers for indexing and Points gained
     private int index, currentPoints;
+    //Toast for wrong answer
     private Alert_toast alert_toast;
+    //Toast for correct answer
     private Success_toast success_toast;
+    //Image for questions and timer
     private ImageView imageQuestion, timerImage;
     private File_connections file_connections;
+    //set number of answer options to a const 4
     private final int NUMBER_OF_CHOICES = 4;
+    //index for data saving
     private int app_data_index;
     public Game_screen(){
         game_main_context = GameFragment.getGame_context();
@@ -52,8 +67,11 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         file_connections = new File_connections(game_main_context);
 
     }
-   private void init_game_elements(){
 
+    /**
+     * Initializes all game components
+     */
+    private void init_game_elements(){
        get_screen_button_options();
        get_screen_elements();
 
@@ -61,10 +79,18 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
        setComponent_images();
    }
+
+    /**
+     * Initializes correct/wrong answer toasts
+     */
     private void init_toasts(){
         alert_toast = new Alert_toast(context);
         success_toast = new Success_toast(context);
     }
+
+    /**
+     * Initialize buttons for answer options
+     */
     public void get_screen_button_options(){
         options = new ArrayList <Button> ();
         options.add(findViewById(R.id.opt1));
@@ -74,6 +100,9 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
     }
 
+    /**
+     * Check if question has been answered correctly previously
+     */
     private void init_game_passed(){
         sign_passed = new HashMap<String,Boolean>();
         int length = signLang.size();
@@ -81,6 +110,10 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
             sign_passed.put(signLang.get(i),file_connections.check_game_category_passed(signLang.get(i)));
         }
     }
+
+    /**
+     * Initialize HashMap to map answers to questions
+     */
     private void init_map(){
         map= new HashMap<String, String>();
         int length = signLang.size();
@@ -90,6 +123,10 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
     }
     @Override
+    /**
+     * check if all answers have been correctly answered
+     * @return categories_passed - all answers answered correctly
+     */
     public boolean check_all_categories_passed(){
         boolean categories_passed = true;
         int length = sign_passed.size();
@@ -98,10 +135,20 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         }
         return categories_passed;
     }
+
+    /**
+     * Get method for HashMap
+     * @return map
+     */
     public HashMap<String, String> getMap(){
         return map;
     }
+
     @Override
+    /**
+     * Load game screen
+     * @param savedInstanceState
+     */
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -109,6 +156,9 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
     }
 
     @Override
+    /**
+     * Resume action
+     */
     protected void onResume() {
         super.onResume();
         App_data app_data = new App_data();
@@ -119,20 +169,25 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
     }
 
     @Override
+    /**
+     * Stop action
+     */
     protected void onDestroy() {
         super.onDestroy();
         //cancel the timer when user leave the screen
         countDownTimer.cancel();
     }
 
-    //When an option(answer) is selected
+    /**
+     *  Function called when an option(answer) is selected
+     */
     public void answerSelected(View view) {
         countDownTimer.cancel();
         String answer = ((Button)view).getText().toString(); //assign var answer to option selected via String
         //If answer equals to question text (Correct answer)
         if (answer.equals(signLang.get(index))) {
 
-            if(!sign_passed.get(answer)){
+            if(!sign_passed.get(answer)){ //if question has been answered correctly for the first time
 
                 currentPoints=currentPoints+SCORE_INCREMENT;
 
@@ -150,29 +205,44 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
 
 
         }
+        //wrong option(answer) selected
         else {
             alert_toast.show_toast("Wrong Answer!",false);
-            //wrongToast.setGravity(Gravity.CENTER_VERTICAL,0,0);
 
         }
         single_question_over();
     }
+
+    /**
+     * called when no more questions left
+     * @return index exceeding (number of questions - 1)
+     */
     private boolean no_more_questions(){
         return (index > (signLang.size() - 1));
     }
+
+    /**
+     * Game Ended method
+     */
     private void end_game(){
         imageQuestion.setVisibility(View.GONE);
         timer.setVisibility(View.GONE);
         timerImage.setVisibility(View.GONE);
         countDownTimer.cancel();
         openDialog();
-
     }
+
+    /**
+     * back button pressed
+     */
     private void press_back(){
         //equal to pressing the back button
         super.onBackPressed();
     }
-    //Dialog for end game
+
+    /**
+     * Pop up end game dialog
+     */
     private void openDialog() {
         String message = "Good job! You have successfully collected:\n\n"+ currentPoints+" Points!";
 
@@ -198,6 +268,11 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         file_connections.update_score(file_connections.getScore()+getCurrentPoints());
 
     }
+
+    /**
+     * Initialize syllabus for respective game category from app data
+     * @param app_data_index
+     */
     public void init_syllabus(int app_data_index){
         this.app_data_index = app_data_index;
         Category_elements category_elements = new Category_elements();
@@ -205,15 +280,15 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         String[] all_categories = app_data.getCategories();
         signLang = category_elements.getCategory_elements().get(all_categories[app_data_index]);
 
-
         init_map();
         init_game_passed();
         Collections.shuffle(signLang);
-
-
     }
 
-    //Method for setting up questions/rounds
+    /**
+     * Generate questions
+     * @param index
+     */
     private void generateQuestions(int index) {
         String[] answers = new String[4];
         ArrayList<String> newSignLang = new ArrayList<>();
@@ -250,7 +325,9 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         newSignLang.clear();
     }
 
-    //Countdown Timer
+    /**
+     * Start countdown timer
+     */
     private void start_timer(){
         timer = findViewById(R.id.text_view_timer);
 
@@ -268,23 +345,40 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         };
         countDownTimer.start();
     }
+
+    /**
+     * Question answered
+     */
     private void single_question_over(){
         index++;
         if(no_more_questions()){
             end_game();
         }
         else {
-
             generateQuestions(index);
         }
     }
+
+    /**
+     * Get method for points
+     * @return currentPoints
+     */
     public int getCurrentPoints(){
         return currentPoints;
     }
+
+    /**
+     * Set method for toasts
+     * @param context
+     */
     public void setContext(Context context){
         this.context = context;
         init_toasts();
     }
+
+    /**
+     * Set method for game screen images
+     */
     public void setComponent_images(){
         this.imageQuestion = findViewById(R.id.imageQuestion);
         this.timerImage = findViewById(R.id.timer_image);

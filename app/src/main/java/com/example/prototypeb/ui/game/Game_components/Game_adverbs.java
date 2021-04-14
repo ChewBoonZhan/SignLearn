@@ -33,14 +33,21 @@ import java.util.Random;
 
 
 public class Game_adverbs extends Game_screen {
+    //Adverbs game context
     private Context adverbs_context;
+    //put Adverbs sign languages as string in arrays
     private ArrayList <String> signLang = new ArrayList<String>();
+    //declare app data index
     private int app_data_index = 0;
     public Game_adverbs(){
         super();
         init_syllabus(app_data_index);
     }
 
+    /**
+     * Initialize adverbs syllabus
+     * @param context
+     */
     public Game_adverbs(Context context){
         super();
         init_syllabus(app_data_index);
@@ -48,6 +55,10 @@ public class Game_adverbs extends Game_screen {
         adverbs_context = context;
     }
 
+    /**
+     * Method called upon entering Adverbs game
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -55,6 +66,9 @@ public class Game_adverbs extends Game_screen {
 
     }
 
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -62,14 +76,27 @@ public class Game_adverbs extends Game_screen {
 
 
     }
+
+    /**
+     * method is called upon clicking category if category has been unlocked
+     * @return on_unlocked_click
+     */
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
     }
 
+    /**
+     * method is called upon clicking category if category is still locked
+     * @return locked_On_click
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * Adverbs game activity displayed
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
 
         @Override
