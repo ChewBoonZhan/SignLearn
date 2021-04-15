@@ -30,14 +30,24 @@ import java.util.ArrayList;
 
 
 public class Alphabets extends Button_notification{
+    //alphabet context in Lesson
     private Context alphabets_context;
+    //constant for button
     private Button button;
+    //component for A sign
     private A_screen_components a_screen_components;
+    //component for B sign
     private B_screen_components b_screen_components;
+    //component for C sign
     private C_screen_components c_screen_components;
+    //component for Y sign
     private Y_screen_components y_screen_components;
+    //the topic in the Lesson
     private Lesson_topics lesson_topics = this;
 
+    /**
+     * Create new instance for all of the signs and its context
+     */
     public Alphabets(){
         a_screen_components = new A_screen_components();
         b_screen_components = new B_screen_components();
@@ -45,10 +55,20 @@ public class Alphabets extends Button_notification{
         y_screen_components = new Y_screen_components();
         this.alphabets_context = LessonFragment.getLesson_context();
     }
+
+    /**
+     * Initialize the alphabets context
+     * @param alphabets_context
+     */
     public Alphabets(Context alphabets_context){
         this.alphabets_context = alphabets_context;
 
     }
+
+    /**
+     * Initialize the signs for Alphabets
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +80,18 @@ public class Alphabets extends Button_notification{
         init_category_elements();
         get_noti_text();
     }
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
         set_notifi_text_visible(alphabets_context);
     }
 
-
+    /**
+     * get the notification text
+     */
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.a_notifi));
@@ -75,16 +100,19 @@ public class Alphabets extends Button_notification{
         notifi_text.add(findViewById(R.id.y_notifi));
     }
 
+    /**
+     * manipulate the button what to do
+     */
     private void set_buttons_on_click(){
-        //telling the button what to do
         //A button
         button = (Button) findViewById(R.id.a_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, a_screen_components)
@@ -96,11 +124,13 @@ public class Alphabets extends Button_notification{
         //B button
         button = (Button) findViewById(R.id.b_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
 
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, b_screen_components)
@@ -112,11 +142,12 @@ public class Alphabets extends Button_notification{
         //C button
         button = (Button) findViewById(R.id.c_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, c_screen_components)
@@ -128,11 +159,12 @@ public class Alphabets extends Button_notification{
         //Y button
         button = (Button) findViewById(R.id.y_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, y_screen_components)
@@ -143,14 +175,27 @@ public class Alphabets extends Button_notification{
         });
 
     }
+
+    /**
+     * Called when click on the topic that has been unlocked
+     * @return
+     */
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
     }
 
+    /**
+     * Called when click on the topic that is locked
+     * @return
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * called when click on unlocked topic, display the activity
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
 
         @Override
@@ -161,6 +206,9 @@ public class Alphabets extends Button_notification{
 
         }
     };
+    /**
+     * called when click on locked topic
+     */
     private View.OnClickListener locked_On_click= new View.OnClickListener() {
 
         @Override
@@ -171,6 +219,11 @@ public class Alphabets extends Button_notification{
 
         }
     };
+
+    /**
+     * get the string of the sign from data file
+     * @return
+     */
     @Override
     public String toString(){
         App_data app_data = new App_data();
@@ -178,9 +231,19 @@ public class Alphabets extends Button_notification{
 
         return categories[1];
     }
+
+    /**
+     * get the string of the model category
+     * @return
+     */
     public String get_model_category(){
         return toString().toLowerCase();
     }
+
+    /**
+     * Obtain 20 points
+     * @return
+     */
     public int get_required_score(){
         return 20;
     }

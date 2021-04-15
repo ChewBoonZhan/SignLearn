@@ -27,17 +27,26 @@ import java.util.ArrayList;
 
 
 public class Numbers extends Button_notification {
+    //numbers context in Lesson
     private Context numbers_context;
+    //constant for button
     private Button button;
+    //component for 1 sign
     private Num1_screen_components num1_screen_components;
+    //component for 2 sign
     private Num2_screen_components num2_screen_components;
+    //component for 10 sign
     private Num10_screen_components num10_screen_components;
+    //component for 3 sign
     private Num3_screen_components num3_screen_components;
+    //component for 4 sign
     private Num4_screen_components num4_screen_components;
+    //the topic in the Lesson
     private Lesson_topics lesson_topics = this;
 
-
-
+    /**
+     * Create new instance for all of the signs and its context
+     */
     public Numbers(){
         num1_screen_components = new Num1_screen_components();
         num2_screen_components = new Num2_screen_components();
@@ -46,10 +55,19 @@ public class Numbers extends Button_notification {
         num4_screen_components = new Num4_screen_components();
         this.numbers_context = LessonFragment.getLesson_context();
     }
+
+    /**
+     * Initialize the numbers context
+     * @param numbers_context
+     */
     public Numbers(Context numbers_context){
         this.numbers_context = numbers_context;
     }
 
+    /**
+     * Initialize the signs for Numbers
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +79,19 @@ public class Numbers extends Button_notification {
         init_category_elements();
         get_noti_text();
     }
+
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
         set_notifi_text_visible(numbers_context);
     }
 
-
+    /**
+     * get the notification text for Numbers signs
+     */
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.num1_notifi));
@@ -77,16 +101,19 @@ public class Numbers extends Button_notification {
         notifi_text.add(findViewById(R.id.num10_notifi));
     }
 
+    /**
+     * manipulate the button what to do
+     */
     private void set_buttons_on_click(){
-        //telling the button what to do
         //1 button
         button = (Button) findViewById(R.id.num1_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num1_screen_components)
@@ -98,11 +125,12 @@ public class Numbers extends Button_notification {
         //2 button
         button = (Button) findViewById(R.id.num2_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num2_screen_components)
@@ -113,14 +141,15 @@ public class Numbers extends Button_notification {
         });
 
 
-        //3 button
+        //10 button
         button = (Button) findViewById(R.id.num10_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num10_screen_components)
@@ -130,14 +159,15 @@ public class Numbers extends Button_notification {
             }
         });
 
-
+        // 3 button
         button = (Button) findViewById(R.id.num3_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num3_screen_components)
@@ -147,13 +177,15 @@ public class Numbers extends Button_notification {
             }
         });
 
+        //4 button
         button = (Button) findViewById(R.id.num4_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, num4_screen_components)
@@ -163,14 +195,26 @@ public class Numbers extends Button_notification {
             }
         });
     }
+    /**
+     * Called when click on the topic that has been unlocked
+     * @return
+     */
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
     }
 
+    /**
+     * Called when click on the topic that is locked
+     * @return
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * called when click on unlocked topic, display the activity
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
 
         @Override
@@ -181,6 +225,10 @@ public class Numbers extends Button_notification {
 
         }
     };
+
+    /**
+     * called when click on locked topic
+     */
     private View.OnClickListener locked_On_click= new View.OnClickListener() {
 
         @Override
@@ -191,6 +239,11 @@ public class Numbers extends Button_notification {
 
         }
     };
+
+    /**
+     * get the string of the sign from data file
+     * @return
+     */
     @Override
     public String toString(){
         App_data app_data = new App_data();
@@ -198,9 +251,19 @@ public class Numbers extends Button_notification {
 
         return categories[3];
     }
+
+    /**
+     * get the string of the model category
+     * @return
+     */
     public String get_model_category(){
         return toString().toLowerCase();
     }
+
+    /**
+     * Obtain 40 points
+     * @return
+     */
     public int get_required_score(){
         return 40;
     }

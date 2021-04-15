@@ -26,14 +26,24 @@ import java.util.ArrayList;
 
 
 public class Attachments extends Button_notification{
+    //attachment context in Lesson
     private Context attachments_context;
+    //constant for button
     private Button button;
+    //component for dislike sign
     private Dislike_screen_components dislike_screen_components;
+    //component for I love you sign
     private Iloveyou_screen_components iloveyou_screen_components;
+    //component for like sign
     private Like_screen_components like_screen_components;
+    //component for adore sign
     private Adore_screen_components adore_screen_components;
+    //the topic in the Lesson
     private Lesson_topics lesson_topics = this;
 
+    /**
+     * Create new instance for all of the signs and its context
+     */
     public Attachments(){
         dislike_screen_components = new Dislike_screen_components();
         iloveyou_screen_components = new Iloveyou_screen_components();
@@ -41,10 +51,19 @@ public class Attachments extends Button_notification{
         adore_screen_components = new Adore_screen_components();
         this.attachments_context = LessonFragment.getLesson_context();
     }
+
+    /**
+     * Initialize the attachments context
+     * @param attachments_context
+     */
     public Attachments(Context attachments_context){
         this.attachments_context = attachments_context;
     }
 
+    /**
+     * Initialize the signs for Attachments
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +75,19 @@ public class Attachments extends Button_notification{
         init_category_elements();
         get_noti_text();
     }
+
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
         set_notifi_text_visible(attachments_context);
     }
 
-
+    /**
+     * get the notification text for Attachments signs
+     */
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.like_notifi));
@@ -71,16 +96,19 @@ public class Attachments extends Button_notification{
         notifi_text.add(findViewById(R.id.adore_notifi));
     }
 
+    /**
+     * manipulate the button what to do
+     */
     private void set_buttons_on_click(){
-        //telling the button what to do
         //Like button
         button = (Button) findViewById(R.id.like_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, like_screen_components)
@@ -92,10 +120,11 @@ public class Attachments extends Button_notification{
         //Dislike button
         button = (Button) findViewById(R.id.dislike_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) { openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, dislike_screen_components)
@@ -108,10 +137,11 @@ public class Attachments extends Button_notification{
         //ILoveYou button
         button = (Button) findViewById(R.id.iloveyou_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) { openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, iloveyou_screen_components)
@@ -121,13 +151,14 @@ public class Attachments extends Button_notification{
                 );
             }
         });
-
+        //Adore button
         button = (Button) findViewById(R.id.adore_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) { openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, adore_screen_components)
@@ -138,14 +169,26 @@ public class Attachments extends Button_notification{
             }
         });
     }
+    /**
+     * Called when click on the topic that has been unlocked
+     * @return
+     */
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
     }
 
+    /**
+     * Called when click on the topic that is locked
+     * @return
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * called when click on unlocked topic, display the activity
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
 
         @Override
@@ -156,6 +199,9 @@ public class Attachments extends Button_notification{
 
         }
     };
+    /**
+     * called when click on locked topic
+     */
     private View.OnClickListener locked_On_click= new View.OnClickListener() {
 
         @Override
@@ -166,6 +212,11 @@ public class Attachments extends Button_notification{
 
         }
     };
+
+    /**
+     * get the string of the sign from data file
+     * @return
+     */
     @Override
     public String toString(){
         App_data app_data = new App_data();
@@ -173,9 +224,19 @@ public class Attachments extends Button_notification{
 
         return categories[2];
     }
+
+    /**
+     * get the string of the model category
+     * @return
+     */
     public String get_model_category(){
         return toString().toLowerCase();
     }
+
+    /**
+     * Obtain 30 points
+     * @return
+     */
     public int get_required_score(){
         return 30;
     }

@@ -35,45 +35,79 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LessonFragment extends Fragment {
-
+    //view model of the Lesson System
     private LessonViewModel lessonViewModel;
+    //link file to save data
     private File_connections file_connections;
 
+    //the context of the Lesson system
     private static Context lesson_context;
+    //button for the category
     private ArrayList <Button> category_buttons;
+    //notifications that appears on the topic buttons
     public static ArrayList <TextView> category_notifi;
+    //view that contains Lesson display elements
     private View lesson_root;
 
+    //initialize the lesson topic
     private Lesson_topics_init lesson_topics_init;
+    //initialize the category
     private Category_init category_init;
+
+    /**
+     *
+     * @param context Shows the context of Lesson
+     */
     public LessonFragment(Context context){
         this.lesson_context = context;
 
     }
+
+    /**
+     * Method is called when use goes to Lesson page
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return Initialize the view of Lesson fragment
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         lessonViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(LessonViewModel.class);
         View root = inflater.inflate(R.layout.fragment_lesson, container, false);
+        //Show all the Lesson display elements
         lesson_root = root;
 
+        //initialize the topic of Lesson
         lesson_topics_init = new Lesson_topics_init(lesson_context);
+        //initialize the file to save data
         file_connections = new File_connections(lesson_context);
 
+        //initialize the Lesson category
         category_init = new Category_init(lesson_context,lesson_topics_init);
+        //initialize the topic button
         init_category_buttons();
+        //initialize the notification
         get_screen_lesson_notifi();
+        //initialize the topic unlocked
         init_categories_according_to_unlocked();
 
 
         return root;
     }
 
+    /**
+     * called to show categories being unlocked
+     */
     @Override
     public void onResume() {
         super.onResume();
         init_lesson_learnt();
     }
+
+    /**
+     *called to initialize the notification each of the topic
+     */
     private void get_screen_lesson_notifi(){
         category_notifi = new ArrayList<TextView>();
         category_notifi.add(lesson_root.findViewById(R.id.lesson_1_notifi));
@@ -82,13 +116,22 @@ public class LessonFragment extends Fragment {
         category_notifi.add(lesson_root.findViewById(R.id.lesson_4_notifi));
         category_notifi.add(lesson_root.findViewById(R.id.lesson_5_notifi));
     }
+
+    /**
+     *called when needed to initialize any sign learned
+     */
     private void init_lesson_learnt(){
 
+        //update the data in save file
         App_data app_data = new App_data();
+        //new instance for category elements
         Category_elements category_elements = new Category_elements();
 
+        //get string class from save data of categories
         String[] categories = app_data.getCategories();
+        //length will be the length of string class before
         int length = categories.length;
+        //until i surpass length, the bar will keep rising
         for(int i = 0;i<length;i++){
             ArrayList <String> elements = category_elements.get_category_elements_testable(i);     //all_category_elements.get(categories[i]);
 
@@ -104,9 +147,11 @@ public class LessonFragment extends Fragment {
 
 
             }
+            //notification in topic button will be gone
             if(number_of_unpassed <= 0){
                 category_notifi.get(i).setVisibility(View.GONE);
             }
+            //shows the number of notification of unsuccessful sign left in topic button
             else{
                 category_notifi.get(i).setText((String)(number_of_unpassed + ""));
             }
@@ -114,9 +159,17 @@ public class LessonFragment extends Fragment {
 
         }
     }
+
+    /**
+     *called to initialize lesson button after unlocking it
+     */
     private void init_categories_according_to_unlocked(){
         category_init.init_category_button_according_to_unlocked(category_buttons,category_notifi,false);
     }
+
+    /**
+     *called to initialize the category buttons
+     */
     private void init_category_buttons(){
         category_buttons = new ArrayList<Button>();
         category_buttons.add((Button) lesson_root.findViewById(R.id.lesson1_id));
@@ -127,12 +180,20 @@ public class LessonFragment extends Fragment {
 
 
     }
+
+    /**
+     *method is called to get the array list of lesson category's notification
+     * @return
+     */
     public static ArrayList <TextView> getCategory_notifi(){
         return category_notifi;
     }
 
 
-
+    /**
+     *method is called to get the Lesson context
+     * @return
+     */
     public static Context getLesson_context(){
         return lesson_context;
     }
