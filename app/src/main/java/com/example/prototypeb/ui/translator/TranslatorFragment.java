@@ -249,7 +249,7 @@ public class TranslatorFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                request_permission();
+                ;request_permission();
             }
         });
     }

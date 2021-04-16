@@ -1,6 +1,7 @@
 package com.example.prototypeb.ui.registration;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.action.ViewActions;
@@ -89,7 +90,6 @@ public class RegistrationFragmentTest extends TestCase {
         file_connections.reset_icon();
         file_connections.reset_name();
     }
-
     @Test
     public void testInvalid_first_name() {
         test_name(true);

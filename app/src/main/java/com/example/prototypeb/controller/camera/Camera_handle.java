@@ -24,25 +24,51 @@ import com.example.prototypeb.controller.translator.Translator;
 import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
 public class Camera_handle {
+    // camera number id on the user's phone
     private int camera_num;
+
+    // boolean to check if the app is switching camera
     private boolean switching_camera_state = false;
+
+    // camera API to interact with the phone camera
     private Camera camera;
 
+    //context for camera_handle
     private Context context;
+
+    //activity for camera_handle
     private Activity activity;
+
+    //framelayout to display camera's contents
     private FrameLayout framelayout;
+
+    //handle surface properties of the camera
     private ShowCamera showcamera;
+
+    //handle translation of sign language to english text
     private Translator translator;
+
+    //text to display camera type to user
     private TextView camera_type;
+
+    //interval between translation of frames from camera to prevent lag
     private int translate_interval;
+
+    //counter to count the interval between each translation of image
     private int interval_counter;
 
+    // height of framelayout to show contents of camera
     private int frame_layout_height;
 
-
+    // constructor of handle of camera
     public Camera_handle(Context context, Activity activity, FrameLayout framelayout, TextView classify_text,TextView camera_type){
+        // set camera num to be 1, the default camera number
         camera_num = 1;
+
+        //set context of camera handle
         this.context = context;
+
+        // set textview camera_type to set text to be displayed to user.
         this.camera_type = camera_type;
         this.framelayout = framelayout;
         this.translate_interval = 3;
