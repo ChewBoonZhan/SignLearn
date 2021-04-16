@@ -26,14 +26,24 @@ import com.example.prototypeb.ui.lesson.LessonFragment;
 import java.util.ArrayList;
 
 public class Pronouns extends Button_notification{
+    //Pronouns context in Lesson
     private Context pronouns_context;
+    //constant for button
     private Button button;
+    //component for me sign
     private Me_screen_components me_screen_components;
+    //component for you sign
     private You_screen_components you_screen_components;
+    //component for we sign
     private We_screen_components we_screen_components;
+    //component for they sign
     private They_screen_components they_screen_components;
+    //the topic in the Lesson
     private Lesson_topics lesson_topics = this;
 
+    /**
+     * Create new instance for all of the signs and its context
+     */
     public Pronouns(){
 
         me_screen_components = new Me_screen_components();
@@ -42,10 +52,19 @@ public class Pronouns extends Button_notification{
         they_screen_components = new They_screen_components();
         this.pronouns_context = LessonFragment.getLesson_context();
     }
+
+    /**
+     * Initialize the pronouns context
+     * @param pronouns_context
+     */
     public Pronouns(Context pronouns_context){
         this.pronouns_context = pronouns_context;
     }
 
+    /**
+     * Initialize the signs for Numbers
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +76,21 @@ public class Pronouns extends Button_notification{
         init_category_elements();
         get_noti_text();
 
+
     }
+
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
         set_notifi_text_visible(pronouns_context);
     }
 
-
+    /**
+     * get the notification text for Pronouns signs
+     */
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.me_notifi));
@@ -73,17 +99,19 @@ public class Pronouns extends Button_notification{
         notifi_text.add(findViewById(R.id.we_notifi));
     }
 
-
+    /**
+     * manipulate the button what to do
+     */
     private void set_buttons_on_click(){
-        //telling the button what to do
         //I button
         button = (Button) findViewById(R.id.me_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, me_screen_components)
@@ -96,11 +124,12 @@ public class Pronouns extends Button_notification{
         //You button
         button = (Button) findViewById(R.id.you_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //display elements of description for the sign
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, you_screen_components)
@@ -110,13 +139,15 @@ public class Pronouns extends Button_notification{
             }
         });
 
+        // We button
         button = (Button) findViewById(R.id.we_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //display elements of description for the sign
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, we_screen_components)
@@ -128,11 +159,12 @@ public class Pronouns extends Button_notification{
 
         button = (Button) findViewById(R.id.they_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //display elements of description for the sign
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, they_screen_components)
@@ -142,14 +174,26 @@ public class Pronouns extends Button_notification{
             }
         });
     }
+    /**
+     * Called when click on the topic that has been unlocked
+     * @return
+     */
     public View.OnClickListener get_unlocked_On_click(){
 
         return on_unlocked_click;
     }
 
+    /**
+     * Called when click on the topic that is locked
+     * @return
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * called when click on unlocked topic, display the activity
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
 
         @Override
@@ -160,6 +204,10 @@ public class Pronouns extends Button_notification{
 
         }
     };
+
+    /**
+     * called when click on locked topic
+     */
     private View.OnClickListener locked_On_click= new View.OnClickListener() {
 
         @Override
@@ -170,6 +218,11 @@ public class Pronouns extends Button_notification{
 
         }
     };
+
+    /**
+     * get the string of the sign from data file
+     * @return
+     */
     @Override
     public String toString(){
         App_data app_data = new App_data();
@@ -177,9 +230,19 @@ public class Pronouns extends Button_notification{
 
         return categories[4];
     }
+
+    /**
+     * get the string of the model category
+     * @return
+     */
     public String get_model_category(){
         return toString().toLowerCase();
     }
+
+    /**
+     * Obtain 50 points
+     * @return
+     */
     public int get_required_score(){
         return 50;
     }

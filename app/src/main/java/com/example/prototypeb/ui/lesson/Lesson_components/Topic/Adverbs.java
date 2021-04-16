@@ -31,15 +31,25 @@ import java.util.ArrayList;
 
 
 public class Adverbs extends Button_notification{
+    //adverb context in Lesson
     private Context adverbs_context;
+    //constant for button
     private Button button;
+    //component for No sign
     private No_screen_components no_screen_components;
+    //component for Yes sign
     private Yes_screen_components yes_screen_components;
+    //component for Almost sign
     private Almost_screen_components almost_screen_components;
+    //component for Later sign
     private Later_screen_components later_screen_components;
 
+    //the topic in the Lesson
     private Lesson_topics lesson_topics = this;
 
+    /**
+     * Create new instance for all of the signs and its context
+     */
     public Adverbs(){
         no_screen_components = new No_screen_components();
         yes_screen_components = new Yes_screen_components();
@@ -48,11 +58,20 @@ public class Adverbs extends Button_notification{
         this.adverbs_context = LessonFragment.getLesson_context();
 
     }
+
+    /**
+     * Initialize the adverbs context
+     * @param adverbs_context
+     */
     public Adverbs(Context adverbs_context){
         this.adverbs_context = adverbs_context;
 
     }
 
+    /**
+     * Initialize the signs for Adverbs
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +88,9 @@ public class Adverbs extends Button_notification{
 
     }
 
+    /**
+     * Resume action
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -76,6 +98,9 @@ public class Adverbs extends Button_notification{
     }
 
 
+    /**
+     * get the notification text
+     */
     private void get_noti_text(){
         notifi_text = new ArrayList<TextView>();
         notifi_text.add(findViewById(R.id.yes_notifi));
@@ -84,16 +109,20 @@ public class Adverbs extends Button_notification{
         notifi_text.add(findViewById(R.id.later_notifi));
     }
 
+    /**
+     * manipulate the button what to do
+     */
     private void set_buttons_on_click(){
-        //telling the button what to do
+
         //Yes button
         button = (Button) findViewById(R.id.yes_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, yes_screen_components)
@@ -106,11 +135,12 @@ public class Adverbs extends Button_notification{
         //No button
         button = (Button) findViewById(R.id.no_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, no_screen_components)
@@ -119,14 +149,15 @@ public class Adverbs extends Button_notification{
                 );
             }
         });
-
+        //Almost button
         button = (Button) findViewById(R.id.almost_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, almost_screen_components)
@@ -135,14 +166,15 @@ public class Adverbs extends Button_notification{
                 );
             }
         });
-
+        //Later button
         button = (Button) findViewById(R.id.later_id);
         button.setOnClickListener(new View.OnClickListener() {
+            //upon clicking the button, go to openActivity
             @Override
             public void onClick(View v) {
                 openActivity();
             }
-
+            //display elements of description for the sign
             public void openActivity() {
                 startActivity(new Intent(getApplicationContext(), Lesson_screen.class)
                         .putExtra(screen_component, later_screen_components)
@@ -154,13 +186,25 @@ public class Adverbs extends Button_notification{
 
     }
 
+    /**
+     * Called when click on the topic that has been unlocked
+     * @return
+     */
     public View.OnClickListener get_unlocked_On_click(){
         return on_unlocked_click;
     }
 
+    /**
+     * Called when click on the topic that is locked
+     * @return
+     */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
     }
+
+    /**
+     * called when click on unlocked topic, display the activity
+     */
     private View.OnClickListener on_unlocked_click= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -171,6 +215,9 @@ public class Adverbs extends Button_notification{
 
         }
     };
+    /**
+     * called when click on locked topic
+     */
     private View.OnClickListener locked_On_click= new View.OnClickListener() {
 
         @Override
@@ -182,6 +229,10 @@ public class Adverbs extends Button_notification{
         }
     };
 
+    /**
+     *  get the string of the sign from data file
+     * @return
+     */
     @Override
     public String toString(){
         App_data app_data = new App_data();
@@ -190,9 +241,18 @@ public class Adverbs extends Button_notification{
         return categories[0];
     }
 
+    /**
+     * get the string of the model category
+     * @return
+     */
     public String get_model_category(){
         return toString().toLowerCase();
     }
+
+    /**
+     * Obtain 10 points
+     * @return
+     */
     public int get_required_score(){
         return 10;
     }
