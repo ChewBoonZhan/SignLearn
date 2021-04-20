@@ -42,7 +42,7 @@ public class Game_classes_init implements Category_classes {
     }
 
     /**
-     * Get method for Hash
+     * Get method for Hash of integer mapping to category components
      * @return game_classes
      */
     public HashMap<Integer,Category_components> get_classes(){

@@ -35,40 +35,67 @@ import java.util.Map;
 
 
 public class Translator {
+    /**
+     * Constructor for translator
+     * @param activity - activity to process translator in
+     * @param camera_num - camera number to preprocess some part of the images before translator start to classify
+     * @param classify_text - textview to show classified results to user
+     */
     public Translator(Activity activity,int camera_num,TextView classify_text){
         this.activity = activity;
 
         this.camera_num = camera_num;
         this.classify_text = classify_text;
     }
+
+    /**
+     * Constructor for translator
+     * @param activity - activity to process translator in
+     * @param camera_num - camera number to preprocess some part of the images before translator start to classify
+     * @param translator_verify - class to verify sign language displayed to camera
+     */
     public Translator(Activity activity, int camera_num, Translator_verify translator_verify){
         this.activity = activity;
         this.translator_verify = translator_verify;
         this.camera_num = camera_num;
 
     }
+    // class to allow user to verify sign language
     private Translator_verify translator_verify= null;
+    //activity to process translator in
     private Activity activity;
+
+    //camera number to allow preprocess of image based on front or back camera
     private int camera_num;
 
+    // string to show classified category based on sign language showned to camera
     private String classify_category;
 
+    // tensor image to be sent to TFLite ro preprocess
     private TensorImage inputImageBuffer;
+    // size of the width of image
     private  int imageSizeX;
+    //sise of the height of the image
     private  int imageSizeY;
-    private static final float IMAGE_MEAN = 0.0f;
-    private static final float IMAGE_STD = 1.0f;
-    private static final float PROBABILITY_MEAN = 0.0f;
-    private static final float PROBABILITY_STD = 255.0f;
+
+    // final probability to determine associated text to sign language showned to camera
+    private final float IMAGE_MEAN = 0.0f;
+    private final float IMAGE_STD = 1.0f;
+    private final float PROBABILITY_MEAN = 0.0f;
+    private final float PROBABILITY_STD = 255.0f;
+
+    // TFLite API interpreter, and helper functions
     protected Interpreter tflite;
     private TensorBuffer outputProbabilityBuffer;
     private TensorProcessor probabilityProcessor;
+
+    // textview to show classified text to user
     private TextView classify_text = null;
 
     /**
      * This function resizes the image, and returns it as a tensor image
      * @param bitmap - bitmap from the camera
-     * @return
+     * @return TensorImage - tensor image processed and ready to be loaded into TFLite
      */
     private TensorImage loadImage(final Bitmap bitmap) {
         // Loads bitmap into a TensorImage.
@@ -93,7 +120,8 @@ public class Translator {
     }
 
     /**
-     * Load the model into tflite
+     * Load the model into tflite based on the input classify category
+     * @param classify_category - classify category to load the category into the tflite model
      */
     public void load_model_tflite(String classify_category){
 
@@ -101,7 +129,7 @@ public class Translator {
         this.classify_category = classify_category;
 
         try{
-            //initializing the intepretor
+            //initializing the intepretor and loading the new category into the model
             tflite=new Interpreter(loadmodelfile(activity,classify_category));   //get the activity from translator_fragment
         }catch (Exception e) {
             e.printStackTrace();
@@ -109,15 +137,17 @@ public class Translator {
 
     }
     /**
-     * Loads the mode, and return it as a map byte buffer
-     * @param activity
-     * @param classify_category - category the translator needs to classify i n
-     * @return
+     * Loads the model, and return it as a map byte buffer
+     * @param activity - activity to process translator in
+     * @param classify_category - category the translator needs to classify in
+     * @return MappedByteBuffer - model converted to mappedbytebuffer to be loaded as a model into TFLite API
      * @throws IOException
      */
     private MappedByteBuffer loadmodelfile(Activity activity,String classify_category) throws IOException {
+        // get the actual file name based on the classify category
         String filename = classify_category + "/" + classify_category + "_" + "model.tflite";
 
+        //load the file
         AssetFileDescriptor fileDescriptor=activity.getAssets().openFd(filename);
         //open the tflite file
         FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
@@ -125,15 +155,22 @@ public class Translator {
         long startoffset = fileDescriptor.getStartOffset();
         long declaredLength=fileDescriptor.getDeclaredLength();
         return fileChannel.map(FileChannel.MapMode.READ_ONLY,startoffset,declaredLength);
-        //it returns the model as a map byte buffer
+        //it returns the model as a map byte buffer to be loaded into translator
     }
+
+    /**
+     * this function allows image to be start to be classified into text
+     * @param bitmap_image - image that needs to be classified into text
+     */
     public void start_clasify(Bitmap bitmap_image){
         int imageTensorIndex = 0;
         int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
+
         //getting the input shape into the model
         imageSizeY = imageShape[1];
         imageSizeX = imageShape[2];
         DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
+
         // trying to get the type of the model input
 
         int probabilityTensorIndex = 0;
@@ -153,21 +190,28 @@ public class Translator {
         //convert the bitmap into a tensorimage
         inputImageBuffer = loadImage(input_to_tensor);
 
-        tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
         //this gives the input into the mode, and get the result of the output
+        tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
 
+        // get the string classified from the input image into tflite
         String classify_result_text = set_classify_result();
+
+        //if there is no textview to show the classified text in.
         if(classify_text == null){
+            //tell the translator_verify that the text has been updated
             translator_verify.text_changed(classify_result_text);
         }
         else{
-            classify_text.setText(classify_result_text);   //this sets the text for it
+            //set the text of textview to display classified text to user
+            classify_text.setText(classify_result_text);
         }
     }
 
     private String set_classify_result(){
         //get classify_category from translator
         String classify_result_text = "";
+
+        //get the label txt to get associated label to the number
         String filepath = classify_category + "/" + classify_category + "_" + "labels.txt";
         List<String> labels = new ArrayList<String>();
         try{
@@ -175,26 +219,35 @@ public class Translator {
         }catch (Exception e){
             e.printStackTrace();
         }
+        //getting the labelled probability in float for each label of the translator
         Map<String, Float> labeledProbability =
                 new TensorLabel(labels, probabilityProcessor.process(outputProbabilityBuffer))
                         .getMapWithFloatValue();
-        //now we have the labelled probability in float
 
+        //finding the max of the probability of labels. The one with the highest label is the
+        //label for the sign language input into the model
         float maxValueInMap =(Collections.max(labeledProbability.values()));
-        //finding the max of the probability
 
 
+        //finding the value of each element in the label of the syllabys
+        // if the index of the value is the same as the index of the max value, it is the label for the
+        //sign language input into model
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
                 classify_result_text = (entry.getKey());   //this sets the text for it
             }
         }
+        // text assocaited to the sign language is returned.
         return classify_result_text;
-        //note that the model needs to be quantized, based on latest testings
+
     }
 
+    /**
+     *
+     * @param bitmap_image - bitmap image to be processed
+     * @return Bitmap - output of image after image is processed
+     */
     private Bitmap rotate_for_tensor(Bitmap bitmap_image){
-        //get camera_num from translator
 
         int rotation_angle = 0;
         Bitmap scaledBitmap;
@@ -205,20 +258,25 @@ public class Translator {
             rotation_angle = 270;
         }
         else{
+            //front camera
             rotation_angle = 90;
         }
 
         matrix = new Matrix();
-
+        //rotate according to the angle set based on the camera number
         matrix.postRotate(rotation_angle);
 
         scaledBitmap = Bitmap.createScaledBitmap(bitmap_image, bitmap_image.getWidth(), bitmap_image.getHeight(), true);
         rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
 
-
+        //bitmap after being rotated is returned
         return rotatedBitmap;
     }
 
+    /**
+     * Returns the normalized OP after postprocessing
+     * @return TensorOperator
+     */
     private TensorOperator getPostprocessNormalizeOp(){
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
     }
@@ -226,7 +284,5 @@ public class Translator {
     private TensorOperator getPreprocessNormalizeOp() {
         return new NormalizeOp(IMAGE_MEAN, IMAGE_STD);
     }
-    public void setClassify_category(String classify_category) {
-        this.classify_category = classify_category;
-    }
+
 }
