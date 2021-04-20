@@ -8,7 +8,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.androidx.annotation.NonNull;
 
 import com.example.prototypeb.ui.translator.TranslatorFragment;
 
