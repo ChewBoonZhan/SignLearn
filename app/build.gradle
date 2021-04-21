@@ -40,6 +40,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.0.0-rc02'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.0.0'
+    implementation "androidx.annotation:annotation:1.2.0"
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     compile 'com.android.support:multidex:1.0.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
