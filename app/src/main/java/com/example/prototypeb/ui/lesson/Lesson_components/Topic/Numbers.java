@@ -197,7 +197,7 @@ public class Numbers extends Button_notification {
     }
     /**
      * Called when click on the topic that has been unlocked
-     * @return
+     * @return unlocked_on_click - event that occurs during on click
      */
     public View.OnClickListener get_unlocked_On_click(){
 
@@ -206,7 +206,7 @@ public class Numbers extends Button_notification {
 
     /**
      * Called when click on the topic that is locked
-     * @return
+     * @return  locked_on_click - event that occur during on click
      */
     public View.OnClickListener get_locked_On_click(){
         return locked_On_click;
@@ -242,7 +242,7 @@ public class Numbers extends Button_notification {
 
     /**
      * get the string of the sign from data file
-     * @return
+     * @return category - string that represents the current category
      */
     @Override
     public String toString(){
@@ -254,15 +254,15 @@ public class Numbers extends Button_notification {
 
     /**
      * get the string of the model category
-     * @return
+     * @return model_category - string to represent model to be loaded in to tflite
      */
     public String get_model_category(){
         return toString().toLowerCase();
     }
 
     /**
-     * Obtain 40 points
-     * @return
+     *
+     * @return score_required- score required to unlock the category
      */
     public int get_required_score(){
         return 40;

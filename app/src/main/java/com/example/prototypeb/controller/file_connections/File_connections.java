@@ -260,7 +260,7 @@ public class File_connections {
     /**
      * Check if a syllabus of lesson is learnt
      * @param lesson_key - lesson key to check if the syllabus
-     * @return
+     * @return lesson_learnt - boolean to show if the syllabus is learnt or not
      */
     public boolean check_lesson_learnt(String lesson_key){
         //convert the lesson key to lowercase before processing

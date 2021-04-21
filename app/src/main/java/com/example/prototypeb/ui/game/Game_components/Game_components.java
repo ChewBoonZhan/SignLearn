@@ -21,7 +21,7 @@ public interface Game_components extends Category_components {
     OnClickListener locked_On_click = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            Alert_toast alert_toast = new Alert_toast(v.getContext(),"⚠️Locked\n\nPlease purchase Lessons with coins to unlock the game for this category!");
+            Alert_toast alert_toast = new Alert_toast(v.getContext(),"Locked! \n\nPlease purchase Lessons with coins to unlock the game for this category!");
             alert_toast.show_toast();
         }
     };

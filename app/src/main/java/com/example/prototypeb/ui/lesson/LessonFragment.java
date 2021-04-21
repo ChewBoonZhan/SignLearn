@@ -183,7 +183,7 @@ public class LessonFragment extends Fragment {
 
     /**
      *method is called to get the array list of lesson category's notification
-     * @return
+     * @return category_notifi - notification for lesson screen
      */
     public static ArrayList <TextView> getCategory_notifi(){
         return category_notifi;
@@ -192,7 +192,7 @@ public class LessonFragment extends Fragment {
 
     /**
      *method is called to get the Lesson context
-     * @return
+     * @return context  - context of lesson screen
      */
     public static Context getLesson_context(){
         return lesson_context;
