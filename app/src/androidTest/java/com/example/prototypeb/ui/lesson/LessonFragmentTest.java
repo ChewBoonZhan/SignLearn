@@ -236,8 +236,10 @@ public class LessonFragmentTest extends TestCase {
             onView(withId(R.id.back_button))
                     .check(matches(isDisplayed()))
                     .perform(forceClick());
-            
 
+            // make sure user is in lesson_screen
+            onView(withId(R.id.lesson_fragment_grid_layout))
+                    .check(matches(isDisplayed()));
         }
     }
 

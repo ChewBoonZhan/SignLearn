@@ -3,6 +3,7 @@ package com.example.prototypeb.ui.lesson.Lesson_components.Topic;
 import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -19,9 +20,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static com.example.prototypeb.custom_matcher.matcher.View_tests.forceClick;
 
@@ -37,6 +41,8 @@ public class AdverbsTest extends TestCase {
     private App_data app_data;
     private String[] categories;
 
+
+
     @Before
     public void setUp() throws Exception {
         context = ApplicationProvider.getApplicationContext();
@@ -47,7 +53,7 @@ public class AdverbsTest extends TestCase {
     }
 
     @Test
-    public void test_back_button() {
+    public void check_category_notifi() {
         // unlock category
         file_connections.unlock_category(categories[0]);
 
@@ -66,9 +72,20 @@ public class AdverbsTest extends TestCase {
                 .check(matches(isDisplayed()))
                 .perform(forceClick());
 
+        onView(withId(R.id.yes_notifi))
+                .check(matches(isDisplayed()));
 
+        onView(withId(R.id.no_notifi))
+                .check(matches(isDisplayed()));
+
+        onView(withId(R.id.almost_notifi))
+                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+
+        onView(withId(R.id.later_notifi))
+                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
 
 
     }
+
 
 }
