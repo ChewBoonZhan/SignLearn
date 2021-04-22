@@ -128,7 +128,31 @@ public class File_connectionsTest extends TestCase {
         //resetting such that game category is locked and not passed
         file_connections.set_game_category_not_passed(game_category);
     }
+    public void testSave_default_category_unlock_in_file(){
+        App_data app_data = new App_data();
+        String[] all_categories = app_data.getCategories();
 
+        int length = all_categories.length;
+
+        // randomly unlock and lock categories
+        file_connections.unlock_category(all_categories[0]);
+        file_connections.lock_category(all_categories[1]);
+        file_connections.unlock_category(all_categories[2]);
+        file_connections.lock_category(all_categories[3]);
+        file_connections.unlock_category(all_categories[4]);
+
+        // save default unlocked category in the file
+        file_connections.save_default_category_unlock_in_file();
+
+        // check if the category is unlocked in correct manner
+        // first category is unlocked by default
+        assertEquals(file_connections.is_category_unlocked(all_categories[0]),true);
+        for (int i = 1;i<length;i++){
+            // other category is locked by default
+            assertEquals(file_connections.is_category_unlocked(all_categories[i]),false);
+        }
+
+    }
     public void testSet_game_category_passed(){
         App_data app_data = new App_data();
         String[] all_categories = app_data.getCategories();

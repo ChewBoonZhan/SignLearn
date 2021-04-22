@@ -113,7 +113,7 @@ public class File_connections {
         boolean init_aldy = sharedPref.getBoolean(file_connection_key.getComplete_initial_init(),false);
         if(!init_aldy){
             //data are not initialized yet
-            save_category_in_file();
+            save_default_category_unlock_in_file();
             //save_lesson_not_scored_in_file();
             save_other_data_in_file();
 
@@ -193,9 +193,9 @@ public class File_connections {
     }
 
     /**
-     * This function sets such that all the other categories are
+     * This function sets such that all the other categories are false, except the first one
      */
-    private void save_category_in_file(){
+    public void save_default_category_unlock_in_file(){
         // get categories of sign language
         String[] categories = app_data.getCategories();
 
@@ -207,6 +207,9 @@ public class File_connections {
 
             editor.putBoolean(categories[i],false);
         }
+
+        //apply to commit the user icon to the file
+        editor.apply();
     }
 
     /**
