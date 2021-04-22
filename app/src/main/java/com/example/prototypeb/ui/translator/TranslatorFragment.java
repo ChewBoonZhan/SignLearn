@@ -95,16 +95,6 @@ public class TranslatorFragment extends Fragment {
     private Translator_categories translator_categories;
 
     /**
-     * constructor for TranslatorFragment
-     * @param activity - activity of the fragment
-     * @param context - context of the fragment
-     */
-    public TranslatorFragment(Activity activity,Context context){
-        this.activity_here = activity;
-        this.context_here = context;
-    }
-
-    /**
      * This method is called when the view is created for the first time, or each time user comes to "translator" winndow
      * @param inflater
      * @param container
@@ -202,6 +192,17 @@ public class TranslatorFragment extends Fragment {
     }
 
     /**
+     * constructor for TranslatorFragment
+     * @param activity - activity of the fragment
+     * @param context - context of the fragment
+     */
+    public TranslatorFragment(Activity activity,Context context){
+        this.activity_here = activity;
+        this.context_here = context;
+    }
+
+
+    /**
      * This method gets all components from the user's view
      *
      */
@@ -292,48 +293,6 @@ public class TranslatorFragment extends Fragment {
     }
 
     /**
-     * request for permission from user using a thread by calling request_permission_thread
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void request_permission() {
-        request_permission_thread();
-
-    }
-
-    /**
-     * request for camera permission from user.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void request_permission_thread() {
-        requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
-    }
-
-
-    /**
-     * this function is called when user has either clicked allow or deny on the user permission
-     * for the user's cameras
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull String[] permissions, @androidx.annotation.NonNull int[] grantResults) {
-
-
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // if the user has granted permission
-
-                permission_granted(false);
-            } else {
-                //if the user has not granted camera permission
-                permission_not_granted(true);
-            }
-        }
-    }
-
-    /**
      * If the camera permission is granted, it will start the camera and start to classify hand signs
      * if the camera permission was recently granted by user, a toast will be shown
      * @param permission_initially_granted - boolean for if the camera permission was initially granted or not
@@ -380,6 +339,50 @@ public class TranslatorFragment extends Fragment {
         show_translator_elements(false);
 
     }
+
+    /**
+     * request for permission from user using a thread by calling request_permission_thread
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void request_permission() {
+        request_permission_thread();
+
+    }
+
+    /**
+     * request for camera permission from user.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void request_permission_thread() {
+        requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+    }
+
+
+    /**
+     * this function is called when user has either clicked allow or deny on the user permission
+     * for the user's cameras
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @androidx.annotation.NonNull String[] permissions, @androidx.annotation.NonNull int[] grantResults) {
+
+
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // if the user has granted permission
+
+                permission_granted(false);
+            } else {
+                //if the user has not granted camera permission
+                permission_not_granted(true);
+            }
+        }
+    }
+
+
 
     /**
      * this function controls the visibility of translator elements, such as switch camera button.
