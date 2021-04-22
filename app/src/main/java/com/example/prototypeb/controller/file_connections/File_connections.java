@@ -157,6 +157,19 @@ public class File_connections {
      * @param score - updated score to be saved in the file
      */
     public void update_score(int score){
+        // update score in file connection
+        update_score_file_only(score);
+
+        //update the score on the UI of the screen to display the correct score
+        new Show_Score().update_points(this);
+
+    }
+
+    /**
+     * Updates the score in the user's file connection
+     * @param score - new score acquired by user.
+     */
+    public void update_score_file_only(int score){
         // get editor to edit the file
         editor = sharedPref.edit();
 
@@ -165,10 +178,6 @@ public class File_connections {
 
         //apply to commit the user icon to the file
         editor.apply();
-
-        //update the score on the UI of the screen to display the correct score
-        new Show_Score().update_points(this);
-
     }
 
     /**

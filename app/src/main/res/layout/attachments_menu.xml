@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/attachments_menu_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -30,10 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/like_id"
@@ -49,6 +50,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/like_notifi"
                     android:layout_width="wrap_content"
@@ -68,10 +70,10 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/dislike_id"
@@ -108,10 +110,10 @@
                     app:layout_constraintTop_toTopOf="@+id/dislike_id" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/iloveyou_id"
@@ -148,10 +150,10 @@
                     app:layout_constraintTop_toTopOf="@+id/iloveyou_id" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/adore_id"
@@ -169,6 +171,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/adore_notifi"
                     android:layout_width="wrap_content"
@@ -185,7 +188,6 @@
                     android:translationZ="10sp"
                     app:layout_constraintEnd_toEndOf="@+id/adore_id"
                     app:layout_constraintTop_toTopOf="@+id/adore_id" />
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

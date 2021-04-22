@@ -8,6 +8,7 @@
     tools:context=".ui.lesson.LessonFragment">
 
     <ScrollView
+        android:id="@+id/lesson_fragment_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
@@ -22,6 +23,7 @@
             android:orientation="vertical">
 
             <GridLayout
+                android:id="@+id/lesson_fragment_grid_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnCount="2"

@@ -35,14 +35,7 @@ public class File_connectionsTest extends TestCase {
 
     @Before
     public void setUp() throws Exception {
-        /*
-        ActivityScenario activity = mActivityRule.getScenario();
-        activity.onActivity(activity1 -> {
-            file_connections = new File_connections(activity1);
 
-        });
-        */
-        //waitFor(activity_here::hasWindowFocus);
         context = ApplicationProvider.getApplicationContext();
         file_connections = new File_connections(context);
     }
@@ -103,7 +96,12 @@ public class File_connectionsTest extends TestCase {
         file_connections.reset_icon();
 
     }
-
+    public void testUpdate_score_file_only(){
+        int score = 100;
+        file_connections.update_score(score);
+        assertEquals(file_connections.getScore(),score);
+        file_connections.reset_score();
+    }
 
 
     public void testUpdate_score() {
