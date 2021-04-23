@@ -7,9 +7,11 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.rule.GrantPermissionRule;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.ui.home.HomeFragment;
 
@@ -20,13 +22,17 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static android.provider.Settings.Global.getString;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.example.prototypeb.custom_matcher.matcher.View_tests.forceClick;
 
 @RunWith(AndroidJUnit4.class)
@@ -36,11 +42,23 @@ public class AdverbsTest extends TestCase {
     @Rule
     public ActivityScenarioRule<HomeFragment> activityRule
             = new ActivityScenarioRule<>(HomeFragment.class);
+
+    //requires camera permission
+    @Rule
+    public GrantPermissionRule mGrantPermissionRule =
+            GrantPermissionRule.grant(
+                    "android.permission.CAMERA");
     private Context context;
     private File_connections file_connections;
     private App_data app_data;
     private String[] categories;
-
+    private ArrayList <Integer> lesson_title;
+    private ArrayList <Integer> lesson_description;
+    private int category_syllabus_index = 0;
+    private ArrayList <Integer> translator_can_verify_id;
+    private ArrayList <Integer> translator_cannot_verify_id;
+    private ArrayList <Integer> translator_can_verify_notifi;
+    private ArrayList <Integer> translator_cannot_verify_notifi;
 
 
     @Before
@@ -50,10 +68,18 @@ public class AdverbsTest extends TestCase {
         app_data = new App_data();
         categories = app_data.getCategories();
 
+
     }
 
     @Test
     public void check_category_notifi() {
+        init_translator_can_verify_id();
+        init_translator_cannot_verify_id();
+        init_translator_can_verify_notifi();
+        init_translator_cannot_verify_notifi();
+        init_lesson_topics();
+        init_lesson_description();
+
         // unlock category
         file_connections.unlock_category(categories[0]);
 
@@ -72,18 +98,214 @@ public class AdverbsTest extends TestCase {
                 .check(matches(isDisplayed()))
                 .perform(forceClick());
 
-        onView(withId(R.id.yes_notifi))
-                .check(matches(isDisplayed()));
+        int length = translator_can_verify_notifi.size();
+        for(int i = 0;i<length;i++){
+            onView(withId(translator_can_verify_notifi.get(i)))
+                    .check(matches(isDisplayed()));
+        }
 
-        onView(withId(R.id.no_notifi))
-                .check(matches(isDisplayed()));
+        length = translator_cannot_verify_notifi.size();
+        for (int i = 0;i<length;i++){
+            onView(withId(translator_cannot_verify_notifi.get(i)))
+                    .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+        }
 
-        onView(withId(R.id.almost_notifi))
-                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+        length = translator_can_verify_id.size();
+        for(int i = 0;i<length;i++){
+            onView(withId(translator_can_verify_id.get(i)))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
 
-        onView(withId(R.id.later_notifi))
-                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+            // check that user is not on adverbs_menu
+            onView(withId(R.id.adverbs_menu_scrollview))
+                    .check(doesNotExist());
 
+            // check that user is in lesson_info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(matches(isDisplayed()));
+
+            // check that text on lesson_screen is in accordance with the syllabus clicked
+            onView(withId(R.id.lesson_text_title))
+                    .check(matches(withText(context.getString(lesson_title.get(category_syllabus_index)))));
+
+            // check that text on description screen is in accordance to syllabus
+            onView(withId(R.id.lesson_info_defcontent))
+                    .check(matches(withText(context.getString(lesson_description.get(category_syllabus_index)))));
+
+            category_syllabus_index++;
+
+            // try clicking on check, to checck if user will go to new screen
+            onView(withId(R.id.check_translator_info_lesson))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is not on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(doesNotExist());
+
+            // check if user is on translator screen
+            onView(withId(R.id.translator_lesson_verify_constraint))
+                    .check(matches(isDisplayed()));
+
+            //make sure user is on front camera
+            onView(withId(R.id.camera_type_verify))
+                    .check(matches(withText("Front Camera")));
+
+            // click to switch camera
+            onView(withId(R.id.switch_camera_verify_lesson))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // make sure user is on back camera
+            onView(withId(R.id.camera_type_verify))
+                    .check(matches(withText("Back Camera")));
+
+            // press back, and make sure it goes back to lesson info
+            onView(withId(R.id.back_button))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(matches(isDisplayed()));
+
+            // check if user is not on translator screen
+            onView(withId(R.id.translator_lesson_verify_constraint))
+                    .check(doesNotExist());
+
+
+            // press back, and make sure it goes back to all syllabus
+            onView(withId(R.id.back_button))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is not on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(doesNotExist());
+
+            // check user is on syllabus screen
+            onView(withId(R.id.adverbs_menu_scrollview))
+                    .check(matches(isDisplayed()));
+
+        }
+
+        length = translator_cannot_verify_id.size();
+        for(int i = 0;i<length;i++){
+            onView(withId(translator_can_verify_id.get(i)))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check that user is not on adverbs_menu
+            onView(withId(R.id.adverbs_menu_scrollview))
+                    .check(doesNotExist());
+
+            // check that user is in lesson_info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(matches(isDisplayed()));
+
+            // check that text on lesson_screen is in accordance with the syllabus clicked
+            onView(withId(R.id.lesson_text_title))
+                    .check(matches(withText(context.getString(lesson_title.get(category_syllabus_index)))));
+
+            // check that text on description screen is in accordance to syllabus
+            onView(withId(R.id.lesson_info_defcontent))
+                    .check(matches(withText(context.getString(lesson_description.get(category_syllabus_index)))));
+
+            category_syllabus_index++;
+
+            // try clicking on check, to checck if user will go to new screen
+            onView(withId(R.id.check_translator_info_lesson))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is not on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(doesNotExist());
+
+            // check if user is on translator screen
+            onView(withId(R.id.translator_lesson_verify_constraint))
+                    .check(matches(isDisplayed()));
+
+            //make sure user is on front camera
+            onView(withId(R.id.camera_type_verify))
+                    .check(matches(withText("Front Camera")));
+
+            // click to switch camera
+            onView(withId(R.id.switch_camera_verify_lesson))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // make sure user is on back camera
+            onView(withId(R.id.camera_type_verify))
+                    .check(matches(withText("Back Camera")));
+
+            // press back, and make sure it goes back to lesson info
+            onView(withId(R.id.back_button))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(matches(isDisplayed()));
+
+            // check if user is not on translator screen
+            onView(withId(R.id.translator_lesson_verify_constraint))
+                    .check(doesNotExist());
+
+
+            // press back, and make sure it goes back to all syllabus
+            onView(withId(R.id.back_button))
+                    .check(matches(isDisplayed()))
+                    .perform(forceClick());
+
+            // check user is not on lesson info screen
+            onView(withId(R.id.lesson_info_constraint))
+                    .check(doesNotExist());
+
+            // check user is on syllabus screen
+            onView(withId(R.id.adverbs_menu_scrollview))
+                    .check(matches(isDisplayed()));
+
+        }
+
+
+
+    }
+    private void init_translator_can_verify_id(){
+        translator_can_verify_id = new ArrayList<Integer>();
+        translator_can_verify_id.add(R.id.yes_id);
+        translator_can_verify_id.add(R.id.no_id);
+
+    }
+    private void init_translator_cannot_verify_id(){
+        translator_cannot_verify_id = new ArrayList<Integer>();
+        translator_cannot_verify_id.add(R.id.almost_id);
+        translator_cannot_verify_id.add(R.id.later_id);
+
+    }
+    private void init_translator_can_verify_notifi(){
+        translator_can_verify_notifi = new ArrayList<Integer>();
+        translator_can_verify_notifi.add(R.id.yes_notifi);
+        translator_can_verify_notifi.add(R.id.no_notifi);
+    }
+    private void init_translator_cannot_verify_notifi(){
+        translator_cannot_verify_notifi = new ArrayList<Integer>();
+        translator_cannot_verify_notifi.add(R.id.almost_notifi);
+        translator_cannot_verify_notifi.add(R.id.later_notifi);
+    }
+    private void init_lesson_topics(){
+        lesson_title = new ArrayList<Integer>();
+        lesson_title.add(R.string.yes_title);
+        lesson_title.add(R.string.no_title);
+        lesson_title.add(R.string.almost_title);
+        lesson_title.add(R.string.later_title);
+
+    }private void init_lesson_description(){
+        lesson_description = new ArrayList<Integer>();
+        lesson_description.add(R.string.yes_content);
+        lesson_description.add(R.string.no_content);
+        lesson_description.add(R.string.almost_content);
+        lesson_description.add(R.string.later_content);
 
     }
 
