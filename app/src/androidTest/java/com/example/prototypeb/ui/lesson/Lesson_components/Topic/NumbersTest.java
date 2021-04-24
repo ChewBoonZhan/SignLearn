@@ -38,7 +38,7 @@ import static com.example.prototypeb.custom_matcher.matcher.View_tests.forceClic
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class AlphabetsTest extends TestCase {
+public class NumbersTest extends TestCase {
     //uses home fragment class
     @Rule
     public ActivityScenarioRule<HomeFragment> activityRule
@@ -53,7 +53,7 @@ public class AlphabetsTest extends TestCase {
     private File_connections file_connections;
     private App_data app_data;
     private String[] categories;
-    private ArrayList <Integer> lesson_title;
+    private ArrayList<Integer> lesson_title;
     private ArrayList <Integer> lesson_description;
     private int category_syllabus_index = 0;
     private ArrayList <Integer> translator_can_verify_id;
@@ -63,7 +63,7 @@ public class AlphabetsTest extends TestCase {
     private ArrayList <Integer> category_lesson_button;
     private ArrayList <Integer> category_scrollview;
     private ArrayList <String> translator_label;
-    private final int category_index = 1;
+    private final int category_index = 3;
 
     @Before
     public void setUp() throws Exception {
@@ -298,42 +298,48 @@ public class AlphabetsTest extends TestCase {
     }
     private void init_translator_can_verify_id(){
         translator_can_verify_id = new ArrayList<Integer>();
-        translator_can_verify_id.add(R.id.a_id);
-        translator_can_verify_id.add(R.id.b_id);
-        translator_can_verify_id.add(R.id.c_id);
-        translator_can_verify_id.add(R.id.y_id);
+        translator_can_verify_id.add(R.id.num1_id);
+        translator_can_verify_id.add(R.id.num2_id);
+
+
 
 
     }
     private void init_translator_cannot_verify_id(){
         translator_cannot_verify_id = new ArrayList<Integer>();
-
+        translator_cannot_verify_id.add(R.id.num3_id);
+        translator_cannot_verify_id.add(R.id.num4_id);
+        translator_cannot_verify_id.add(R.id.num10_id);
 
     }
     private void init_translator_can_verify_notifi(){
         translator_can_verify_notifi = new ArrayList<Integer>();
-        translator_can_verify_notifi.add(R.id.a_notifi);
-        translator_can_verify_notifi.add(R.id.b_notifi);
-        translator_can_verify_notifi.add(R.id.c_notifi);
-        translator_can_verify_notifi.add(R.id.y_notifi);
+        translator_can_verify_notifi.add(R.id.num1_notifi);
+        translator_can_verify_notifi.add(R.id.num2_notifi);
+
+
     }
     private void init_translator_cannot_verify_notifi(){
         translator_cannot_verify_notifi = new ArrayList<Integer>();
-
+        translator_cannot_verify_notifi.add(R.id.num3_notifi);
+        translator_cannot_verify_notifi.add(R.id.num4_notifi);
+        translator_cannot_verify_notifi.add(R.id.num10_notifi);
     }
     private void init_lesson_topics(){
         lesson_title = new ArrayList<Integer>();
-        lesson_title.add(R.string.a_title);
-        lesson_title.add(R.string.b_title);
-        lesson_title.add(R.string.c_title);
-        lesson_title.add(R.string.y_title);
+        lesson_title.add(R.string.num1_title);
+        lesson_title.add(R.string.num2_title);
+        lesson_title.add(R.string.num3_title);
+        lesson_title.add(R.string.num4_title);
+        lesson_title.add(R.string.num10_title);
 
     }private void init_lesson_description(){
         lesson_description = new ArrayList<Integer>();
-        lesson_description.add(R.string.a_content);
-        lesson_description.add(R.string.b_content);
-        lesson_description.add(R.string.c_content);
-        lesson_description.add(R.string.y_content);
+        lesson_description.add(R.string.num1_content);
+        lesson_description.add(R.string.num2_content);
+        lesson_description.add(R.string.num3_content);
+        lesson_description.add(R.string.num4_content);
+        lesson_description.add(R.string.num10_content);
 
     }
     private void init_translator_label(){
@@ -374,6 +380,4 @@ public class AlphabetsTest extends TestCase {
         }
 
     }
-
-
 }

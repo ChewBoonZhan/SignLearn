@@ -80,10 +80,25 @@ public class File_connections {
         editor.apply();
     }
 
+    /**
+     * Sets that a syllabus is learnt by user, and have verified using translator
+     * @param syllabus - syllabus learnt by user.
+     */
     public void syllabus_learnt(String syllabus){
         editor = sharedPref.edit();
         //set that the syllabus is learnt
         editor.putBoolean(syllabus,true);
+        editor.apply();
+    }
+
+    /**
+     * Sets that a syllabus is not learnt by user, and have not verified using translator
+     * @param syllabus - syllabus not learnt by user.
+     */
+    public void syllabus_not_learnt(String syllabus){
+        editor = sharedPref.edit();
+        //set that the syllabus is learnt
+        editor.putBoolean(syllabus,false);
         editor.apply();
     }
 

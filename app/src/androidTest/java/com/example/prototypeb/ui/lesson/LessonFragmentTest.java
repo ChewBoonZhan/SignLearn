@@ -11,6 +11,8 @@ import androidx.test.filters.LargeTest;
 
 import com.example.prototypeb.R;
 import com.example.prototypeb.controller.app_data.App_data;
+import com.example.prototypeb.controller.app_data.Category_elements;
+import com.example.prototypeb.controller.file_connections.File_connection_key;
 import com.example.prototypeb.controller.file_connections.File_connections;
 import com.example.prototypeb.ui.home.HomeFragment;
 
@@ -222,12 +224,12 @@ public class LessonFragmentTest extends TestCase {
                     .check(matches(isDisplayed()))
                     .perform(forceClick());
 
-            // make sure user is still in lesson_screen
+            // make sure user is not in lesson_screen
             onView(withId(R.id.lesson_fragment_grid_layout))
                     .check(doesNotExist());
 
 
-            // make sure user is not in lesson menu screen
+            // make sure user is in lesson menu screen
             onView(withId(lesson_menu_collection.get(i)))
                     .check(matches(isDisplayed()));
 
@@ -241,8 +243,65 @@ public class LessonFragmentTest extends TestCase {
             onView(withId(R.id.lesson_fragment_grid_layout))
                     .check(matches(isDisplayed()));
         }
+
+
+        // test notifi_text when syllabus is learnt
+        test_notifi_text();
     }
 
+    private void test_notifi_text(){
+        Category_elements category_elements = new Category_elements();
+        File_connection_key file_connection_key = new File_connection_key();
+        App_data app_data = new App_data();
+        String[] categories = app_data.getCategories();
+        int length = categories.length;
+        for(int i = 0;i<length;i++){
+            ArrayList <String> syllabus_elements = category_elements.get_category_elements_testable(i);
+
+            int number_of_syllabus = syllabus_elements.size();
+
+            int number_of_unlearnt =number_of_syllabus;
+
+            // make sure the initial text is the same as number of unlearnt categories.
+            onView(withId(lesson_notifi_collection.get(i)))
+                    .check(matches(withText("" + number_of_unlearnt)));
+
+            for(int j = 0;j<number_of_syllabus;j++){
+                //slowly make categories learnt
+                String syllabus_learnt = syllabus_elements.get(j).toLowerCase() + file_connection_key.getLesson_passed_back_key();
+
+                // set such that the syllabus of category is learnt
+                file_connections.syllabus_learnt(syllabus_learnt);
+
+                number_of_unlearnt--;
+
+                //go to game screen
+                onView(withId(R.id.navigation_game))
+                        .check(matches(isDisplayed()))
+                        .perform(forceClick());
+
+                //switch back to translator screen
+                onView(withId(R.id.navigation_lesson))
+                        .check(matches(isDisplayed()))
+                        .perform(forceClick());
+
+                if(number_of_unlearnt == 0){
+                    // check that lesson_notifi is gone
+                    onView(withId(lesson_notifi_collection.get(i)))
+                            .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
+                }
+                else{
+                    // check if number of syllabus unlearnt has reduced
+                    onView(withId(lesson_notifi_collection.get(i)))
+                            .check(matches(withText("" + number_of_unlearnt)));
+                }
+
+
+            }
+
+        }
+
+    }
     @After
     public void set_category_locked_back(){
         //reset to default score
@@ -250,5 +309,28 @@ public class LessonFragmentTest extends TestCase {
 
         // save default unlocked and locked categories in file
         file_connections.save_default_category_unlock_in_file();
+
+        // make all syllabus unlearnt
+        Category_elements category_elements = new Category_elements();
+        App_data app_data = new App_data();
+        String[] categories = app_data.getCategories();
+        File_connection_key file_connection_key = new File_connection_key();
+        int length = categories.length;
+
+        for(int i = 0;i<length;i++) {
+            ArrayList<String> syllabus_elements = category_elements.get_category_elements_testable(i);
+
+            int number_of_syllabus = syllabus_elements.size();
+
+            for(int j = 0;j<number_of_syllabus;j++) {
+                //slowly make categories not learnt
+                String syllabus_learnt = syllabus_elements.get(j).toLowerCase() + file_connection_key.getLesson_passed_back_key();
+
+                // set such that the syllabus of category is not learnt
+                file_connections.syllabus_not_learnt(syllabus_learnt);
+
+            }
+
+        }
     }
 }
