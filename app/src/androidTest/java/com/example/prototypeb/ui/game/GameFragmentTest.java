@@ -157,6 +157,7 @@ public class GameFragmentTest extends TestCase {
                     .check(matches(isDisplayed()))
                     .perform(forceClick());
 
+
             //check if game screen is displayed
             onView(withId(R.id.imageQuestion))
                     .check(matches(isDisplayed()));
@@ -174,7 +175,7 @@ public class GameFragmentTest extends TestCase {
     }
 
     private void test_notifiDisplay(){
-        File_connection_key file_connection_key = new File_connection_key();
+
         Category_elements category_elements = new Category_elements();
         App_data app_data = new App_data();
         String [] categories = app_data.getCategories();
@@ -183,9 +184,15 @@ public class GameFragmentTest extends TestCase {
 
         //Test for pass
         for(int i=0; i<length; i++) {
-            ArrayList<String> syllabus_elements = category_elements.get_category_elements_testable(i);
+            ArrayList<String> syllabus_elements = category_elements.getCategory_elements().get(categories[i]);
             //set categories as passed
-            file_connections.set_game_category_passed(syllabus_elements.get(i));
+
+            int number_of_syllabus = syllabus_elements.size();
+
+            for(int j = 0;j<number_of_syllabus;j++){
+                file_connections.set_game_category_passed(syllabus_elements.get(j));
+            }
+
         }
 
         //REFRESH TO UPDATE CHANGES
@@ -207,9 +214,13 @@ public class GameFragmentTest extends TestCase {
 
         //Test for not passed
         for(int i=0; i<length; i++) {
-            ArrayList<String> syllabus_elements = category_elements.get_category_elements_testable(i);
+            ArrayList<String> syllabus_elements = category_elements.getCategory_elements().get(categories[i]);
             //set categories as not passed
-            file_connections.set_game_category_not_passed(syllabus_elements.get(i));
+            int number_of_syllabus = syllabus_elements.size();
+
+            for(int j = 0;j<number_of_syllabus;j++){
+                file_connections.set_game_category_not_passed(syllabus_elements.get(j));
+            }
         }
 
         //REFRESH TO UPDATE CHANGES
@@ -235,12 +246,24 @@ public class GameFragmentTest extends TestCase {
     public void resetDefault(){
         //reset to default score
         file_connections.update_score_file_only(file_connections.getDefault_score_value());
+
         //save default progress in file
         file_connections.save_default_category_unlock_in_file();
-        //set only first Category as passed
+
+        //set all categories as not passed
+        Category_elements category_elements = new Category_elements();
+        App_data app_data = new App_data();
+        String [] categories = app_data.getCategories();
+
         int length = categories.length;
         for(int i=0; i<length; i++) {
-            file_connections.set_game_category_not_passed(categories[i]);
+            ArrayList<String> syllabus_elements = category_elements.getCategory_elements().get(categories[i]);
+            //set categories as not passed
+            int number_of_syllabus = syllabus_elements.size();
+
+            for(int j = 0;j<number_of_syllabus;j++){
+                file_connections.set_game_category_not_passed(syllabus_elements.get(j));
+            }
         }
     }
 }
