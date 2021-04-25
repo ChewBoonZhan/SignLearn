@@ -218,6 +218,7 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
      * @return index exceeding (number of questions - 1)
      */
     private boolean no_more_questions(){
+
         return (index > (signLang.size() - 1));
     }
 
@@ -303,6 +304,7 @@ public abstract class Game_screen extends Sub_action_bar implements  Game_compon
         Collections.shuffle(newSignLang); //randomize option placements
         int correctAnswerPosition = new Random().nextInt(NUMBER_OF_CHOICES); //randomize correct answer position
         int get_new_index = 0;
+        //insert and assign answer options
         for(int i=0; i<NUMBER_OF_CHOICES; i++){
 
             if(i == correctAnswerPosition)
