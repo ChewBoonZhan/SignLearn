@@ -196,6 +196,12 @@ public class AdverbsTest extends TestCase {
             onView(withId(category_scrollview.get(category_index)))
                     .check(matches(isDisplayed()));
 
+            try{
+                Thread.sleep(1000);
+            }catch(Exception e){
+
+            }
+
         }
 
         length = translator_cannot_verify_id.size();
@@ -252,6 +258,12 @@ public class AdverbsTest extends TestCase {
             // check user is on syllabus screen
             onView(withId(category_scrollview.get(category_index)))
                     .check(matches(isDisplayed()));
+
+            try{
+                Thread.sleep(1000);
+            }catch(Exception e){
+
+            }
 
         }
         // go back to the lesson main screen
