@@ -23,6 +23,11 @@ import java.util.List;
 import com.example.prototypeb.controller.translator.Translator;
 import com.example.prototypeb.controller.translator_verify.Translator_verify;
 
+/*
+ * Utilizes camera API from android studio to connect with camera
+ * Link to documentation: https://developer.android.com/guide/topics/media/camera
+ * Code adopted from documentation guide.
+ */
 public class Camera_handle {
     // camera number id on the user's phone
     private int camera_num;
